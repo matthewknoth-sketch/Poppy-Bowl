@@ -1,0 +1,71 @@
+{
+  "season": "2025",
+  "weeks": [
+    {
+      "week": 1,
+      "deadline": "2025-09-04T20:20:00-04:00",
+      "games": [
+        {"id": "W1G1", "home": "Chiefs", "away": "Ravens", "kickoff": "2025-09-04T20:20:00-04:00", "winner": null},
+        {"id": "W1G2", "home": "Bills", "away": "Jets", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G3", "home": "49ers", "away": "Seahawks", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G4", "home": "Cowboys", "away": "Giants", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G5", "home": "Packers", "away": "Bears", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G6", "home": "Dolphins", "away": "Patriots", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G7", "home": "Bengals", "away": "Browns", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G8", "home": "Steelers", "away": "Titans", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G9", "home": "Colts", "away": "Jaguars", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
+        {"id": "W1G10", "home": "Eagles", "away": "Falcons", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
+        {"id": "W1G11", "home": "Lions", "away": "Vikings", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
+        {"id": "W1G12", "home": "Chargers", "away": "Raiders", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
+        {"id": "W1G13", "home": "Cardinals", "away": "Rams", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
+        {"id": "W1G14", "home": "Saints", "away": "Panthers", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
+        {"id": "W1G15", "home": "Broncos", "away": "Texans", "kickoff": "2025-09-08T20:20:00-04:00", "winner": null},
+        {"id": "W1G16", "home": "Buccaneers", "away": "Commanders", "kickoff": "2025-09-09T20:15:00-04:00", "winner": null}
+      ]
+    },
+    {
+      "week": 2,
+      "deadline": "2025-09-11T20:15:00-04:00",
+      "games": [
+        {"id": "W2G1", "home": "Eagles", "away": "Cowboys", "kickoff": "2025-09-11T20:15:00-04:00", "winner": null},
+        {"id": "W2G2", "home": "Ravens", "away": "Bengals", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G3", "home": "Jets", "away": "Dolphins", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G4", "home": "Patriots", "away": "Bills", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G5", "home": "Browns", "away": "Steelers", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G6", "home": "Giants", "away": "Commanders", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G7", "home": "Bears", "away": "Lions", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G8", "home": "Vikings", "away": "Packers", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G9", "home": "Jaguars", "away": "Titans", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G10", "home": "Texans", "away": "Colts", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null},
+        {"id": "W2G11", "home": "Falcons", "away": "Saints", "kickoff": "2025-09-14T16:25:00-04:00", "winner": null},
+        {"id": "W2G12", "home": "Panthers", "away": "Buccaneers", "kickoff": "2025-09-14T16:25:00-04:00", "winner": null},
+        {"id": "W2G13", "home": "Seahawks", "away": "Cardinals", "kickoff": "2025-09-14T16:25:00-04:00", "winner": null},
+        {"id": "W2G14", "home": "Rams", "away": "49ers", "kickoff": "2025-09-14T16:25:00-04:00", "winner": null},
+        {"id": "W2G15", "home": "Raiders", "away": "Broncos", "kickoff": "2025-09-14T16:25:00-04:00", "winner": null},
+        {"id": "W2G16", "home": "Chiefs", "away": "Chargers", "kickoff": "2025-09-15T20:20:00-04:00", "winner": null}
+      ]
+    },
+    {
+      "week": 3,
+      "deadline": "2025-09-18T20:15:00-04:00",
+      "games": [
+        {"id": "W3G1", "home": "Steelers", "away": "Ravens", "kickoff": "2025-09-18T20:15:00-04:00", "winner": null},
+        {"id": "W3G2", "home": "Cowboys", "away": "Eagles", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G3", "home": "Bills", "away": "Dolphins", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G4", "home": "Bengals", "away": "Jets", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G5", "home": "Browns", "away": "Patriots", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G6", "home": "Commanders", "away": "Giants", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G7", "home": "Lions", "away": "Bears", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G8", "home": "Packers", "away": "Vikings", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G9", "home": "Titans", "away": "Jaguars", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G10", "home": "Colts", "away": "Texans", "kickoff": "2025-09-21T13:00:00-04:00", "winner": null},
+        {"id": "W3G11", "home": "Saints", "away": "Falcons", "kickoff": "2025-09-21T16:25:00-04:00", "winner": null},
+        {"id": "W3G12", "home": "Buccaneers", "away": "Panthers", "kickoff": "2025-09-21T16:25:00-04:00", "winner": null},
+        {"id": "W3G13", "home": "Cardinals", "away": "Seahawks", "kickoff": "2025-09-21T16:25:00-04:00", "winner": null},
+        {"id": "W3G14", "home": "49ers", "away": "Rams", "kickoff": "2025-09-21T16:25:00-04:00", "winner": null},
+        {"id": "W3G15", "home": "Broncos", "away": "Raiders", "kickoff": "2025-09-21T16:25:00-04:00", "winner": null},
+        {"id": "W3G16", "home": "Chargers", "away": "Chiefs", "kickoff": "2025-09-22T20:20:00-04:00", "winner": null}
+      ]
+    }
+  ]
+}
