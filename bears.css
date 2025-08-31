@@ -1,0 +1,113 @@
+/* Chicago Bears Theme CSS */
+/* Primary: Navy Blue #0B162A, Secondary: Orange #C83803, White #FFFFFF */
+
+:root {
+  --bears-navy: #0B162A;
+  --bears-orange: #C83803;
+  --bears-white: #FFFFFF;
+  --bears-light-orange: #FF6B35;
+  --bears-dark-navy: #061018;
+}
+
+.bears-theme {
+  background-color: var(--bears-navy);
+  color: var(--bears-white);
+}
+
+.bears-theme header {
+  background-color: var(--bears-dark-navy);
+  border-bottom: 3px solid var(--bears-orange);
+}
+
+.bears-theme .logo,
+.bears-theme h1,
+.bears-theme h2,
+.bears-theme h3 {
+  color: var(--bears-orange);
+  text-shadow: 1px 1px 2px var(--bears-dark-navy);
+}
+
+.bears-theme .btn-primary,
+.bears-theme button.primary {
+  background-color: var(--bears-orange);
+  color: var(--bears-white);
+  border: 2px solid var(--bears-orange);
+}
+
+.bears-theme .btn-primary:hover,
+.bears-theme button.primary:hover {
+  background-color: var(--bears-light-orange);
+  border-color: var(--bears-light-orange);
+}
+
+.bears-theme .btn-secondary,
+.bears-theme button.secondary {
+  background-color: transparent;
+  color: var(--bears-orange);
+  border: 2px solid var(--bears-orange);
+}
+
+.bears-theme .btn-secondary:hover,
+.bears-theme button.secondary:hover {
+  background-color: var(--bears-orange);
+  color: var(--bears-white);
+}
+
+.bears-theme .card,
+.bears-theme .panel {
+  background-color: var(--bears-dark-navy);
+  border: 1px solid var(--bears-orange);
+  color: var(--bears-white);
+}
+
+.bears-theme .nav-link,
+.bears-theme a {
+  color: var(--bears-light-orange);
+}
+
+.bears-theme .nav-link:hover,
+.bears-theme a:hover {
+  color: var(--bears-orange);
+}
+
+.bears-theme .table {
+  background-color: var(--bears-dark-navy);
+  color: var(--bears-white);
+}
+
+.bears-theme .table th {
+  background-color: var(--bears-orange);
+  color: var(--bears-white);
+  border-color: var(--bears-orange);
+}
+
+.bears-theme .form-control,
+.bears-theme input,
+.bears-theme textarea,
+.bears-theme select {
+  background-color: var(--bears-dark-navy);
+  color: var(--bears-white);
+  border: 1px solid var(--bears-orange);
+}
+
+.bears-theme .form-control:focus,
+.bears-theme input:focus,
+.bears-theme textarea:focus,
+.bears-theme select:focus {
+  border-color: var(--bears-light-orange);
+  box-shadow: 0 0 0 0.2rem rgba(200, 56, 3, 0.25);
+}
+
+/* Theme selector styling */
+#theme-select {
+  background-color: var(--bears-navy, #0B162A);
+  color: var(--bears-white, #FFFFFF);
+  border: 1px solid var(--bears-orange, #C83803);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+#theme-select option {
+  background-color: var(--bears-navy, #0B162A);
+  color: var(--bears-white, #FFFFFF);
+}
