@@ -5,7 +5,9 @@
   <title>Poppy Bowl - Confidence Pool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: system-ui, sans-serif;
       margin: 0;
@@ -26,6 +28,16 @@
       color: #2c3e50;
       text-align: center;
     }
+    .week-selector {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .week-selector select {
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
     .score-summary {
       background: #e3f2fd;
       padding: 16px;
@@ -35,267 +47,333 @@
       font-size: 18px;
       font-weight: bold;
     }
+    .totals {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+    .total-item {
+      text-align: center;
+    }
+    .total-value {
+      font-size: 24px;
+      color: #2c3e50;
+    }
     .game {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+      background: #f9f9f9;
+    }
+    .game-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px;
-      margin: 8px 0;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background: #fafafa;
+      margin-bottom: 12px;
     }
-    .game-info {
-      flex: 1;
-    }
-    .matchup {
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-    .kickoff {
-      color: #666;
+    .game-date {
       font-size: 14px;
+      color: #666;
     }
-    .confidence-input {
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+    }
+    .team {
       display: flex;
       align-items: center;
-      gap: 8px;
+      flex: 1;
     }
-    .confidence-input label {
+    .team-name {
+      margin-left: 8px;
       font-weight: bold;
-      color: #2c3e50;
     }
-    .confidence-input input {
+    .vs {
+      margin: 0 20px;
+      font-weight: bold;
+      color: #666;
+    }
+    .confidence-section {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+    }
+    .confidence-input {
       width: 60px;
-      padding: 8px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
+      padding: 4px 8px;
       text-align: center;
-      font-size: 16px;
-      font-weight: bold;
+      border: 1px solid #ddd;
+      border-radius: 4px;
     }
-    .confidence-input input:focus {
-      border-color: #3498db;
-      outline: none;
+    .confidence-warning {
+      color: #d32f2f;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .game.has-warning {
+      border-color: #d32f2f;
+      background: #ffeaea;
     }
     .actions {
       text-align: center;
-      margin-top: 24px;
-      gap: 12px;
-      display: flex;
-      justify-content: center;
+      margin: 20px 0;
     }
     .btn {
-      background: #3498db;
-      color: white;
+      padding: 10px 20px;
+      margin: 0 10px;
       border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 16px;
     }
-    .btn:hover {
-      background: #2980b9;
+    .btn-primary {
+      background: #2196F3;
+      color: white;
     }
-    .btn.secondary {
-      background: #95a5a6;
+    .btn-secondary {
+      background: #666;
+      color: white;
     }
-    .btn.secondary:hover {
-      background: #7f8c8d;
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
     .error {
-      color: #e74c3c;
-      background: #fdf2f2;
-      padding: 12px;
+      background: #ffebee;
+      color: #c62828;
+      padding: 16px;
       border-radius: 4px;
-      margin: 12px 0;
-    }
-    .loading {
-      text-align: center;
-      color: #666;
-      font-style: italic;
-      padding: 40px;
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Poppy Bowl Confidence Pool</h1>
+    <h1>Poppy Bowl - Confidence Pool</h1>
     
+    <div class="week-selector">
+      <label for="week-select">Week:</label>
+      <select id="week-select">
+        <option value="1" selected>Week 1</option>
+        <option value="2" disabled>Week 2</option>
+        <option value="3" disabled>Week 3</option>
+        <option value="4" disabled>Week 4</option>
+        <option value="5" disabled>Week 5</option>
+      </select>
+    </div>
+
     <div class="score-summary">
-      Total Confidence Score: <span id="total-score">0</span> / <span id="max-score">0</span>
+      <div class="totals">
+        <div class="total-item">
+          <div>Projected Total</div>
+          <div id="projected-total" class="total-value">0</div>
+        </div>
+        <div class="total-item">
+          <div>Official Total</div>
+          <div id="official-total" class="total-value">0</div>
+        </div>
+      </div>
     </div>
-    
-    <div id="games-container">
-      <div class="loading">Loading schedule data...</div>
-    </div>
-    
+
+    <div id="games-container"></div>
+
     <div class="actions">
-      <button id="save-btn" class="btn">Save Selections</button>
-      <button id="clear-btn" class="btn secondary">Clear All</button>
+      <button id="save-btn" class="btn btn-primary">Save Picks</button>
+      <button id="clear-btn" class="btn btn-secondary">Clear All</button>
     </div>
   </div>
 
-  <script type="module">
-    // Types and validation
-    interface Game {
-      id: string;
-      home: string;
-      away: string;
-      kickoff: string;
-    }
+  <script>
+    let scheduleData = null;
+    let currentWeek = 1;
+    let picks = {};
+    let confidences = {};
     
-    interface WeekData {
-      week: number;
-      games: Game[];
-    }
+    const gamesContainer = document.getElementById('games-container');
+    const saveBtn = document.getElementById('save-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const weekSelect = document.getElementById('week-select');
+    const projectedTotal = document.getElementById('projected-total');
+    const officialTotal = document.getElementById('official-total');
+
+    // Storage keys
+    const getPickKey = (week, gameId) => `pick_${week}_${gameId}`;
+    const getConfidenceKey = (week, gameId) => `confidence_${week}_${gameId}`;
     
-    interface ScheduleData {
-      season: string;
-      weeks: WeekData[];
-    }
-    
-    // Simple runtime validation without Zod dependency
-    function validateSchedule(data: any): data is ScheduleData {
-      if (!data || typeof data !== 'object') return false;
-      if (!data.weeks || !Array.isArray(data.weeks)) return false;
+    // Load saved picks and confidences
+    function loadSavedData() {
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
       
-      return data.weeks.every((week: any) => {
-        return typeof week.week === 'number' &&
-               Array.isArray(week.games) &&
-               week.games.every((game: any) => 
-                 typeof game.id === 'string' &&
-                 typeof game.home === 'string' &&
-                 typeof game.away === 'string' &&
-                 typeof game.kickoff === 'string'
-               );
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      picks = {};
+      confidences = {};
+      
+      weekGames.forEach(game => {
+        const gameId = game.id;
+        const savedPick = localStorage.getItem(getPickKey(currentWeek, gameId));
+        const savedConfidence = localStorage.getItem(getConfidenceKey(currentWeek, gameId));
+        
+        if (savedPick) {
+          picks[gameId] = savedPick;
+        }
+        if (savedConfidence) {
+          confidences[gameId] = parseInt(savedConfidence);
+        }
       });
     }
-    
-    // State management
-    let scheduleData: ScheduleData | null = null;
-    let confidenceSelections: Record<string, number> = {};
-    const STORAGE_KEY = 'poppy-bowl-confidence';
-    
-    // DOM elements
-    const gamesContainer = document.getElementById('games-container')!;
-    const totalScoreEl = document.getElementById('total-score')!;
-    const maxScoreEl = document.getElementById('max-score')!;
-    const saveBtn = document.getElementById('save-btn')!;
-    const clearBtn = document.getElementById('clear-btn')!;
-    
-    // Load saved selections from localStorage
-    function loadSavedSelections() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          confidenceSelections = JSON.parse(saved);
+
+    // Save picks and confidences to localStorage
+    function saveData() {
+      Object.entries(picks).forEach(([gameId, pick]) => {
+        localStorage.setItem(getPickKey(currentWeek, gameId), pick);
+      });
+      
+      Object.entries(confidences).forEach(([gameId, confidence]) => {
+        localStorage.setItem(getConfidenceKey(currentWeek, gameId), confidence.toString());
+      });
+    }
+
+    // Check for duplicate confidences
+    function validateConfidences() {
+      const confidenceValues = Object.values(confidences).filter(c => c > 0);
+      const duplicates = confidenceValues.filter((value, index) => 
+        confidenceValues.indexOf(value) !== index
+      );
+      return duplicates;
+    }
+
+    // Update totals
+    function updateTotals() {
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
+      
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      
+      // Projected total: sum of all assigned confidences
+      const projected = Object.values(confidences).reduce((sum, conf) => sum + (conf || 0), 0);
+      projectedTotal.textContent = projected;
+      
+      // Official total: sum of confidences for games where pick matches winner
+      let official = 0;
+      weekGames.forEach(game => {
+        const gameId = game.id;
+        const pick = picks[gameId];
+        const confidence = confidences[gameId] || 0;
+        
+        if (game.winner && pick === game.winner) {
+          official += confidence;
         }
-      } catch (error) {
-        console.warn('Failed to load saved selections:', error);
-      }
+      });
+      officialTotal.textContent = official;
     }
-    
-    // Save selections to localStorage
-    function saveSelections() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(confidenceSelections));
-        alert('Selections saved successfully!');
-      } catch (error) {
-        console.error('Failed to save selections:', error);
-        alert('Failed to save selections. Please try again.');
-      }
-    }
-    
-    // Clear all selections
-    function clearSelections() {
-      if (confirm('Are you sure you want to clear all confidence selections?')) {
-        confidenceSelections = {};
-        localStorage.removeItem(STORAGE_KEY);
-        renderGames();
-        updateTotalScore();
-      }
-    }
-    
-    // Calculate and update total score display
-    function updateTotalScore() {
-      const values = Object.values(confidenceSelections);
-      const total = values.reduce((sum, val) => sum + val, 0);
-      const maxPossible = scheduleData?.weeks[0]?.games.length || 0;
-      const maxScore = maxPossible * (maxPossible + 1) / 2; // Sum of 1 to N
+
+    // Handle confidence change
+    function handleConfidenceChange(gameId, value) {
+      const conf = parseInt(value) || 0;
+      if (conf < 0) return;
       
-      totalScoreEl.textContent = total.toString();
-      maxScoreEl.textContent = maxScore.toString();
-    }
-    
-    // Handle confidence input changes
-    function handleConfidenceChange(gameId: string, value: string) {
-      const numValue = parseInt(value);
-      const maxGames = scheduleData?.weeks[0]?.games.length || 16;
+      confidences[gameId] = conf;
+      saveData();
+      renderGames();
+      updateTotals();
       
-      if (isNaN(numValue) || numValue < 1 || numValue > maxGames) {
-        delete confidenceSelections[gameId];
-      } else {
-        confidenceSelections[gameId] = numValue;
-      }
-      
-      updateTotalScore();
+      // Check for duplicates and disable save if found
+      const duplicates = validateConfidences();
+      saveBtn.disabled = duplicates.length > 0;
     }
-    
-    // Render games list
+
+    // Handle pick change
+    function handlePickChange(gameId, team) {
+      picks[gameId] = team;
+      saveData();
+      updateTotals();
+    }
+
+    // Render games
     function renderGames() {
-      if (!scheduleData?.weeks[0]) {
-        gamesContainer.innerHTML = '<div class="error">No games found for Week 1</div>';
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) {
+        gamesContainer.innerHTML = '<div class="error">No games found for this week.</div>';
         return;
       }
       
-      const week1 = scheduleData.weeks[0];
-      const maxConfidence = week1.games.length;
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      const duplicates = validateConfidences();
       
-      gamesContainer.innerHTML = week1.games.map(game => {
-        const currentValue = confidenceSelections[game.id] || '';
-        const kickoffDate = new Date(game.kickoff).toLocaleString();
+      gamesContainer.innerHTML = weekGames.map(game => {
+        const gameId = game.id;
+        const pick = picks[gameId] || '';
+        const confidence = confidences[gameId] || '';
+        const hasDuplicateConfidence = confidence > 0 && duplicates.includes(confidence);
         
         return `
-          <div class="game">
-            <div class="game-info">
-              <div class="matchup">${game.away} @ ${game.home}</div>
-              <div class="kickoff">${kickoffDate}</div>
+          <div class="game ${hasDuplicateConfidence ? 'has-warning' : ''}">
+            <div class="game-header">
+              <div class="game-date">${new Date(game.date).toLocaleDateString()} ${new Date(game.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+              ${game.winner ? `<div style="color: #2e7d32; font-weight: bold;">Winner: ${game.winner}</div>` : ''}
             </div>
-            <div class="confidence-input">
-              <label>Confidence:</label>
-              <input 
-                type="number" 
-                min="1" 
-                max="${maxConfidence}" 
-                value="${currentValue}"
-                placeholder="1-${maxConfidence}"
-                data-game-id="${game.id}"
-                class="confidence-input-field"
-              >
+            
+            <div class="teams">
+              <div class="team">
+                <input type="radio" name="pick_${gameId}" value="${game.home}" id="${gameId}_home" 
+                  ${pick === game.home ? 'checked' : ''}>
+                <label for="${gameId}_home" class="team-name">${game.home}</label>
+              </div>
+              <div class="vs">vs</div>
+              <div class="team">
+                <input type="radio" name="pick_${gameId}" value="${game.away}" id="${gameId}_away" 
+                  ${pick === game.away ? 'checked' : ''}>
+                <label for="${gameId}_away" class="team-name">${game.away}</label>
+              </div>
+            </div>
+            
+            <div class="confidence-section">
+              <label>Confidence (1-16): 
+                <input type="number" class="confidence-input" min="1" max="16" 
+                  value="${confidence}" data-game-id="${gameId}">
+              </label>
+              ${hasDuplicateConfidence ? 
+                '<div class="confidence-warning">⚠ Duplicate confidence value! Each game must have a unique confidence.</div>' : 
+                ''}
             </div>
           </div>
         `;
       }).join('');
       
-      // Add event listeners to inputs
-      const inputs = gamesContainer.querySelectorAll('.confidence-input-field');
-      inputs.forEach(input => {
-        input.addEventListener('input', (e) => {
-          const target = e.target as HTMLInputElement;
-          const gameId = target.dataset.gameId!;
-          handleConfidenceChange(gameId, target.value);
+      // Bind event listeners
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const gameId = e.target.name.split('_')[1];
+          handlePickChange(gameId, e.target.value);
         });
       });
       
-      updateTotalScore();
+      document.querySelectorAll('.confidence-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const gameId = e.target.dataset.gameId;
+          handleConfidenceChange(gameId, e.target.value);
+        });
+      });
     }
-    
+
+    // Validate schedule data
+    function validateSchedule(data) {
+      return data && 
+             Array.isArray(data.weeks) && 
+             data.weeks.length > 0 &&
+             data.weeks.every(week => 
+               Array.isArray(week.games) &&
+               week.games.every(game => 
+                 game.id && game.home && game.away && game.date
+               )
+             );
+    }
+
     // Load schedule data
     async function loadScheduleData() {
       try {
-        const response = await fetch('./data/data/schedule-2025.json');
+        const response = await fetch('./data/schedule-2025.json');
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
@@ -307,31 +385,73 @@
         }
         
         scheduleData = data;
+        loadSavedData();
         renderGames();
-        
+        updateTotals();
       } catch (error) {
         console.error('Failed to load schedule:', error);
         gamesContainer.innerHTML = `
           <div class="error">
-            <strong>Failed to load schedule data</strong><br>
-            ${error instanceof Error ? error.message : 'Unknown error'}<br>
-            <br>
-            Please ensure the file <code>data/data/schedule-2025.json</code> exists and is properly formatted.
+            Failed to load schedule data: 
+            ${error instanceof Error ? error.message : 'Unknown error'}
+            <br><br>
+            Please ensure the file data/schedule-2025.json exists and is properly formatted.
           </div>
         `;
       }
     }
-    
+
+    // Clear all selections
+    function clearSelections() {
+      if (confirm('Are you sure you want to clear all picks and confidences for this week?')) {
+        if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
+        
+        const weekGames = scheduleData.weeks[currentWeek-1].games;
+        weekGames.forEach(game => {
+          const gameId = game.id;
+          localStorage.removeItem(getPickKey(currentWeek, gameId));
+          localStorage.removeItem(getConfidenceKey(currentWeek, gameId));
+        });
+        
+        picks = {};
+        confidences = {};
+        renderGames();
+        updateTotals();
+        saveBtn.disabled = false;
+      }
+    }
+
+    // Save selections
+    function saveSelections() {
+      if (validateConfidences().length > 0) {
+        alert('Please fix duplicate confidence values before saving.');
+        return;
+      }
+      
+      saveData();
+      alert('Picks and confidences saved!');
+    }
+
+    // Week selector change (keep other weeks disabled for now)
+    weekSelect.addEventListener('change', (e) => {
+      const newWeek = parseInt(e.target.value);
+      if (newWeek === 1) {
+        currentWeek = newWeek;
+        loadSavedData();
+        renderGames();
+        updateTotals();
+      }
+    });
+
     // Initialize app
     async function init() {
-      loadSavedSelections();
       await loadScheduleData();
       
       // Bind event handlers
       saveBtn.addEventListener('click', saveSelections);
       clearBtn.addEventListener('click', clearSelections);
     }
-    
+
     // Start the application
     init();
   </script>
