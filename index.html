@@ -30,7 +30,7 @@
       color: #fff;
       border-color: #007cba;
     }
-    .tab-content {
+    .view {
       display: none;
     }
     .section {
@@ -104,77 +104,6 @@
       font-size: 12px;
       color: #555;
     }
-    /* Admin styles */
-    .admin-section {
-      margin: 16px 0;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background: #f9f9f9;
-    }
-    .admin-auth {
-      margin-bottom: 16px;
-    }
-    .admin-auth input {
-      padding: 6px 10px;
-      margin: 0 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .admin-auth button {
-      padding: 6px 12px;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .admin-content {
-      display: none;
-    }
-    .admin-content.unlocked {
-      display: block;
-    }
-    .results-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 16px 0;
-    }
-    .results-week {
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 12px;
-      background: #fff;
-    }
-    .results-week h4 {
-      margin: 0 0 12px;
-      color: #007cba;
-    }
-    .result-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 8px 0;
-      padding: 8px;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      background: #fafafa;
-    }
-    .result-item select {
-      padding: 4px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .success-msg {
-      color: #28a745;
-      background: #d4edda;
-      border: 1px solid #28a745;
-      padding: 8px;
-      border-radius: 4px;
-      margin: 8px 0;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -189,8 +118,8 @@
         Choose participant:
         <select id="userDropdown" style="margin-left:8px;"></select>
       </label>
-      <span>or</span>
-      <input id="userCustom" type="text" placeholder="Enter name" />
+      or
+      <input id="userCustom" placeholder="Enter name" type="text">
       <button id="userSelectBtn">Continue</button>
     </div>
     <div class="small">Tip: use this to switch between participants and enter each person's picks on this device.</div>
@@ -200,10 +129,10 @@
     <button class="tab-button active" data-tab="leaderboard">Leaderboard</button>
     <button class="tab-button" data-tab="picks">Picks</button>
     <button class="tab-button" data-tab="scoreboard">Scoreboard</button>
-    <button class="tab-button" data-tab="admin">Admin</button>
+    <button id="tab-admin">Admin</button>
   </div>
   
-  <div class="tab-content" id="leaderboard" style="display:block;">
+  <div class="view" id="view-leaderboard" style="display:block;">
     <h2>Leaderboard</h2>
     <div class="section">
       <table>
@@ -219,7 +148,7 @@
     </div>
   </div>
   
-  <div class="tab-content" id="picks">
+  <div class="view" id="view-picks">
     <h2>Picks</h2>
     <div class="controls week-controls">
       <button id="prevWeek">Previous Week</button>
@@ -229,7 +158,7 @@
     <div id="weeklyPicks"></div>
   </div>
   
-  <div class="tab-content" id="scoreboard" style="display:none;">
+  <div class="view" id="view-scoreboard" style="display:none;">
     <h2>Scoreboard</h2>
     <div class="controls week-controls">
       <button id="scorePrevWeek">Previous Week</button>
@@ -249,34 +178,24 @@
     <div class="small" id="scoresTimestamp" style="margin-top:10px;"></div>
   </div>
   
-  <div class="tab-content" id="admin">
-    <h2>Admin - Results Management</h2>
-    
-    <div class="admin-auth">
-      <label>Admin Passphrase: 
-        <input type="password" id="adminPassphrase" placeholder="Enter passphrase">
+  <section id="view-admin" class="view" style="display:none;">
+    <h2>Results Admin</h2>
+    <div id="admin-lock">
+      <label>Admin passphrase
+        <input type="password" id="admin-pass" placeholder="Enter passphrase">
       </label>
-      <button id="adminLoginBtn">Unlock</button>
+      <button id="admin-unlock">Unlock</button>
+      <small id="admin-lock-msg"></small>
     </div>
-    
-    <div class="admin-content" id="adminContent">
-      <div class="success-msg" id="successMsg">Results saved successfully!</div>
-      
-      <div class="admin-section">
-        <h3>Set Game Winners</h3>
-        <p class="small">Select the winning team for each completed game. This will update scores for all participants.</p>
-        
-        <div class="results-grid" id="resultsGrid">
-          <!-- Game results will be populated by JavaScript -->
-        </div>
-        
-        <div class="controls">
-          <button class="save-btn" id="saveResults">Save All Results</button>
-          <button id="recalculateBtn" style="margin-left: 8px; padding: 8px 16px; background: #ffc107; color: #000; border: none; border-radius: 4px; cursor: pointer;">Recalculate All Scores</button>
-        </div>
-      </div>
+    <div id="results-panel" style="display:none; margin-top:16px;">
+      <label>Week
+        <select id="results-week"></select>
+      </label>
+      <div id="results-games" style="margin-top:12px;"></div>
+      <button id="save-winners" style="margin-top:16px;">Save Winners</button>
+      <small id="save-winners-msg" style="margin-left:8px;"></small>
     </div>
-  </div>
+  </section>
   
   <script src="./src/main.js" type="module"></script>
 </body>
