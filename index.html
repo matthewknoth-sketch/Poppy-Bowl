@@ -103,6 +103,29 @@
       border-radius: 4px;
       text-align: center;
     }
+    
+    /* Participant styling */
+    .participants-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .participant-item {
+      background: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .participant-name {
+      font-weight: 500;
+    }
+    .participant-score {
+      font-size: 0.9em;
+      color: #666;
+    }
   </style>
 </head>
 <body>
@@ -110,7 +133,7 @@
     <h1>Poppy Bowl - Confidence Pool</h1>
     
     <!-- Participants section near header -->
-    <div id="participants" class="participants">
+    <div class="participants" id="participants">
       <h2>Participants</h2>
       <p>Loading participants...</p>
     </div>
@@ -123,7 +146,7 @@
     
     <!-- Submit button near picks -->
     <div style="text-align: center; margin-top: 30px;">
-      <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
+      <button class="submit-btn" id="submitPicksBtn">Submit Picks</button>
     </div>
     
     <div id="results" style="margin-top: 30px;">
@@ -131,20 +154,6 @@
     </div>
   </div>
   
-  <script>
-    // Application JavaScript will go here
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Poppy Bowl application loaded');
-      
-      // Initialize submit button functionality
-      const submitBtn = document.getElementById('submitPicksBtn');
-      if (submitBtn) {
-        submitBtn.addEventListener('click', function() {
-          console.log('Submit picks clicked');
-          // Submit functionality to be implemented
-        });
-      }
-    });
-  </script>
+  <script src="src/main.js"></script>
 </body>
 </html>
