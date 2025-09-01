@@ -4,7 +4,7 @@
 "week": 1,
 "deadline": "2025-09-04T20:20:00-04:00",
 "games": [
-{ "id": "W1G1", "home": "Fly Eagle Fly", "away": "Dallas Cowboys", "date": "2025-09-04T20:20:00-04:00", "winner": null },
+{ "id": "W1G1", "home": "Fly Eagles Fly", "away": "Dallas Cowboys", "date": "2025-09-04T20:20:00-04:00", "winner": null },
 { "id": "W1G2", "home": "Kansas City Chiefs", "away": "Los Angeles Chargers", "date": "2025-09-05T20:00:00-04:00", "winner": null },
 { "id": "W1G3", "home": "Atlanta Falcons", "away": "Tampa Bay Buccaneers", "date": "2025-09-07T13:00:00-04:00", "winner": null },
 { "id": "W1G4", "home": "Cleveland Browns", "away": "Cincinnati Bengals", "date": "2025-09-07T13:00:00-04:00", "winner": null },
@@ -54,7 +54,7 @@
 { "id": "W3G6", "home": "Houston Texans", "away": "Jacksonville Jaguars", "date": "2025-09-21T13:00:00-04:00", "winner": null },
 { "id": "W3G7", "home": "Carolina Panthers", "away": "Atlanta Falcons", "date": "2025-09-21T13:00:00-04:00", "winner": null },
 { "id": "W3G8", "home": "New Orleans Saints", "away": "Tampa Bay Buccaneers", "date": "2025-09-21T13:00:00-04:00", "winner": null },
-{ "id": "W3G9", "home": "Fly Eagle Fly", "away": "Dallas Cowboys", "date": "2025-09-21T16:25:00-04:00", "winner": null },
+{ "id": "W3G9", "home": "Fly Eagles Fly", "away": "Dallas Cowboys", "date": "2025-09-21T16:25:00-04:00", "winner": null },
 { "id": "W3G10", "home": "Detroit Lions", "away": "Minnesota Vikings", "date": "2025-09-21T16:25:00-04:00", "winner": null },
 { "id": "W3G11", "home": "Arizona Cardinals", "away": "Los Angeles Rams", "date": "2025-09-21T16:25:00-04:00", "winner": null },
 { "id": "W3G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-09-21T16:25:00-04:00", "winner": null },
@@ -79,7 +79,7 @@
 { "id": "W4G11", "home": "Cheeseheads", "away": "Da Bears", "date": "2025-09-28T16:25:00-04:00", "winner": null },
 { "id": "W4G12", "home": "Seattle Seahawks", "away": "San Francisco 49ers", "date": "2025-09-28T16:25:00-04:00", "winner": null },
 { "id": "W4G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-09-28T16:25:00-04:00", "winner": null },
-{ "id": "W4G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-09-28T20:20:00-04:00", "winner": null },
+{ "id": "W4G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-09-28T20:20:00-04:00", "winner": null },
 { "id": "W4G15", "home": "New York Giants", "away": "Washington Commanders", "date": "2025-09-29T20:15:00-04:00", "winner": null }
 ]
 },
@@ -139,7 +139,7 @@
 { "id": "W7G10", "home": "Detroit Lions", "away": "Cheeseheads", "date": "2025-10-19T16:25:00-04:00", "winner": null },
 { "id": "W7G11", "home": "Minnesota Vikings", "away": "Da Bears", "date": "2025-10-19T16:25:00-04:00", "winner": null },
 { "id": "W7G12", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-10-19T16:25:00-04:00", "winner": null },
-{ "id": "W7G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-10-19T20:20:00-04:00", "winner": null },
+{ "id": "W7G13", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-10-19T20:20:00-04:00", "winner": null },
 { "id": "W7G14", "home": "Denver Broncos", "away": "Kansas City Chiefs", "date": "2025-10-20T20:15:00-04:00", "winner": null }
 ]
 },
@@ -160,7 +160,7 @@
 { "id": "W8G11", "home": "Minnesota Vikings", "away": "Da Bears", "date": "2025-10-26T16:25:00-04:00", "winner": null },
 { "id": "W8G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-10-26T16:25:00-04:00", "winner": null },
 { "id": "W8G13", "home": "Los Angeles Chargers", "away": "Las Vegas Raiders", "date": "2025-10-26T20:20:00-04:00", "winner": null },
-{ "id": "W8G14", "home": "Fly Eagle Fly", "away": "Dallas Cowboys", "date": "2025-10-27T20:15:00-04:00", "winner": null }
+{ "id": "W8G14", "home": "Fly Eagles Fly", "away": "Dallas Cowboys", "date": "2025-10-27T20:15:00-04:00", "winner": null }
 ]
 },
 {
@@ -180,7 +180,7 @@
 { "id": "W9G11", "home": "Minnesota Vikings", "away": "Da Bears", "date": "2025-11-02T16:25:00-05:00", "winner": null },
 { "id": "W9G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-11-02T16:25:00-05:00", "winner": null },
 { "id": "W9G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-02T16:25:00-05:00", "winner": null },
-{ "id": "W9G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-02T20:20:00-05:00", "winner": null }
+{ "id": "W9G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-11-02T20:20:00-05:00", "winner": null }
 ]
 },
 {
@@ -200,7 +200,7 @@
 { "id": "W10G11", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-11-09T16:25:00-05:00", "winner": null },
 { "id": "W10G12", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-09T16:25:00-05:00", "winner": null },
 { "id": "W10G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-11-09T20:20:00-05:00", "winner": null },
-{ "id": "W10G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-10T20:15:00-05:00", "winner": null }
+{ "id": "W10G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-11-10T20:15:00-05:00", "winner": null }
 ]
 },
 {
@@ -220,7 +220,7 @@
 { "id": "W11G11", "home": "Cheeseheads", "away": "Chicago Bears", "date": "2025-11-16T16:25:00-05:00", "winner": null },
 { "id": "W11G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-11-16T16:25:00-05:00", "winner": null },
 { "id": "W11G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-16T16:25:00-05:00", "winner": null },
-{ "id": "W11G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-16T20:20:00-05:00", "winner": null }
+{ "id": "W11G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-11-16T20:20:00-05:00", "winner": null }
 ]
 },
 {
@@ -261,7 +261,7 @@
 { "id": "W13G11", "home": "Minnesota Vikings", "away": "Da Bears", "date": "2025-11-30T16:25:00-05:00", "winner": null },
 { "id": "W13G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-11-30T16:25:00-05:00", "winner": null },
 { "id": "W13G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-30T16:25:00-05:00", "winner": null },
-{ "id": "W13G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-30T20:20:00-05:00", "winner": null }
+{ "id": "W13G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-11-30T20:20:00-05:00", "winner": null }
 ]
 },
 {
@@ -281,7 +281,7 @@
 { "id": "W14G11", "home": "Cheeseheads", "away": "Chicago Bears", "date": "2025-12-07T16:25:00-05:00", "winner": null },
 { "id": "W14G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-12-07T16:25:00-05:00", "winner": null },
 { "id": "W14G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-07T16:25:00-05:00", "winner": null },
-{ "id": "W14G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-07T20:20:00-05:00", "winner": null }
+{ "id": "W14G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-12-07T20:20:00-05:00", "winner": null }
 ]
 },
 {
@@ -301,7 +301,7 @@
 { "id": "W15G11", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-14T16:25:00-05:00", "winner": null },
 { "id": "W15G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-12-14T16:25:00-05:00", "winner": null },
 { "id": "W15G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-12-14T20:20:00-05:00", "winner": null },
-{ "id": "W15G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-15T20:15:00-05:00", "winner": null }
+{ "id": "W15G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-12-15T20:15:00-05:00", "winner": null }
 ]
 },
 {
@@ -321,7 +321,7 @@
 { "id": "W16G11", "home": "Cheeseheads", "away": "Da Bears", "date": "2025-12-21T16:25:00-05:00", "winner": null },
 { "id": "W16G12", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-12-21T16:25:00-05:00", "winner": null },
 { "id": "W16G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-21T16:25:00-05:00", "winner": null },
-{ "id": "W16G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-21T20:20:00-05:00", "winner": null }
+{ "id": "W16G14", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-12-21T20:20:00-05:00", "winner": null }
 ]
 },
 {
@@ -340,7 +340,7 @@
 { "id": "W17G10", "home": "Cheeseheads", "away": "Da Bears", "date": "2025-12-28T16:25:00-05:00", "winner": null },
 { "id": "W17G11", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "date": "2025-12-28T16:25:00-05:00", "winner": null },
 { "id": "W17G12", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-28T16:25:00-05:00", "winner": null },
-{ "id": "W17G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-28T20:20:00-05:00", "winner": null }
+{ "id": "W17G13", "home": "Dallas Cowboys", "away": "Fly Eagles Fly", "date": "2025-12-28T20:20:00-05:00", "winner": null }
 ]
 },
 {
