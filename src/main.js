@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadData() {
   try {
     // Load participants data
-    const participantsResponse = await fetch('data/participants-2025.json');
+    const participantsResponse = await fetch('./data/participants-2025.json');
     if (participantsResponse.ok) {
       participants = await participantsResponse.json();
     } else {
@@ -25,7 +25,7 @@ async function loadData() {
     }
     
     // Load results data
-    const resultsResponse = await fetch('data/results-2025.json');
+    const resultsResponse = await fetch('./data/results-2025.json');
     if (resultsResponse.ok) {
       results = await resultsResponse.json();
     } else {
@@ -33,7 +33,7 @@ async function loadData() {
     }
     
     // Load schedule data
-    const scheduleResponse = await fetch('data/schedule-2025.json');
+    const scheduleResponse = await fetch('./data/schedule-2025.json');
     if (scheduleResponse.ok) {
       gameSchedule = await scheduleResponse.json();
     } else {
@@ -125,7 +125,7 @@ function renderWeeklyPicks() {
     const gameDiv = document.createElement('div');
     gameDiv.className = 'game-card';
     gameDiv.innerHTML = `
-      <h4>${game.awayTeam} @ ${game.homeTeam}</h4>
+      <p>${game.awayTeam} @ ${game.homeTeam}</p>
       <p>Date: ${game.date}</p>
       <p>Time: ${game.time}</p>
     `;
