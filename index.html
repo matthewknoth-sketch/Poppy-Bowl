@@ -1,1 +1,459 @@
-<!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <title>Poppy Bowl - Confidence Pool</title> <meta name="viewport" content="width=device-width, initial-scale=1" /> <style> body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 20px; color: #222; } h1 { margin: 0 0 12px; } .tabs { display: flex; gap: 8px; margin-bottom: 12px; } .tab-button { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: #f4f4f4; cursor: pointer; } .tab-button.active { background: #007cba; color: #fff; border-color: #007cba; } .tab-content { display: none; } .section { margin-top: 16px; } table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #ddd; padding: 8px; } th { background: #fafafa; } .banner { margin-bottom: 10px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; background: #f9f9f9; } .controls { margin: 8px 0; display: flex; align-items: center; gap: 8px; } .week-controls button { padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; background: #f4f4f4; cursor: pointer; } .game-card { border: 1px solid #ddd; padding: 12px; margin: 8px 0; border-radius: 8px; background: #f9f9f9; } .save-btn { margin-top: 12px; padding: 8px 16px; background: #007cba; color: #fff; border: none; border-radius: 4px; cursor: pointer; } .warn { color: #b30000; background: #ffe6e6; border: 1px solid #b30000; padding: 8px; border-radius: 4px; margin-bottom: 12px; display: none; } .user-selector { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; display: none; } .small { font-size: 12px; color: #555; } </style> </head> <body> <h1>Poppy Bowl - Confidence Pool</h1> <div id="currentUserBanner" class="banner"></div> <div id="userSelector" class="user-selector"> <div style="font-weight:600; margin-bottom: 8px;">Who’s submitting picks?</div> <div class="controls"> <label> Choose participant: <select id="userDropdown" style="margin-left:8px;"></select> </label> <span>or</span> <input id="userCustom" type="text" placeholder="Enter name" /> <button id="userSelectBtn">Continue</button> </div> <div class="small">Tip: use this to switch between participants and enter each person’s picks on this device.</div> </div> <div class="tabs"> <button class="tab-button active" data-tab="leaderboard">Leaderboard</button> <button class="tab-button" data-tab="picks">Picks</button> <button class="tab-button" data-tab="scoreboard">Scoreboard</button> </div> <div id="leaderboard" class="tab-content" style="display:block;"> <h2>Leaderboard</h2> <div class="section"> <table> <thead> <tr> <th>#</th> <th>Name</th> <th>Total</th> </tr> </thead> <tbody id="leaderboardBody"></tbody> </table> </div> </div> <div id="picks" class="tab-content"> <h2>Picks</h2> <div class="controls week-controls"> <button id="prevWeek">Previous Week</button> <span>Current: <strong id="currentWeekDisplay">Week 1</strong></span> <button id="nextWeek">Next Week</button> </div> <div id="weeklyPicks"></div> </div> <div id="scoreboard" class="tab-content" style="display:none;"> <h2>Scoreboard</h2> <div class="controls week-controls"> <button id="scorePrevWeek">Previous Week</button> <span>Current: <strong id="scoreWeekDisplay">Week 1</strong></span> <button id="scoreNextWeek">Next Week</button> </div> <table> <thead> <tr> <th>Name</th> <th>This Week</th> <th>Cumulative Total</th> </tr> </thead> <tbody id="scoreboardBody"></tbody> </table> <div id="scoresTimestamp" class="small" style="margin-top:10px;"></div> </div> <script type="module" src="./src/main.js"></script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Poppy Bowl - Confidence Pool</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-top: 0;
+      color: #2c3e50;
+      text-align: center;
+    }
+    .week-selector {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .week-selector select {
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .score-summary {
+      background: #e3f2fd;
+      padding: 16px;
+      border-radius: 6px;
+      margin: 20px 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .totals {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+    .total-item {
+      text-align: center;
+    }
+    .total-value {
+      font-size: 24px;
+      color: #2c3e50;
+    }
+    .game {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+      background: #f9f9f9;
+    }
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .game-date {
+      font-size: 14px;
+      color: #666;
+    }
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+    }
+    .team {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .team-name {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+    .vs {
+      margin: 0 20px;
+      font-weight: bold;
+      color: #666;
+    }
+    .confidence-section {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+    }
+    .confidence-input {
+      width: 60px;
+      padding: 4px 8px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .confidence-warning {
+      color: #d32f2f;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    .game.has-warning {
+      border-color: #d32f2f;
+      background: #ffeaea;
+    }
+    .actions {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-primary {
+      background: #2196F3;
+      color: white;
+    }
+    .btn-secondary {
+      background: #666;
+      color: white;
+    }
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .error {
+      background: #ffebee;
+      color: #c62828;
+      padding: 16px;
+      border-radius: 4px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Poppy Bowl - Confidence Pool</h1>
+    
+    <div class="week-selector">
+      <label for="week-select">Week:</label>
+      <select id="week-select">
+        <option selected="" value="1">Week 1</option>
+        <option disabled="" value="2">Week 2</option>
+        <option disabled="" value="3">Week 3</option>
+        <option disabled="" value="4">Week 4</option>
+        <option disabled="" value="5">Week 5</option>
+      </select>
+    </div>
+
+    <div class="score-summary">
+      <div class="totals">
+        <div class="total-item">
+          Projected Total
+          <div class="total-value" id="projected-total">0</div>
+        </div>
+        <div class="total-item">
+          Official Total
+          <div class="total-value" id="official-total">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="games-container"></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="save-btn">Save Picks</button>
+      <button class="btn btn-secondary" id="clear-btn">Clear All</button>
+    </div>
+  </div>
+
+  <script>
+    let scheduleData = null;
+    let currentWeek = 1;
+    let picks = {};
+    let confidences = {};
+    
+    const gamesContainer = document.getElementById('games-container');
+    const saveBtn = document.getElementById('save-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const weekSelect = document.getElementById('week-select');
+    const projectedTotal = document.getElementById('projected-total');
+    const officialTotal = document.getElementById('official-total');
+
+    // Storage keys
+    const getPickKey = (week, gameId) => `pick_${week}_${gameId}`;
+    const getConfidenceKey = (week, gameId) => `confidence_${week}_${gameId}`;
+    
+    // Load saved picks and confidences
+    function loadSavedData() {
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
+      
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      picks = {};
+      confidences = {};
+      
+      weekGames.forEach(game => {
+        const gameId = game.id;
+        const savedPick = localStorage.getItem(getPickKey(currentWeek, gameId));
+        const savedConfidence = localStorage.getItem(getConfidenceKey(currentWeek, gameId));
+        
+        if (savedPick) {
+          picks[gameId] = savedPick;
+        }
+        if (savedConfidence) {
+          confidences[gameId] = parseInt(savedConfidence);
+        }
+      });
+    }
+
+    // Save picks and confidences to localStorage
+    function saveData() {
+      Object.entries(picks).forEach(([gameId, pick]) => {
+        localStorage.setItem(getPickKey(currentWeek, gameId), pick);
+      });
+      
+      Object.entries(confidences).forEach(([gameId, confidence]) => {
+        localStorage.setItem(getConfidenceKey(currentWeek, gameId), confidence.toString());
+      });
+    }
+
+    // Check for duplicate confidences
+    function validateConfidences() {
+      const confidenceValues = Object.values(confidences).filter(c => c > 0);
+      const duplicates = confidenceValues.filter((value, index) => 
+        confidenceValues.indexOf(value) !== index
+      );
+      return duplicates;
+    }
+
+    // Update totals
+    function updateTotals() {
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
+      
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      
+      // Projected total: sum of all assigned confidences
+      const projected = Object.values(confidences).reduce((sum, conf) => sum + (conf || 0), 0);
+      projectedTotal.textContent = projected;
+      
+      // Official total: sum of confidences for games where pick matches winner
+      let official = 0;
+      weekGames.forEach(game => {
+        const gameId = game.id;
+        const pick = picks[gameId];
+        const confidence = confidences[gameId] || 0;
+        
+        if (game.winner && pick === game.winner) {
+          official += confidence;
+        }
+      });
+      officialTotal.textContent = official;
+    }
+
+    // Handle confidence change
+    function handleConfidenceChange(gameId, value) {
+      const conf = parseInt(value) || 0;
+      if (conf < 0) return;
+      
+      confidences[gameId] = conf;
+      saveData();
+      renderGames();
+      updateTotals();
+      
+      // Check for duplicates and disable save if found
+      const duplicates = validateConfidences();
+      saveBtn.disabled = duplicates.length > 0;
+    }
+
+    // Handle pick change
+    function handlePickChange(gameId, team) {
+      picks[gameId] = team;
+      saveData();
+      updateTotals();
+    }
+
+    // Render games
+    function renderGames() {
+      if (!scheduleData || !scheduleData.weeks[currentWeek-1]) {
+        gamesContainer.innerHTML = '<div class="error">No games found for this week.</div>';
+        return;
+      }
+      
+      const weekGames = scheduleData.weeks[currentWeek-1].games;
+      const duplicates = validateConfidences();
+      
+      gamesContainer.innerHTML = weekGames.map(game => {
+        const gameId = game.id;
+        const pick = picks[gameId] || '';
+        const confidence = confidences[gameId] || '';
+        const hasDuplicateConfidence = confidence > 0 && duplicates.includes(confidence);
+        
+        return `
+          <div class="game ${hasDuplicateConfidence ? 'has-warning' : ''}">
+            <div class="game-header">
+              <div class="game-date">${new Date(game.date).toLocaleDateString()} ${new Date(game.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+              ${game.winner ? `<div style="color: #2e7d32; font-weight: bold;">Winner: ${game.winner}</div>` : ''}
+            </div>
+            
+            <div class="teams">
+              <div class="team">
+                <input type="radio" name="pick_${gameId}" value="${game.home}" id="${gameId}_home" 
+                  ${pick === game.home ? 'checked' : ''}>
+                <label for="${gameId}_home" class="team-name">${game.home}</label>
+              </div>
+              <div class="vs">vs</div>
+              <div class="team">
+                <input type="radio" name="pick_${gameId}" value="${game.away}" id="${gameId}_away" 
+                  ${pick === game.away ? 'checked' : ''}>
+                <label for="${gameId}_away" class="team-name">${game.away}</label>
+              </div>
+            </div>
+            
+            <div class="confidence-section">
+              <label>Confidence (1-16): 
+                <input type="number" class="confidence-input" min="1" max="16" 
+                  value="${confidence}" data-game-id="${gameId}">
+              </label>
+              ${hasDuplicateConfidence ? 
+                '<div class="confidence-warning">⚠ Duplicate confidence value! Each game must have a unique confidence.</div>' : 
+                ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      // Bind event listeners
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const gameId = e.target.name.split('_')[1];
+          handlePickChange(gameId, e.target.value);
+        });
+      });
+      
+      document.querySelectorAll('.confidence-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const gameId = e.target.dataset.gameId;
+          handleConfidenceChange(gameId, e.target.value);
+        });
+      });
+    }
+
+    // Validate schedule data
+    function validateSchedule(data) {
+      return data && 
+             Array.isArray(data.weeks) && 
+             data.weeks.length > 0 &&
+             data.weeks.every(week => 
+               Array.isArray(week.games) &&
+               week.games.every(game => 
+                 game.id && game.home && game.away && game.date
+               )
+             );
+    }
+
+    // Load schedule data
+    async function loadScheduleData() {
+      try {
+        const response = await fetch('./data/schedule-2025.json');
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!validateSchedule(data)) {
+          throw new Error('Invalid schedule data format');
+        }
+        
+        scheduleData = data;
+        loadSavedData();
+        renderGames();
+        updateTotals();
+      } catch (error) {
+        console.error('Failed to load schedule:', error);
+        gamesContainer.innerHTML = `
+          <div class="error">
+            Failed to load schedule data: 
+            ${error instanceof Error ? error.message : 'Unknown error'}
+            <br><br>
+            Please ensure the file data/schedule-2025.json exists and is properly formatted.
+          </div>
+        `;
+      }
+    }
+
+    // Clear all selections
+    function clearSelections() {
+      if (confirm('Are you sure you want to clear all picks and confidences for this week?')) {
+        if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
+        
+        const weekGames = scheduleData.weeks[currentWeek-1].games;
+        weekGames.forEach(game => {
+          const gameId = game.id;
+          localStorage.removeItem(getPickKey(currentWeek, gameId));
+          localStorage.removeItem(getConfidenceKey(currentWeek, gameId));
+        });
+        
+        picks = {};
+        confidences = {};
+        renderGames();
+        updateTotals();
+        saveBtn.disabled = false;
+      }
+    }
+
+    // Save selections
+    function saveSelections() {
+      if (validateConfidences().length > 0) {
+        alert('Please fix duplicate confidence values before saving.');
+        return;
+      }
+      
+      saveData();
+      alert('Picks and confidences saved!');
+    }
+
+    // Week selector change (keep other weeks disabled for now)
+    weekSelect.addEventListener('change', (e) => {
+      const newWeek = parseInt(e.target.value);
+      if (newWeek === 1) {
+        currentWeek = newWeek;
+        loadSavedData();
+        renderGames();
+        updateTotals();
+      }
+    });
+
+    // Initialize app
+    async function init() {
+      await loadScheduleData();
+      
+      // Bind event handlers
+      saveBtn.addEventListener('click', saveSelections);
+      clearBtn.addEventListener('click', clearSelections);
+    }
+
+    // Start the application
+    init();
+  </script>
+</body>
+</html>
