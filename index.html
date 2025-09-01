@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Poppy Bowl - Confidence Pool</title>
+  <title>Poppy Bowl 2025 - 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 20px; color: #222; }
@@ -26,7 +26,7 @@
   </style>
 </head>
 <body>
-  <h1>Poppy Bowl - Confidence Pool</h1>
+  <h1>Poppy Bowl 2025 - 2026</h1>
   <div class="banner" id="currentUserBanner"></div>
   <div class="user-selector" id="userSelector">
     <div style="font-weight:600; margin-bottom: 8px;">Who's submitting picks?</div>
@@ -61,7 +61,7 @@
       </table>
     </div>
   </div>
-  <div id="picks" class="tab-content">
+  <div class="tab-content" id="picks">
     <h2>Picks</h2>
     <div class="controls week-controls">
       <button id="prevWeek">Previous Week</button>
@@ -70,7 +70,7 @@
     </div>
     <div id="weeklyPicks"></div>
   </div>
-  <div id="scoreboard" class="tab-content" style="display:none;">
+  <div class="tab-content" id="scoreboard" style="display:none;">
     <h2>Scoreboard</h2>
     <div class="controls week-controls">
       <button id="scorePrevWeek">Previous Week</button>
@@ -87,7 +87,7 @@
       </thead>
       <tbody id="scoreboardBody"></tbody>
     </table>
-    <div id="scoresTimestamp" class="small" style="margin-top:10px;"></div>
+    <div class="small" id="scoresTimestamp" style="margin-top:10px;"></div>
   </div>
   <!-- Load SaveWinners before AdminBar to ensure it's available -->
   <script src="./src/lib/SaveWinners.js"></script>
