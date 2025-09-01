@@ -342,26 +342,4 @@
 { "id": "W17G12", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-28T16:25:00-05:00", "winner": null },
 { "id": "W17G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-28T20:20:00-05:00", "winner": null }
 ]
-},
-{
-"week": 18,
-"deadline": "2026-01-05T13:00:00-05:00",
-"games": [
-{ "id": "W18G1", "home": "Baltimore Ravens", "away": "Cleveland Browns", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G2", "home": "Buffalo Bills", "away": "New England Patriots", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G3", "home": "Cincinnati Bengals", "away": "Pittsburgh Steelers", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G4", "home": "Miami Dolphins", "away": "New York Jets", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G5", "home": "Houston Texans", "away": "Tennessee Titans", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G6", "home": "Indianapolis Colts", "away": "Jacksonville Jaguars", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G7", "home": "New York Giants", "away": "Atlanta Falcons", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G8", "home": "Dallas Cowboys", "away": "Washington Commanders", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G9", "home": "Da Bears", "away": "Cheeseheads", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G10", "home": "Detroit Lions", "away": "Minnesota Vikings", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G11", "home": "New Orleans Saints", "away": "Carolina Panthers", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G12", "home": "Tampa Bay Buccaneers", "away": "Atlanta Falcons", "date": "2026-01-05T13:00:00-05:00", "winner": null },
-{ "id": "W18G13", "home": "Arizona Cardinals", "away": "Los Angeles Rams", "date": "2026-01-05T16:25:00-05:00", "winner": null },
-{ "id": "W18G14", "home": "Seattle Seahawks", "away": "San Francisco 49ers", "date": "2026-01-05T16:25:00-05:00", "winner": null },
-{ "id": "W18G15", "home": "Denver Broncos", "away": "Kansas City Chiefs", "date": "2026-01-05T16:25:00-05:00", "winner": null },
-{ "id": "W18G16", "home": "Las Vegas Raiders", "away": "Los Angeles Chargers", "date": "2026-01-05T16:25:00-05:00", "winner": null }
-]
 }
