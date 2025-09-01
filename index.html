@@ -102,6 +102,30 @@
   <div class="container">
     <h1>Poppy Bowl - Confidence Pool</h1>
     
+    <section id="participantsSection">
+      <h2>Participants</h2>
+      <div id="participants"></div>
+    </section>
+    
+    <section id="leaderboardSection">
+      <h2>Leaderboard</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </section>
+    
+    <section id="picksSection">
+      <h2 id="currentWeekDisplay">Week 1</h2>
+      <div id="weeklyPicks"></div>
+    </section>
+    
     <div id="error-banner"></div>
     
     <div id="gamesList">
@@ -111,13 +135,10 @@
     <div id="results" style="margin-top: 30px;">
       <!-- Results will be displayed here -->
     </div>
+    
+    <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
   </div>
   
-  <div id="participants" class="participants"></div>
-  
-  <div id="leaderboard" class="leaderboard"></div>
-  
-  <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
   <script src="./src/main.js"></script>
 </body>
 </html>
