@@ -1,652 +1,339 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Poppy Bowl 2025-2026</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <title>Poppy Bowl - Confidence Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-:root{
-  --bg:#0d1117;
-  --card:#161b22;
-  --text:#e6edf3;
-  --muted:#9da7b3;
-  --primary:#2f81f7;
-  --primary-700:#1f6feb;
-  --danger:#e5534b;
-  --accent:#ffaa33;
-  --success:#3fb950;
-  --border:#30363d;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-h1,h2,h3{margin:0 0 .5rem}
-p{margin:.25rem 0 .75rem}
-.site-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 1rem;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#0d1117,#0f1420);
-}
-.site-header h1{font-size:1.25rem}
-.user-block{display:flex;gap:.5rem;align-items:center}
-.user-block input{
-  background:#0b0f15;border:1px solid var(--border);color:var(--text);padding:.4rem .6rem;border-radius:.4rem;min-width:12rem;
-}
-.btn{
-  background:#21262d;color:var(--text);border:1px solid var(--border);
-  padding:.45rem .8rem;border-radius:.4rem;cursor:pointer
-}
-.btn.primary{background:var(--primary);border-color:var(--primary);color:white}
-.btn.primary:hover{background:var(--primary-700)}
-.btn.danger{background:var(--danger);border-color:#b23a34;color:white}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.tabs{display:flex;gap:.5rem;padding:.5rem 1rem;border-bottom:1px solid var(--border)}
-.tab-btn{
-  background:transparent;color:var(--text);border:none;border-bottom:2px solid transparent;
-  padding:.6rem .8rem;cursor:pointer;font-weight:600
-}
-.tab-btn.active{border-bottom-color:var(--accent);color:var(--accent)}
-main{padding:1rem;max-width:1000px;margin:0 auto}
-.card{
-  background:var(--card);border:1px solid var(--border);border-radius:.6rem;padding:1rem;margin-bottom:1rem
-}
-.row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
-.rules{margin:.5rem 0 .5rem 1rem}
-.quick-stats{display:flex;gap:1rem;color:var(--muted)}
-.games{display:grid;grid-template-columns:1fr;gap:.75rem}
-.game{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:.6rem .8rem;border:1px solid var(--border);border-radius:.5rem;background:#0f1420
-}
-.teams{display:flex;flex-direction:column;gap:.25rem}
-.team{display:flex;gap:.5rem;align-items:center}
-.team .radio{transform:scale(1.1)}
-.kickoff{color:var(--muted);font-size:.9rem}
-.result{font-weight:700}
-.locked{opacity:.6}
-.activity{padding-left:1.1rem}
-.deadline{color:var(--muted)}
-.actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem}
-.site-footer{padding:1rem;color:var(--muted);text-align:center;border-top:1px solid var(--border)}
-select, textarea{
-  background:#0b0f15;border:1px solid var(--border);color:var(--text);
-  padding:.45rem .6rem;border-radius:.4rem
-}
-textarea{width:100%}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{border-bottom:1px solid var(--border);padding:.6rem .4rem;text-align:left}
-.table th{color:#c9d1d9}
-.badge{background:#243041;border:1px solid var(--border);padding:.1rem .35rem;border-radius:.35rem;color:#a5d6ff}
-.badge.win{background:#1b3b23;color:#aef1c5;border-color:#2c7b45}
-.badge.loss{background:#3b1b1b;color:#f1b2ae;border-color:#7b2c2c}
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-top: 0;
+      color: #2c3e50;
+      text-align: center;
+    }
+    .score-summary {
+      background: #e3f2fd;
+      padding: 16px;
+      border-radius: 6px;
+      margin: 20px 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .game {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+    .game-info {
+      flex: 1;
+    }
+    .matchup {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .kickoff {
+      color: #666;
+      font-size: 14px;
+    }
+    .confidence-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .confidence-input label {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .confidence-input input {
+      width: 60px;
+      padding: 8px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .confidence-input input:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    .actions {
+      text-align: center;
+      margin-top: 24px;
+      gap: 12px;
+      display: flex;
+      justify-content: center;
+    }
+    .btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .btn.secondary {
+      background: #95a5a6;
+    }
+    .btn.secondary:hover {
+      background: #7f8c8d;
+    }
+    .error {
+      color: #e74c3c;
+      background: #fdf2f2;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 12px 0;
+    }
+    .loading {
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      padding: 40px;
+    }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Poppy Bowl 2025-2026</h1>
-    <div class="user-block">
-      <label for="displayName">Display Name</label>
-      <input id="displayName" type="text" placeholder="e.g., Poppy, Matt, Sarah" />
-      <button id="saveDisplayName" class="btn">Set</button>
+  <div class="container">
+    <h1>Poppy Bowl Confidence Pool</h1>
+    
+    <div class="score-summary">
+      Total Confidence Score: <span id="total-score">0</span> / <span id="max-score">0</span>
     </div>
-  </header>
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="home">Home</button>
-    <button class="tab-btn" data-tab="picks">Weekly Picks</button>
-    <button class="tab-btn" data-tab="standings">Standings</button>
-    <button class="tab-btn" data-tab="admin">Admin</button>
-  </nav>
-  <main>
-    <section id="home" class="tab-section active">
-      <div class="card">
-        <h2>Welcome to Poppy Bowl</h2>
-        <p>Make your picks each week, compete with family, and crown the season champion!</p>
-        <ul class="rules">
-          <li>Scoring: 1 point per correct pick (straight up)</li>
-          <li>Deadline: Each game locks at kickoff</li>
-          <li>Tiebreakers: Weekly correct picks, then earliest submission</li>
-        </ul>
-        <div class="quick-stats">
-          <div><strong>Season:</strong> 2025-2026</div>
-          <div><strong>Weeks:</strong> 1–18 (regular season)</div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Current Week</h3>
-        <div id="currentWeekInfo">Loading...</div>
-        <button id="goToPicks" class="btn primary">Go to Weekly Picks</button>
-      </div>
-      <div class="card">
-        <h3>Recent Activity</h3>
-        <ul id="recentActivity" class="activity"></ul>
-      </div>
-    </section>
-    <section id="picks" class="tab-section">
-      <div class="picks-header card">
-        <div class="row">
-          <div>
-            <label for="weekSelect"><strong>Select Week</strong></label>
-            <select id="weekSelect"></select>
-          </div>
-          <div>
-            <label for="userSelect"><strong>User</strong></label>
-            <select id="userSelect"></select>
-          </div>
-        </div>
-        <div class="deadline row" id="weekDeadline">Loading deadline…</div>
-      </div>
-      <div id="gamesList" class="games"></div>
-      <div class="actions">
-        <button id="savePicks" class="btn primary">Save Picks</button>
-        <button id="clearPicks" class="btn danger">Clear Picks</button>
-      </div>
-      <div class="card">
-        <h3>Your Weekly Summary</h3>
-        <div id="weeklySummary">No picks yet.</div>
-      </div>
-    </section>
-    <section id="standings" class="tab-section">
-      <div class="card">
-        <h2>Season Standings</h2>
-        <div id="standingsTableWrap"></div>
-      </div>
-      <div class="card">
-        <h3>Week-by-Week Scores</h3>
-        <div id="weeklyScoresWrap"></div>
-      </div>
-    </section>
-    <section id="admin" class="tab-section">
-      <div class="card">
-        <h2>Admin: Schedule and Results</h2>
-        <p>Import the schedule JSON or paste schedule below. Mark results as games finish.</p>
-        <details>
-          <summary>Schedule JSON format example</summary>
-<pre>{
-  "season": "2025",
-  "weeks": [
-    {
-      "week": 1,
-      "deadline": "2025-09-04T20:20:00-04:00",
-      "games": [
-        {
-          "id": "W1G1",
-          "home": "Chiefs",
-          "away": "Ravens",
-          "kickoff": "2025-09-04T20:20:00-04:00",
-          "winner": null
-        }
-      ]
-    }
-  ]
-}
-</pre>
-        </details>
-        <div class="row">
-          <input type="file" id="scheduleFile" accept="application/json" />
-          <button id="loadScheduleBtn" class="btn">Load File</button>
-          <button id="downloadScheduleBtn" class="btn">Export Current Schedule</button>
-        </div>
-        <div>
-          <label for="scheduleText"><strong>Paste schedule JSON</strong></label>
-          <textarea id="scheduleText" rows="10" placeholder='Paste JSON here'></textarea>
-        </div>
-        <div class="actions">
-          <button id="saveScheduleTextBtn" class="btn primary">Save Schedule</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Update Game Results</h3>
-        <div class="row">
-          <label for="adminWeekSelect">Week</label>
-          <select id="adminWeekSelect"></select>
-        </div>
-        <div id="adminGamesWrap" class="games admin"></div>
-        <div class="actions">
-          <button id="saveResultsBtn" class="btn primary">Save Results</button>
-          <button id="recalcStandingsBtn" class="btn">Recalculate Standings</button>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <small>Made for family fun • Poppy Bowl 2025-2026</small>
-  </footer>
-  <script>
-/* --- All-in-one Poppy Bowl JS and schedule data --- */
+    
+    <div id="games-container">
+      <div class="loading">Loading schedule data...</div>
+    </div>
+    
+    <div class="actions">
+      <button id="save-btn" class="btn">Save Selections</button>
+      <button id="clear-btn" class="btn secondary">Clear All</button>
+    </div>
+  </div>
 
-const LS = {
-  schedule: "poppy_schedule_2025",
-  picks: "poppy_picks_2025",
-  users: "poppy_users_2025",
-  activity: "poppy_activity_2025",
-  displayName: "poppy_display_name_2025"
-};
-let schedule = null;
-let picksByUser = {};
-let users = [];
-let recentActivity = [];
-let currentUser = "";
-
-const $ = (sel) => document.querySelector(sel);
-const $all = (sel) => Array.from(document.querySelectorAll(sel));
-const fmtDT = (s) => {
-  const d = new Date(s);
-  return d.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
-};
-
-function loadState(){
-  try { schedule = JSON.parse(localStorage.getItem(LS.schedule)||"null"); } catch {}
-  try { picksByUser = JSON.parse(localStorage.getItem(LS.picks)||"{}"); } catch {}
-  try { users = JSON.parse(localStorage.getItem(LS.users)||"[]"); } catch {}
-  try { recentActivity = JSON.parse(localStorage.getItem(LS.activity)||"[]"); } catch {}
-  currentUser = localStorage.getItem(LS.displayName)||"";
-}
-function saveState(){
-  localStorage.setItem(LS.schedule, JSON.stringify(schedule));
-  localStorage.setItem(LS.picks, JSON.stringify(picksByUser));
-  localStorage.setItem(LS.users, JSON.stringify(users));
-  localStorage.setItem(LS.activity, JSON.stringify(recentActivity.slice(0,50)));
-  localStorage.setItem(LS.displayName, currentUser);
-}
-function logActivity(user,type,msg){
-  recentActivity.unshift({ ts:new Date().toISOString(), user, type, msg });
-  recentActivity = recentActivity.slice(0,50); saveState(); renderRecentActivity();
-}
-document.addEventListener("DOMContentLoaded", () => {
-  loadState(); bindNav(); bindUserBlock(); bindPicks(); bindAdmin(); bindHome();
-  if(!schedule){
-    // Built-in sample schedule:
-    schedule = { "season": "2025", "weeks": [
-      { "week":1, "deadline":"2025-09-04T20:20:00-04:00", "games":[
-        {"id":"W1G1","home":"Chiefs","away":"Ravens","kickoff":"2025-09-04T20:20:00-04:00","winner":null},
-        {"id":"W1G2","home":"Bills","away":"Jets","kickoff":"2025-09-07T13:00:00-04:00","winner":null},
-        {"id":"W1G3","home":"49ers","away":"Seahawks","kickoff":"2025-09-07T16:25:00-04:00","winner":null}]},
-      { "week":2, "deadline":"2025-09-11T20:15:00-04:00", "games":[
-        {"id":"W2G1","home":"Eagles","away":"Cowboys","kickoff":"2025-09-11T20:15:00-04:00","winner":null},
-        {"id":"W2G2","home":"Bengals","away":"Browns","kickoff":"2025-09-14T13:00:00-04:00","winner":null}]}
-    ] };
-    saveState();
-    initialRender();
-  } else { initialRender(); }
-});
-function initialRender(){
-  renderUsers(); renderHome(); renderPicks(); renderStandings(); renderAdmin();
-}
-// Navigation
-function bindNav(){
-  $all(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      $all(".tab-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const tab = btn.dataset.tab;
-      $all(".tab-section").forEach(sec => sec.classList.remove("active"));
-      $("#"+tab).classList.add("active");
-      if(tab==="standings") renderStandings();
-      if(tab==="picks") renderPicks();
-    });
-  });
-  $("#goToPicks").addEventListener("click", () => {
-    document.querySelector('.tab-btn[data-tab="picks"]').click();
-  });
-}
-// User block
-function bindUserBlock(){
-  const input = $("#displayName");
-  const saveBtn = $("#saveDisplayName");
-  input.value = currentUser;
-  saveBtn.addEventListener("click", () => {
-    const name = input.value.trim();
-    if(!name) return;
-    currentUser = name;
-    if(!users.includes(name)){
-      users.push(name);
-      users.sort((a,b)=>a.localeCompare(b));
+  <script type="module">
+    // Types and validation
+    interface Game {
+      id: string;
+      home: string;
+      away: string;
+      kickoff: string;
     }
-    saveState();
-    renderUsers();
-    renderPicks();
-    logActivity(name, "user", `Joined the league`);
-  });
-}
-function renderUsers(){
-  const userSelect = $("#userSelect");
-  userSelect.innerHTML = "";
-  const opts = users.length ? users : (currentUser ? [currentUser] : []);
-  const unique = Array.from(new Set(opts.concat(currentUser ? [currentUser] : []))).filter(Boolean).sort((a,b)=>a.localeCompare(b));
-  unique.forEach(u => {
-    const opt = document.createElement("option");
-    opt.value = u; opt.textContent = u;
-    if(u===currentUser) opt.selected = true;
-    userSelect.appendChild(opt);
-  });
-}
-// Home
-function bindHome(){}
-function renderHome(){
-  const info = $("#currentWeekInfo");
-  if(!schedule){
-    info.textContent = "No schedule loaded yet. Ask Admin to load it.";
-    return;
-  }
-  const week = getCurrentWeekNumber();
-  const w = schedule.weeks.find(w=>w.week===week) || schedule.weeks[schedule.weeks.length-1];
-  info.innerHTML = `Week ${w.week} • Deadline: ${fmtDT(w.deadline)} • Games: ${w.games.length}`;
-  renderRecentActivity();
-}
-function renderRecentActivity(){
-  const ul = $("#recentActivity");
-  ul.innerHTML = "";
-  recentActivity.slice(0,10).forEach(a => {
-    const li = document.createElement("li");
-    const d = new Date(a.ts);
-    li.textContent = `[${d.toLocaleString([], { month:"short", day:"numeric", hour:"2-digit", minute:"2-digit" })}] ${a.user}: ${a.msg}`;
-    ul.appendChild(li);
-  });
-}
-// Picks
-function bindPicks(){
-  $("#savePicks").addEventListener("click", saveCurrentPicks);
-  $("#clearPicks").addEventListener("click", clearCurrentPicks);
-  $("#weekSelect").addEventListener("change", renderGamesList);
-  $("#userSelect").addEventListener("change", () => {
-    currentUser = $("#userSelect").value;
-    $("#displayName").value = currentUser;
-    if(!users.includes(currentUser)){ users.push(currentUser); users.sort((a,b)=>a.localeCompare(b)); }
-    saveState();
-    renderGamesList();
-    renderWeeklySummary();
-  });
-}
-function renderPicks(){
-  const weekSel = $("#weekSelect");
-  const adminWeekSel = $("#adminWeekSelect");
-  weekSel.innerHTML = ""; adminWeekSel.innerHTML = "";
-  if(!schedule){
-    weekSel.innerHTML = `<option value="">No schedule</option>`;
-    adminWeekSel.innerHTML = `<option value="">No schedule</option>`;
-    $("#gamesList").innerHTML = "";
-    $("#weekDeadline").textContent = "";
-    $("#weeklySummary").textContent = "No schedule.";
-    return;
-  }
-  schedule.weeks.forEach(w => {
-    const o1 = document.createElement("option");
-    o1.value = w.week; o1.textContent = `Week ${w.week}`;
-    weekSel.appendChild(o1);
-    const o2 = document.createElement("option");
-    o2.value = w.week; o2.textContent = `Week ${w.week}`;
-    adminWeekSel.appendChild(o2);
-  });
-  const cw = getCurrentWeekNumber();
-  weekSel.value = cw;
-  adminWeekSel.value = cw;
-  renderGamesList();
-  renderWeeklySummary();
-  renderAdminGames();
-}
-function getCurrentWeekNumber(){
-  if(!schedule || !schedule.weeks?.length) return 1;
-  const now = new Date();
-  const upcoming = schedule.weeks.find(w => w.games.some(g => new Date(g.kickoff) > now)) || schedule.weeks[schedule.weeks.length-1];
-  return upcoming.week;
-}
-function isLocked(game){
-  const now = new Date();
-  return new Date(game.kickoff) <= now || (game.winner && game.winner !== null);
-}
-function renderGamesList(){
-  const week = parseInt($("#weekSelect").value || getCurrentWeekNumber(), 10);
-  const w = schedule?.weeks?.find(x=>x.week===week);
-  const wrap = $("#gamesList");
-  const deadlineEl = $("#weekDeadline");
-  if(!w){
-    wrap.innerHTML = "<div class='card'>No games.</div>";
-    deadlineEl.textContent = "";
-    return;
-  }
-  deadlineEl.textContent = `Picks lock at each game kickoff. Week deadline: ${fmtDT(w.deadline)}`;
-  const user = currentUser || $("#userSelect").value || "";
-  const userPicks = (picksByUser[user]?.[week]) || {};
-  wrap.innerHTML = "";
-  w.games.forEach(g => {
-    const locked = isLocked(g);
-    const div = document.createElement("div");
-    div.className = "game"+(locked?" locked":"");
-    div.dataset.gameId = g.id;
-    const left = document.createElement("div");
-    left.className = "teams";
-    const homeId = `g_${g.id}_home`;
-    const awayId = `g_${g.id}_away`;
-    const homeRow = document.createElement("label");
-    homeRow.className = "team";
-    homeRow.innerHTML = `<input class="radio" type="radio" name="pick_${g.id}" id="${homeId}" value="home" ${userPicks[g.id]?.pick==="home"?"checked":""} ${locked?"disabled":""}/> <span>${g.home}</span>`;
-    const awayRow = document.createElement("label");
-    awayRow.className = "team";
-    awayRow.innerHTML = `<input class="radio" type="radio" name="pick_${g.id}" id="${awayId}" value="away" ${userPicks[g.id]?.pick==="away"?"checked":""} ${locked?"disabled":""}/> <span>${g.away}</span>`;
-    left.appendChild(homeRow);
-    left.appendChild(awayRow);
-    const right = document.createElement("div");
-    right.style.textAlign = "right";
-    right.innerHTML = `
-      <div class="kickoff">Kickoff: ${fmtDT(g.kickoff)}</div>
-      <div class="result">${g.winner ? `Final: ${g.winner}` : locked ? "Locked" : "Open"}</div>
-    `;
-    div.appendChild(left);
-    div.appendChild(right);
-    wrap.appendChild(div);
-  });
-}
-function saveCurrentPicks(){
-  const week = parseInt($("#weekSelect").value, 10);
-  const user = currentUser || $("#userSelect").value || "";
-  if(!user){
-    alert("Set your Display Name first."); return;
-  }
-  picksByUser[user] = picksByUser[user] || {};
-  picksByUser[user][week] = picksByUser[user][week] || {};
-  const w = schedule.weeks.find(x=>x.week===week);
-  const now = Date.now();
-  let savedCount = 0;
-  w.games.forEach(g => {
-    if(isLocked(g)) return;
-    const selected = document.querySelector(`input[name="pick_${g.id}"]:checked`);
-    if(selected){
-      picksByUser[user][week][g.id] = { pick: selected.value, ts: now };
-      savedCount++;
+    
+    interface WeekData {
+      week: number;
+      games: Game[];
     }
-  });
-  saveState();
-  renderWeeklySummary();
-  logActivity(user, "picks", `Saved ${savedCount} picks for Week ${week}`);
-  alert(`Saved ${savedCount} picks for Week ${week}.`);
-}
-function clearCurrentPicks(){
-  const week = parseInt($("#weekSelect").value, 10);
-  const user = currentUser || $("#userSelect").value || "";
-  if(!user) return;
-  if(!confirm(`Clear all picks for ${user} in Week ${week}?`)) return;
-  if(picksByUser[user]?.[week]){
-    const w = schedule.weeks.find(x=>x.week===week);
-    w.games.forEach(g => {
-      if(!isLocked(g)) delete picksByUser[user][week][g.id];
-    });
-    saveState();
-    renderGamesList();
-    renderWeeklySummary();
-    logActivity(user, "picks", `Cleared picks for Week ${week}`);
-  }
-}
-function renderWeeklySummary(){
-  const week = parseInt($("#weekSelect").value || getCurrentWeekNumber(), 10);
-  const user = currentUser || $("#userSelect").value || "";
-  const box = $("#weeklySummary");
-  if(!schedule || !user){
-    box.textContent = "Set your Display Name to begin.";
-    return;
-  }
-  const w = schedule.weeks.find(x=>x.week===week);
-  const picks = (picksByUser[user]?.[week]) || {};
-  const rows = w.games.map(g => {
-    const p = picks[g.id]?.pick || "-";
-    const opp = p==="home" ? g.home : p==="away" ? g.away : "-";
-    const status = g.winner ? ( (opp===g.winner) ? "Win" : "Loss" ) : "Pending";
-    const badge = status==="Win" ? "win" : status==="Loss" ? "loss" : "";
-    return `<div class="row"><div style="min-width:10ch">${g.away} @ ${g.home}</div><div class="badge ${badge}">${status}</div><div style="margin-left:auto;color:#9da7b3">${g.winner?`Winner: ${g.winner}`:""}</div></div>`;
-  }).join("");
-  box.innerHTML = rows || "No picks yet.";
-}
-// Standings
-function renderStandings(){
-  if(!schedule) { $("#standingsTableWrap").innerHTML = "No schedule."; return; }
-  const usersList = users.length ? users : Object.keys(picksByUser);
-  const totals = usersList.map(u => {
-    let total = 0;
-    let weeks = {};
-    schedule.weeks.forEach(w => {
-      let wPts = 0;
-      w.games.forEach(g => {
-        const pick = picksByUser[u]?.[w.week]?.[g.id]?.pick;
-        if(g.winner && pick){
-          const chosen = pick==="home" ? g.home : g.away;
-          if(chosen === g.winner) wPts += 1;
-        }
+    
+    interface ScheduleData {
+      season: string;
+      weeks: WeekData[];
+    }
+    
+    // Simple runtime validation without Zod dependency
+    function validateSchedule(data: any): data is ScheduleData {
+      if (!data || typeof data !== 'object') return false;
+      if (!data.weeks || !Array.isArray(data.weeks)) return false;
+      
+      return data.weeks.every((week: any) => {
+        return typeof week.week === 'number' &&
+               Array.isArray(week.games) &&
+               week.games.every((game: any) => 
+                 typeof game.id === 'string' &&
+                 typeof game.home === 'string' &&
+                 typeof game.away === 'string' &&
+                 typeof game.kickoff === 'string'
+               );
       });
-      weeks[w.week] = wPts;
-      total += wPts;
-    });
-    return { user:u, total, weeks };
-  }).sort((a,b) => b.total - a.total || a.user.localeCompare(b.user));
-  let html = `<table class="table"><thead><tr><th>Rank</th><th>User</th><th>Points</th></tr></thead><tbody>`;
-  totals.forEach((t,i) => {
-    html += `<tr><td>${i+1}</td><td>${t.user}</td><td>${t.total}</td></tr>`;
-  });
-  html += `</tbody></table>`;
-  $("#standingsTableWrap").innerHTML = html;
-  const weeks = schedule.weeks.map(w=>w.week);
-  let whtml = `<table class="table"><thead><tr><th>User</th>${weeks.map(w=>`<th>W${w}</th>`).join("")}<th>Total</th></tr></thead><tbody>`;
-  totals.forEach(t => {
-    whtml += `<tr><td>${t.user}</td>${weeks.map(w=>`<td>${t.weeks[w]||0}</td>`).join("")}<td>${t.total}</td></tr>`;
-  });
-  whtml += `</tbody></table>`;
-  $("#weeklyScoresWrap").innerHTML = whtml;
-}
-// Admin
-function bindAdmin(){
-  $("#loadScheduleBtn").addEventListener("click", async () => {
-    const file = $("#scheduleFile").files?.[0];
-    if(!file){ alert("Choose a JSON file first."); return; }
-    const text = await file.text();
-    try {
-      const json = JSON.parse(text);
-      if(!validateSchedule(json)) throw new Error("Invalid schedule format.");
-      schedule = json;
-      saveState();
-      renderHome(); renderPicks(); renderStandings(); renderAdmin();
-      alert("Schedule loaded.");
-      logActivity("Admin","schedule","Loaded schedule from file");
-    } catch(e){
-      alert("Failed to parse schedule JSON: " + e.message);
     }
-  });
-  $("#saveScheduleTextBtn").addEventListener("click", () => {
-    const text = $("#scheduleText").value;
-    try {
-      const json = JSON.parse(text);
-      if(!validateSchedule(json)) throw new Error("Invalid schedule format.");
-      schedule = json;
-      saveState();
-      renderHome(); renderPicks(); renderStandings(); renderAdmin();
-      alert("Schedule saved.");
-      logActivity("Admin","schedule","Saved schedule from text");
-    } catch(e){
-      alert("Failed to parse schedule JSON: " + e.message);
+    
+    // State management
+    let scheduleData: ScheduleData | null = null;
+    let confidenceSelections: Record<string, number> = {};
+    const STORAGE_KEY = 'poppy-bowl-confidence';
+    
+    // DOM elements
+    const gamesContainer = document.getElementById('games-container')!;
+    const totalScoreEl = document.getElementById('total-score')!;
+    const maxScoreEl = document.getElementById('max-score')!;
+    const saveBtn = document.getElementById('save-btn')!;
+    const clearBtn = document.getElementById('clear-btn')!;
+    
+    // Load saved selections from localStorage
+    function loadSavedSelections() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          confidenceSelections = JSON.parse(saved);
+        }
+      } catch (error) {
+        console.warn('Failed to load saved selections:', error);
+      }
     }
-  });
-  $("#adminWeekSelect").addEventListener("change", renderAdminGames);
-  $("#saveResultsBtn").addEventListener("click", saveAdminResults);
-  $("#recalcStandingsBtn").addEventListener("click", () => {
-    renderStandings();
-    alert("Standings recalculated.");
-  });
-  $("#downloadScheduleBtn").addEventListener("click", () => {
-    if(!schedule){ alert("No schedule loaded."); return; }
-    const blob = new Blob([JSON.stringify(schedule, null, 2)], { type: "application/json" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "poppy-schedule-2025.json";
-    a.click();
-    URL.revokeObjectURL(a.href);
-  });
-}
-function validateSchedule(json){
-  if(!json || typeof json!=="object") return false;
-  if(!Array.isArray(json.weeks)) return false;
-  return json.weeks.every(w =>
-    typeof w.week==="number" &&
-    typeof w.deadline==="string" &&
-    Array.isArray(w.games) &&
-    w.games.every(g =>
-      typeof g.id==="string" &&
-      typeof g.home==="string" &&
-      typeof g.away==="string" &&
-      typeof g.kickoff==="string" &&
-      (g.winner===null || typeof g.winner==="string" || g.winner===undefined)
-    )
-  );
-}
-function renderAdmin(){
-  $("#scheduleText").value = schedule ? JSON.stringify(schedule, null, 2) : "";
-}
-function renderAdminGames(){
-  const week = parseInt($("#adminWeekSelect").value || getCurrentWeekNumber(), 10);
-  const w = schedule?.weeks?.find(x=>x.week===week);
-  const wrap = $("#adminGamesWrap");
-  if(!w){ wrap.innerHTML = "No games."; return; }
-  wrap.innerHTML = "";
-  w.games.forEach(g => {
-    const div = document.createElement("div");
-    div.className = "game";
-    div.dataset.gameId = g.id;
-    const left = document.createElement("div");
-    left.className = "teams";
-    left.innerHTML = `
-      <div class="team"><strong>${g.away}</strong> @ <strong>${g.home}</strong></div>
-      <div class="kickoff">Kickoff: ${fmtDT(g.kickoff)}</div>
-    `;
-    const right = document.createElement("div");
-    const winnerSel = document.createElement("select");
-    winnerSel.innerHTML = `
-      <option value="">No result</option>
-      <option value="${g.home}">${g.home}</option>
-      <option value="${g.away}">${g.away}</option>
-    `;
-    winnerSel.value = g.winner || "";
-    right.appendChild(winnerSel);
-    div.appendChild(left);
-    div.appendChild(right);
-    wrap.appendChild(div);
-  });
-}
-function saveAdminResults(){
-  const week = parseInt($("#adminWeekSelect").value, 10);
-  const w = schedule.weeks.find(x=>x.week===week);
-  const divs = Array.from($("#adminGamesWrap").children);
-  let updated = 0;
-  divs.forEach(div => {
-    const gid = div.dataset.gameId;
-    const sel = div.querySelector("select");
-    const winner = sel.value || null;
-    const game = w.games.find(g=>g.id===gid);
-    if(game && game.winner !== winner){
-      game.winner = winner;
-      updated++;
+    
+    // Save selections to localStorage
+    function saveSelections() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(confidenceSelections));
+        alert('Selections saved successfully!');
+      } catch (error) {
+        console.error('Failed to save selections:', error);
+        alert('Failed to save selections. Please try again.');
+      }
     }
-  });
-  saveState();
-  renderGamesList();
-  renderWeeklySummary();
-  renderStandings();
-  logActivity("Admin","results",`Updated ${updated} results for Week ${week}`);
-  alert(`Saved ${updated} game results.`);
-}
+    
+    // Clear all selections
+    function clearSelections() {
+      if (confirm('Are you sure you want to clear all confidence selections?')) {
+        confidenceSelections = {};
+        localStorage.removeItem(STORAGE_KEY);
+        renderGames();
+        updateTotalScore();
+      }
+    }
+    
+    // Calculate and update total score display
+    function updateTotalScore() {
+      const values = Object.values(confidenceSelections);
+      const total = values.reduce((sum, val) => sum + val, 0);
+      const maxPossible = scheduleData?.weeks[0]?.games.length || 0;
+      const maxScore = maxPossible * (maxPossible + 1) / 2; // Sum of 1 to N
+      
+      totalScoreEl.textContent = total.toString();
+      maxScoreEl.textContent = maxScore.toString();
+    }
+    
+    // Handle confidence input changes
+    function handleConfidenceChange(gameId: string, value: string) {
+      const numValue = parseInt(value);
+      const maxGames = scheduleData?.weeks[0]?.games.length || 16;
+      
+      if (isNaN(numValue) || numValue < 1 || numValue > maxGames) {
+        delete confidenceSelections[gameId];
+      } else {
+        confidenceSelections[gameId] = numValue;
+      }
+      
+      updateTotalScore();
+    }
+    
+    // Render games list
+    function renderGames() {
+      if (!scheduleData?.weeks[0]) {
+        gamesContainer.innerHTML = '<div class="error">No games found for Week 1</div>';
+        return;
+      }
+      
+      const week1 = scheduleData.weeks[0];
+      const maxConfidence = week1.games.length;
+      
+      gamesContainer.innerHTML = week1.games.map(game => {
+        const currentValue = confidenceSelections[game.id] || '';
+        const kickoffDate = new Date(game.kickoff).toLocaleString();
+        
+        return `
+          <div class="game">
+            <div class="game-info">
+              <div class="matchup">${game.away} @ ${game.home}</div>
+              <div class="kickoff">${kickoffDate}</div>
+            </div>
+            <div class="confidence-input">
+              <label>Confidence:</label>
+              <input 
+                type="number" 
+                min="1" 
+                max="${maxConfidence}" 
+                value="${currentValue}"
+                placeholder="1-${maxConfidence}"
+                data-game-id="${game.id}"
+                class="confidence-input-field"
+              >
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      // Add event listeners to inputs
+      const inputs = gamesContainer.querySelectorAll('.confidence-input-field');
+      inputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+          const target = e.target as HTMLInputElement;
+          const gameId = target.dataset.gameId!;
+          handleConfidenceChange(gameId, target.value);
+        });
+      });
+      
+      updateTotalScore();
+    }
+    
+    // Load schedule data
+    async function loadScheduleData() {
+      try {
+        const response = await fetch('./data/data/schedule-2025.json');
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!validateSchedule(data)) {
+          throw new Error('Invalid schedule data format');
+        }
+        
+        scheduleData = data;
+        renderGames();
+        
+      } catch (error) {
+        console.error('Failed to load schedule:', error);
+        gamesContainer.innerHTML = `
+          <div class="error">
+            <strong>Failed to load schedule data</strong><br>
+            ${error instanceof Error ? error.message : 'Unknown error'}<br>
+            <br>
+            Please ensure the file <code>data/data/schedule-2025.json</code> exists and is properly formatted.
+          </div>
+        `;
+      }
+    }
+    
+    // Initialize app
+    async function init() {
+      loadSavedSelections();
+      await loadScheduleData();
+      
+      // Bind event handlers
+      saveBtn.addEventListener('click', saveSelections);
+      clearBtn.addEventListener('click', clearSelections);
+    }
+    
+    // Start the application
+    init();
   </script>
 </body>
 </html>
