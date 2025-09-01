@@ -206,7 +206,10 @@ function initializeUserSelection() {
         currentUser = selectedUser;
         hideUserSelector();
         updateCurrentUserBanner();
+        // Refresh all UI components for the selected user
+        renderPicks();
         renderLeaderboard();
+        renderScoreboard();
       } else {
         alert('Please select or enter a participant name.');
       }
@@ -234,7 +237,7 @@ function hideUserSelector() {
 function updateCurrentUserBanner() {
   const banner = document.getElementById('currentUserBanner');
   if (banner && currentUser) {
-    banner.innerHTML = `<strong>Current User:</strong> ${currentUser} <button onclick="showUserSelector()" style="margin-left:10px; padding:2px 6px; font-size:12px;">Switch User</button>`;
+    banner.innerHTML = `Current User: ${currentUser} <button onclick="showUserSelector()" style="margin-left:10px; padding:2px 6px; font-size:12px;">Switch User</button>`;
     banner.style.display = 'block';
   }
 }
@@ -275,29 +278,32 @@ function renderPicks() {
   const container = document.getElementById('weeklyPicks');
   if (!container || !schedule[currentWeek - 1]) return;
   
+  // Clear the container to avoid stale inputs
+  container.innerHTML = '';
+  
   const weekData = schedule[currentWeek - 1];
   const games = weekData.games || [];
   
   if (games.length === 0) {
-    container.innerHTML = '<p>No games available for this week.</p>';
+    container.innerHTML = 'No games available for this week.';
     return;
   }
   
-  // Load existing picks for current user
+  // Load existing picks for current user and current week only
   const picks = loadUserPicks(currentUser, currentWeek);
   
   container.innerHTML = `
-    <div class="warn" id="duplicateWarning">Warning: You have duplicate confidence values. Each value must be unique.</div>
+    <div class="warn" id="duplicateWarning" style="display:none;">Warning: You have duplicate confidence values. Each value must be unique.</div>
     ${games.map(game => `
       <div class="game-card">
-        <h4>${game.away} @ ${game.home}</h4>
+        <div class="game-title">${game.away} @ ${game.home}</div>
         <div style="margin:8px 0;">
           <label>
-            <input type="radio" name="game-${game.id}" value="${game.away}" ${picks[game.id]?.team === game.away ? 'checked' : ''}>
+            <input type="radio" name="game-${game.id}" value="${game.away}" ${picks[game.id]?.team === game.away ? 'checked' : ''}/>
             ${game.away}
           </label>
           <label style="margin-left:20px;">
-            <input type="radio" name="game-${game.id}" value="${game.home}" ${picks[game.id]?.team === game.home ? 'checked' : ''}>
+            <input type="radio" name="game-${game.id}" value="${game.home}" ${picks[game.id]?.team === game.home ? 'checked' : ''}/>
             ${game.home}
           </label>
         </div>
@@ -306,7 +312,7 @@ function renderPicks() {
             Confidence (1-${games.length}):
             <input type="number" min="1" max="${games.length}" 
                    id="confidence-${game.id}" 
-                   value="${picks[game.id]?.confidence || ''}"
+                   value="${picks[game.id]?.confidence || ''}" 
                    style="margin-left:8px; width:60px;">
           </label>
         </div>
