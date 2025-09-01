@@ -1,92 +1,22 @@
-[
-  {
-    "name": "Poppy",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Moppy",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Shaner",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Leslie",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Robert",
-    "defendingChampion": true,
-    "totalScore": 0
-  },
-  {
-    "name": "Tasha",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Wesley",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Alex",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Jasmine",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Nick",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Lilly",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Knoth",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Amber",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Charlotte",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Matt",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Brittany",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Aunt Pam",
-    "defendingChampion": false,
-    "totalScore": 0
-  },
-  {
-    "name": "Uncle Carl",
-    "defendingChampion": false,
-    "totalScore": 0
-  }
-]
+{
+  "participants": [
+    "Poppy",
+    "Moppy",
+    "Shaner",
+    "Leslie",
+    "Robert",
+    "Tasha",
+    "Wesley",
+    "Alex",
+    "Jasmine",
+    "Nick",
+    "Lilly",
+    "Knoth",
+    "Amber",
+    "Charlotte",
+    "Matt",
+    "Brittany",
+    "Aunt Pam",
+    "Uncle Carl"
+  ]
+}
