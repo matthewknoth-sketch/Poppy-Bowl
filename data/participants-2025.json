@@ -78,5 +78,15 @@
     "name": "Brittany",
     "defendingChampion": false,
     "totalScore": 0
+  },
+  {
+    "name": "Aunt Pam",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Uncle Carl",
+    "defendingChampion": false,
+    "totalScore": 0
   }
 ]
