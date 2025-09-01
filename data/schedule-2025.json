@@ -1,5 +1,33 @@
+{
+"weeks": [
+{ "week": 1, "deadline": "...", "games": [ ... ] },
+{ "week": 2, "deadline": "...", "games": [ ... ] },
+...
+{ "week": 18, "deadline": "...", "games": [ ... ] }
+]
+}
 
-[
+Actionable steps
+
+Add {"weeks": at the very beginning of the file, followed by your array, and close with } at the end.
+
+Replace the first character [ with {"weeks": [
+
+Replace the last ] with ]}
+
+Delete the line “Pretty-print”.
+
+Ensure Week 18 has 16 games (it does in the current content).
+
+After making that change, refresh the page; the error should clear and the week selector should populate correctly.
+
+ok - please give me a new format then
+
+ok - please give me a new format then
+Got it. Your app expects an object with a top-level “weeks” array. Here’s a clean, ready-to-paste JSON format for data/schedule-2025.json. It uses the same games you provided, but wrapped correctly and with Week 18 = 16 games, and no extra text.
+
+{
+"weeks": [
 {
 "week": 1,
 "deadline": "2025-09-04T20:20:00-04:00",
@@ -343,7 +371,7 @@
 { "id": "W17G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-28T20:20:00-05:00", "winner": null }
 ]
 },
-{
+  {
 "week": 18,
 "deadline": "2026-01-05T13:00:00-05:00",
 "games": [
@@ -365,4 +393,3 @@
 { "id": "W18G16", "home": "Las Vegas Raiders", "away": "Los Angeles Chargers", "date": "2026-01-05T16:25:00-05:00", "winner": null }
 ]
 }
-]
