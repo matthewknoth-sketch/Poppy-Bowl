@@ -1,35 +1,67 @@
 {
   "participants": [
     {
+      "name": "Poppy",
+      "defendingChampion": false
+    },
+    {
+      "name": "Moppy",
+      "defendingChampion": false
+    },
+    {
+      "name": "Shaner",
+      "defendingChampion": false
+    },
+    {
+      "name": "Leslia",
+      "defendingChampion": false
+    },
+    {
       "name": "Robert",
       "defendingChampion": true
     },
     {
-      "name": "Sarah",
+      "name": "Tasha",
       "defendingChampion": false
     },
     {
-      "name": "Mike",
+      "name": "Wesley",
       "defendingChampion": false
     },
     {
-      "name": "Emily",
+      "name": "Alex",
       "defendingChampion": false
     },
     {
-      "name": "David",
+      "name": "Jasmine",
       "defendingChampion": false
     },
     {
-      "name": "Jessica",
+      "name": "Nick",
       "defendingChampion": false
     },
     {
-      "name": "Chris",
+      "name": "Lilly",
       "defendingChampion": false
     },
     {
-      "name": "Amanda",
+      "name": "Knoth",
+      "defendingChampion": false
+    },
+    {
+      "name": "Amber",
+      "defendingChampion": false
+    },
+    {
+      "name": "Charlotte",
+      "defendingChampion": false
+    },
+    {
+      "name": "Matt",
+      "defendingChampion": false
+    },
+    {
+      "name": "Brittany",
       "defendingChampion": false
     }
   ]
