@@ -60,6 +60,42 @@
       font-size: 0.9em;
       color: #666;
     }
+    
+    /* Leaderboard styling */
+    .leaderboard {
+      background: #e8f5e8;
+      border: 1px solid #c3e6c3;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .leaderboard h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .leaderboard-item {
+      background: white;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .leaderboard-rank {
+      font-weight: bold;
+      color: #666;
+      margin-right: 12px;
+    }
+    .leaderboard-name {
+      font-weight: 500;
+      flex-grow: 1;
+    }
+    .leaderboard-score {
+      font-weight: bold;
+      color: #27ae60;
+    }
   </style>
 </head>
 <body>
@@ -78,6 +114,9 @@
   </div>
   
   <div id="participants" class="participants"></div>
+  
+  <div id="leaderboard" class="leaderboard"></div>
+  
   <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
   <script src="./src/main.js"></script>
 </body>
