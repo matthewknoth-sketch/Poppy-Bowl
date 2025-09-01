@@ -1,68 +1,82 @@
-{
-  "participants": [
-    {
-      "name": "Poppy",
-      "defendingChampion": false
-    },
-    {
-      "name": "Moppy",
-      "defendingChampion": false
-    },
-    {
-      "name": "Shaner",
-      "defendingChampion": false
-    },
-    {
-      "name": "Leslia",
-      "defendingChampion": false
-    },
-    {
-      "name": "Robert",
-      "defendingChampion": true
-    },
-    {
-      "name": "Tasha",
-      "defendingChampion": false
-    },
-    {
-      "name": "Wesley",
-      "defendingChampion": false
-    },
-    {
-      "name": "Alex",
-      "defendingChampion": false
-    },
-    {
-      "name": "Jasmine",
-      "defendingChampion": false
-    },
-    {
-      "name": "Nick",
-      "defendingChampion": false
-    },
-    {
-      "name": "Lilly",
-      "defendingChampion": false
-    },
-    {
-      "name": "Knoth",
-      "defendingChampion": false
-    },
-    {
-      "name": "Amber",
-      "defendingChampion": false
-    },
-    {
-      "name": "Charlotte",
-      "defendingChampion": false
-    },
-    {
-      "name": "Matt",
-      "defendingChampion": false
-    },
-    {
-      "name": "Brittany",
-      "defendingChampion": false
-    }
-  ]
-}
+[
+  {
+    "name": "Poppy",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Moppy",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Shaner",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Leslia",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Robert",
+    "defendingChampion": true,
+    "totalScore": 0
+  },
+  {
+    "name": "Tasha",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Wesley",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Alex",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Jasmine",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Nick",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Lilly",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Knoth",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Amber",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Charlotte",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Matt",
+    "defendingChampion": false,
+    "totalScore": 0
+  },
+  {
+    "name": "Brittany",
+    "defendingChampion": false,
+    "totalScore": 0
+  }
+]
