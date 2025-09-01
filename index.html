@@ -29,58 +29,58 @@
       text-align: center;
     }
     
+    /* Participants Section */
+    .participants {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .participants h2 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    /* Submit Button */
+    .submit-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 20px 0;
+      transition: background-color 0.2s;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+    .submit-btn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
+    
     /* Error Banner Styling */
     #error-banner {
       background: #fdecea;
       color: #b71c1c;
       padding: 12px;
-      margin: 12px 0;
-      border: 1px solid #f5c6cb;
       border-radius: 4px;
+      margin: 16px 0;
+      border: 1px solid #f5c6cb;
       display: none;
     }
-    #error-banner:not(:empty) {
-      display: block;
-    }
     
-    .week-selector {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .week-selector select {
-      padding: 8px 16px;
-      font-size: 16px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-    }
-    .score-summary {
-      background: #e3f2fd;
-      padding: 16px;
-      border-radius: 6px;
-      margin: 20px 0;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .totals {
-      display: flex;
-      justify-content: space-around;
-      margin: 10px 0;
-    }
-    .total-item {
-      text-align: center;
-    }
-    .total-value {
-      font-size: 24px;
-      font-weight: bold;
-      color: #1976d2;
-    }
+    /* Game styling */
     .game {
       border: 1px solid #ddd;
-      border-radius: 6px;
-      margin: 10px 0;
+      border-radius: 8px;
       padding: 16px;
-      background: white;
+      margin: 12px 0;
+      background: #fff;
     }
     .game-header {
       display: flex;
@@ -89,71 +89,19 @@
       margin-bottom: 12px;
     }
     .teams {
-      font-weight: bold;
-      font-size: 16px;
+      font-weight: 600;
+      font-size: 18px;
     }
-    .game-time {
-      color: #666;
+    .game-info {
       font-size: 14px;
-    }
-    .picks {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 12px 0;
-    }
-    .pick-option {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .confidence-section {
-      margin-top: 12px;
-      text-align: center;
+      color: #666;
     }
     .confidence-input {
-      width: 60px;
-      padding: 4px 8px;
-      text-align: center;
+      width: 80px;
+      padding: 8px;
       border: 1px solid #ddd;
       border-radius: 4px;
-    }
-    .actions {
       text-align: center;
-      margin: 20px 0;
-    }
-    .btn {
-      background: #1976d2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 0 8px;
-    }
-    .btn:hover {
-      background: #1565c0;
-    }
-    .btn.danger {
-      background: #d32f2f;
-    }
-    .btn.danger:hover {
-      background: #c62828;
-    }
-    .error {
-      color: #d32f2f;
-      background: #ffebee;
-      padding: 16px;
-      border-radius: 4px;
-      margin: 16px 0;
-    }
-    .confidence-warning {
-      background: #fff3cd;
-      color: #856404;
-      padding: 8px;
-      border-radius: 4px;
-      margin: 8px 0;
-      border: 1px solid #ffeaa7;
     }
   </style>
 </head>
@@ -161,338 +109,41 @@
   <div class="container">
     <h1>Poppy Bowl - Confidence Pool</h1>
     
-    <!-- Error Banner -->
+    <!-- Participants section near header -->
+    <div id="participants" class="participants">
+      <h2>Participants</h2>
+      <p>Loading participants...</p>
+    </div>
+    
     <div id="error-banner"></div>
     
-    <div class="week-selector">
-      <label for="week-select">Select Week:</label>
-      <select id="week-select">
-        <!-- Options will be populated by JavaScript -->
-      </select>
+    <div id="gamesList">
+      <!-- Games will be loaded here -->
     </div>
     
-    <div class="score-summary" style="display: none;">
-      <div class="totals">
-        <div class="total-item">
-          <div>Correct Picks</div>
-          <div class="total-value" id="correct-picks">0</div>
-        </div>
-        <div class="total-item">
-          <div>Confidence Points</div>
-          <div class="total-value" id="confidence-points">0</div>
-        </div>
-        <div class="total-item">
-          <div>Possible Points</div>
-          <div class="total-value" id="possible-points">0</div>
-        </div>
-      </div>
+    <!-- Submit button near picks -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
     </div>
     
-    <div class="actions">
-      <button class="btn" onclick="exportData()">Export Picks</button>
-      <button class="btn" onclick="importData()">Import Picks</button>
-      <button class="btn danger" onclick="clearSelections()">Clear Week</button>
-    </div>
-    
-    <div id="games-container">
-      <!-- Games will be populated here -->
+    <div id="results" style="margin-top: 30px;">
+      <!-- Results will be displayed here -->
     </div>
   </div>
-
+  
   <script>
-    let scheduleData = null;
-    let currentWeek = 1;
-    
-    // Minimal JS validation for schedule data
-    function validateSchedule(data) {
-      const errorPath = [];
+    // Application JavaScript will go here
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Poppy Bowl application loaded');
       
-      try {
-        if (!data) {
-          errorPath.push('data');
-          throw new Error('Schedule data is null or undefined');
-        }
-        
-        if (!Array.isArray(data.weeks)) {
-          errorPath.push('data.weeks');
-          throw new Error('weeks must be an array');
-        }
-        
-        if (data.weeks.length === 0) {
-          errorPath.push('data.weeks');
-          throw new Error('weeks array cannot be empty');
-        }
-        
-        data.weeks.forEach((week, weekIndex) => {
-          if (!Array.isArray(week.games)) {
-            errorPath.push(`data.weeks[${weekIndex}].games`);
-            throw new Error(`Week ${weekIndex + 1} games must be an array`);
-          }
-          
-          week.games.forEach((game, gameIndex) => {
-            const gamePath = `data.weeks[${weekIndex}].games[${gameIndex}]`;
-            
-            if (!game.id) {
-              errorPath.push(`${gamePath}.id`);
-              throw new Error(`Game ${gameIndex + 1} in week ${weekIndex + 1} missing id`);
-            }
-            
-            if (!game.home) {
-              errorPath.push(`${gamePath}.home`);
-              throw new Error(`Game ${gameIndex + 1} in week ${weekIndex + 1} missing home team`);
-            }
-            
-            if (!game.away) {
-              errorPath.push(`${gamePath}.away`);
-              throw new Error(`Game ${gameIndex + 1} in week ${weekIndex + 1} missing away team`);
-            }
-            
-            if (!game.date) {
-              errorPath.push(`${gamePath}.date`);
-              throw new Error(`Game ${gameIndex + 1} in week ${weekIndex + 1} missing date`);
-            }
-            
-            // Check deadline/kickoff refinement if present
-            if (game.deadline && game.kickoff) {
-              const deadline = new Date(game.deadline);
-              const kickoff = new Date(game.kickoff);
-              
-              if (deadline > kickoff) {
-                errorPath.push(`${gamePath}.deadline`);
-                throw new Error(`Game ${gameIndex + 1} in week ${weekIndex + 1}: deadline must be <= kickoff time`);
-              }
-            }
-          });
+      // Initialize submit button functionality
+      const submitBtn = document.getElementById('submitPicksBtn');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+          console.log('Submit picks clicked');
+          // Submit functionality to be implemented
         });
-        
-        return data;
-      } catch (error) {
-        console.error('Validation failed at path:', errorPath.join('.') || 'unknown');
-        throw error;
       }
-    }
-    
-    // Load schedule data with enhanced error handling
-    async function loadScheduleData() {
-      const errorBanner = document.getElementById('error-banner');
-      const gamesContainer = document.getElementById('games-container');
-      
-      try {
-        const response = await fetch('data/schedule-2025.json', { cache: 'no-store' });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status} when fetching schedule`);
-        }
-        
-        const jsonData = await response.json();
-        
-        // Validate the schedule data with detailed error reporting
-        const validatedData = validateSchedule(jsonData);
-        
-        scheduleData = validatedData;
-        loadSavedData();
-        renderGames();
-        updateTotals();
-        
-        // Clear error banner on success
-        if (errorBanner) {
-          errorBanner.textContent = '';
-        }
-        
-      } catch (error) {
-        // Log comprehensive error details to console for debugging
-        console.error('Schedule load/validation failed:', error);
-        
-        // Extract user-friendly message for display
-        let displayMessage = 'Failed to load schedule data.';
-        if (error && typeof error.message === 'string') {
-          displayMessage = error.message;
-        }
-        
-        // Show error in banner
-        if (errorBanner) {
-          errorBanner.textContent = displayMessage;
-        } else {
-          // Fallback: create banner if it doesn't exist
-          const div = document.createElement('div');
-          div.id = 'error-banner';
-          div.style.background = '#fdecea';
-          div.style.color = '#b71c1c';
-          div.style.padding = '12px';
-          div.style.margin = '12px 0';
-          div.style.border = '1px solid #f5c6cb';
-          div.style.borderRadius = '4px';
-          div.textContent = displayMessage;
-          document.body.insertBefore(div, document.body.firstChild);
-        }
-        
-        // Show error in games container as well
-        if (gamesContainer) {
-          gamesContainer.innerHTML = `
-            <div class="error">
-              Failed to load schedule data: ${error instanceof Error ? error.message : 'Unknown error'}<br>
-              Please ensure the file data/schedule-2025.json exists and is properly formatted.
-            </div>
-          `;
-        }
-      }
-    }
-    
-    // Initialize week selector
-    function initializeWeekSelector() {
-      const select = document.getElementById('week-select');
-      if (!scheduleData || !scheduleData.weeks) return;
-      
-      select.innerHTML = '';
-      scheduleData.weeks.forEach((week, index) => {
-        const option = document.createElement('option');
-        option.value = index + 1;
-        option.textContent = `Week ${index + 1}`;
-        if (index + 1 === currentWeek) {
-          option.selected = true;
-        }
-        select.appendChild(option);
-      });
-      
-      select.addEventListener('change', (e) => {
-        currentWeek = parseInt(e.target.value);
-        renderGames();
-        updateTotals();
-      });
-    }
-    
-    // Storage key helpers
-    function getPickKey(week, gameId) {
-      return `pick_${week}_${gameId}`;
-    }
-    
-    function getConfidenceKey(week, gameId) {
-      return `confidence_${week}_${gameId}`;
-    }
-    
-    // Load saved picks and confidences
-    function loadSavedData() {
-      // Implementation depends on your existing logic
-    }
-    
-    // Handle pick changes
-    function handlePickChange(gameId, pick) {
-      localStorage.setItem(getPickKey(currentWeek, gameId), pick);
-      updateTotals();
-    }
-    
-    // Handle confidence changes
-    function handleConfidenceChange(gameId, confidence) {
-      localStorage.setItem(getConfidenceKey(currentWeek, gameId), confidence);
-      updateTotals();
-    }
-    
-    // Render games for current week
-    function renderGames() {
-      const container = document.getElementById('games-container');
-      if (!scheduleData || !scheduleData.weeks[currentWeek - 1]) {
-        container.innerHTML = '<div class="error">No games available for this week.</div>';
-        return;
-      }
-      
-      initializeWeekSelector();
-      
-      const weekGames = scheduleData.weeks[currentWeek - 1].games;
-      const confidenceValues = weekGames.map((_, index) => {
-        const gameId = weekGames[index].id;
-        return parseInt(localStorage.getItem(getConfidenceKey(currentWeek, gameId)) || '0');
-      });
-      
-      const hasDuplicateConfidence = confidenceValues.some((val, i) => 
-        val > 0 && confidenceValues.indexOf(val) !== i
-      );
-      
-      container.innerHTML = weekGames.map(game => {
-        const savedPick = localStorage.getItem(getPickKey(currentWeek, game.id));
-        const savedConfidence = localStorage.getItem(getConfidenceKey(currentWeek, game.id)) || '';
-        
-        return `
-          <div class="game">
-            <div class="game-header">
-              <div class="teams">${game.away} @ ${game.home}</div>
-              <div class="game-time">${new Date(game.date).toLocaleDateString()} ${new Date(game.date).toLocaleTimeString()}</div>
-            </div>
-            <div class="picks">
-              <div class="pick-option">
-                <input type="radio" id="away_${game.id}" name="pick_${game.id}" value="${game.away}" ${savedPick === game.away ? 'checked' : ''}>
-                <label for="away_${game.id}">${game.away}</label>
-              </div>
-              <div class="pick-option">
-                <input type="radio" id="home_${game.id}" name="pick_${game.id}" value="${game.home}" ${savedPick === game.home ? 'checked' : ''}>
-                <label for="home_${game.id}">${game.home}</label>
-              </div>
-            </div>
-            <div class="confidence-section">
-              <label>Confidence: </label>
-              <input type="number" class="confidence-input" data-game-id="${game.id}" min="1" max="${weekGames.length}" value="${savedConfidence}" placeholder="1-${weekGames.length}">
-            </div>
-            ${hasDuplicateConfidence ? 
-              '<div class="confidence-warning">⚠ Duplicate confidence value! Each game must have a unique confidence.</div>' : 
-              ''
-            }
-          </div>
-        `;
-      }).join('');
-      
-      // Bind event listeners
-      document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', (e) => {
-          const gameId = e.target.name.split('_')[1];
-          handlePickChange(gameId, e.target.value);
-        });
-      });
-      
-      document.querySelectorAll('.confidence-input').forEach(input => {
-        input.addEventListener('input', (e) => {
-          const gameId = e.target.dataset.gameId;
-          handleConfidenceChange(gameId, e.target.value);
-        });
-      });
-    }
-    
-    // Update totals display
-    function updateTotals() {
-      // Implementation depends on your existing logic
-      const summary = document.querySelector('.score-summary');
-      if (summary) {
-        summary.style.display = 'block';
-      }
-    }
-    
-    // Clear all selections
-    function clearSelections() {
-      if (confirm('Are you sure you want to clear all picks and confidences for this week?')) {
-        if (!scheduleData || !scheduleData.weeks[currentWeek-1]) return;
-        
-        const weekGames = scheduleData.weeks[currentWeek-1].games;
-        weekGames.forEach(game => {
-          const gameId = game.id;
-          localStorage.removeItem(getPickKey(currentWeek, gameId));
-          localStorage.removeItem(getConfidenceKey(currentWeek, gameId));
-        });
-        
-        renderGames();
-        updateTotals();
-      }
-    }
-    
-    // Export/Import functions (placeholder implementations)
-    function exportData() {
-      alert('Export functionality not yet implemented');
-    }
-    
-    function importData() {
-      alert('Import functionality not yet implemented');
-    }
-    
-    // Initialize the application
-    document.addEventListener('DOMContentLoaded', () => {
-      loadScheduleData();
     });
   </script>
 </body>
