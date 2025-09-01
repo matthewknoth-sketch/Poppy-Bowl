@@ -37,72 +37,6 @@
       padding: 16px;
       margin: 20px 0;
     }
-    .participants h2 {
-      margin-top: 0;
-      color: #495057;
-    }
-    
-    /* Submit Button */
-    .submit-btn {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      margin: 20px 0;
-      transition: background-color 0.2s;
-    }
-    .submit-btn:hover {
-      background: #218838;
-    }
-    .submit-btn:disabled {
-      background: #6c757d;
-      cursor: not-allowed;
-    }
-    
-    /* Error Banner Styling */
-    #error-banner {
-      background: #fdecea;
-      color: #b71c1c;
-      padding: 12px;
-      border-radius: 4px;
-      margin: 16px 0;
-      border: 1px solid #f5c6cb;
-      display: none;
-    }
-    
-    /* Game styling */
-    .game {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 12px 0;
-      background: #fff;
-    }
-    .game-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .teams {
-      font-weight: 600;
-      font-size: 18px;
-    }
-    .game-info {
-      font-size: 14px;
-      color: #666;
-    }
-    .confidence-input {
-      width: 80px;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      text-align: center;
-    }
     
     /* Participant styling */
     .participants-list {
@@ -132,21 +66,10 @@
   <div class="container">
     <h1>Poppy Bowl - Confidence Pool</h1>
     
-    <!-- Participants section near header -->
-    <div class="participants" id="participants">
-      <h2>Participants</h2>
-      <p>Loading participants...</p>
-    </div>
-    
     <div id="error-banner"></div>
     
     <div id="gamesList">
       <!-- Games will be loaded here -->
-    </div>
-    
-    <!-- Submit button near picks -->
-    <div style="text-align: center; margin-top: 30px;">
-      <button class="submit-btn" id="submitPicksBtn">Submit Picks</button>
     </div>
     
     <div id="results" style="margin-top: 30px;">
@@ -154,6 +77,8 @@
     </div>
   </div>
   
-  <script src="src/main.js"></script>
+  <div id="participants" class="participants"></div>
+  <button id="submitPicksBtn" class="submit-btn">Submit Picks</button>
+  <script src="./src/main.js"></script>
 </body>
 </html>
