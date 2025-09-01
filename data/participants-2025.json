@@ -1,0 +1,36 @@
+{
+  "participants": [
+    {
+      "name": "Robert",
+      "defendingChampion": true
+    },
+    {
+      "name": "Sarah",
+      "defendingChampion": false
+    },
+    {
+      "name": "Mike",
+      "defendingChampion": false
+    },
+    {
+      "name": "Emily",
+      "defendingChampion": false
+    },
+    {
+      "name": "David",
+      "defendingChampion": false
+    },
+    {
+      "name": "Jessica",
+      "defendingChampion": false
+    },
+    {
+      "name": "Chris",
+      "defendingChampion": false
+    },
+    {
+      "name": "Amanda",
+      "defendingChampion": false
+    }
+  ]
+}
