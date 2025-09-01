@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Poppy Bowl application loaded');
   loadData();
   initializeEventListeners();
-  renderLeaderboard(); // Initialize leaderboard on load
+  // Initialize leaderboard tab as default
+  switchTab('leaderboard');
 });
 
 // Load participants, results, and schedule JSON
@@ -20,6 +21,16 @@ async function loadData() {
     const participantsResponse = await fetch('./data/participants-2025.json');
     if (participantsResponse.ok) {
       participants = await participantsResponse.json();
+      // Handle nested participants structure
+      if (participants.participants) {
+        participants = participants.participants;
+      }
+      // Ensure each participant has totalScore default 0
+      participants.forEach(participant => {
+        if (participant.totalScore === undefined) {
+          participant.totalScore = 0;
+        }
+      });
     } else {
       console.error('Failed to load participants data');
     }
@@ -35,7 +46,15 @@ async function loadData() {
     // Load schedule data
     const scheduleResponse = await fetch('./data/schedule-2025.json');
     if (scheduleResponse.ok) {
-      gameSchedule = await scheduleResponse.json();
+      const sched = await scheduleResponse.json();
+      // Handle nested weeks structure
+      if (sched.weeks) {
+        gameSchedule = sched.weeks.flatMap(w => 
+          w.games.map(g => ({...g, week: w.week}))
+        );
+      } else {
+        gameSchedule = sched;
+      }
     } else {
       console.error('Failed to load schedule data');
     }
@@ -86,7 +105,7 @@ function updateLeaderboard() {
   renderLeaderboard();
 }
 
-// Render leaderboard
+// Render leaderboard with proper table structure
 function renderLeaderboard() {
   const leaderboardBody = document.getElementById('leaderboardBody');
   if (!leaderboardBody) return;
@@ -107,7 +126,7 @@ function renderLeaderboard() {
   });
 }
 
-// Render weekly picks
+// Render weekly picks with correct field names
 function renderWeeklyPicks() {
   const picksContainer = document.getElementById('weeklyPicks');
   if (!picksContainer) return;
@@ -117,7 +136,7 @@ function renderWeeklyPicks() {
   picksContainer.innerHTML = '';
   
   if (weekGames.length === 0) {
-    picksContainer.innerHTML = '<p>No games scheduled for this week.</p>';
+    picksContainer.innerHTML = 'No games scheduled for this week.';
     return;
   }
   
@@ -125,9 +144,8 @@ function renderWeeklyPicks() {
     const gameDiv = document.createElement('div');
     gameDiv.className = 'game-card';
     gameDiv.innerHTML = `
-      <p>${game.awayTeam} @ ${game.homeTeam}</p>
-      <p>Date: ${game.date}</p>
-      <p>Time: ${game.time}</p>
+      <div class="matchup">${game.away} @ ${game.home}</div>
+      <div class="game-date">Date: ${game.date}</div>
     `;
     picksContainer.appendChild(gameDiv);
   });
