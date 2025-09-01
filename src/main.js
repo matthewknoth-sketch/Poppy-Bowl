@@ -15,33 +15,37 @@ document.addEventListener('DOMContentLoaded', async function() {
   populateUserSelectorDropDown();
   initializeEventListeners();
   loadSavedPicks();
+  // Compute scores after loading saved picks
+  computeScoresFromResults();
   // Initialize leaderboard tab as default
   switchTab('leaderboard');
 });
 
 // Populate user selector dropdown with participants
 function populateUserSelectorDropDown() {
-  const userSelector = document.getElementById('userSelector');
-  if (!userSelector || participants.length === 0) return;
-  
-  // Keep selector visible if it was already visible
-  const wasVisible = userSelector.style.display !== 'none' && userSelector.style.display !== '';
+  const userDropdown = document.getElementById('userDropdown');
+  if (!userDropdown || participants.length === 0) return;
   
   // Clear existing options except the default
-  userSelector.innerHTML = '<option value="">Select Participant</option>';
+  userDropdown.innerHTML = '<option value="">Select Participant</option>';
   
   // Add participants as options
   participants.forEach(participant => {
     const option = document.createElement('option');
     option.value = participant.name;
     option.textContent = participant.name;
-    userSelector.appendChild(option);
+    userDropdown.appendChild(option);
   });
-  
-  // Keep selector displayed if it was visible before
-  if (wasVisible) {
-    userSelector.style.display = '';
+}
+
+// Show user selector (called when needed)
+function showUserSelector() {
+  const userSelector = document.getElementById('userSelector');
+  if (userSelector) {
+    userSelector.style.display = 'block';
   }
+  // Populate dropdown when showing selector
+  populateUserSelectorDropDown();
 }
 
 // Load participants, results, and schedule JSON
@@ -93,11 +97,48 @@ async function loadData() {
     }
     
     console.log('Data loaded successfully');
+    // Compute scores after loading data
+    computeScoresFromResults();
     updateLeaderboard();
     
   } catch (error) {
     console.error('Error loading data:', error);
   }
+}
+
+// Compute scores from results
+function computeScoresFromResults() {
+  // Build winners map from results.winners (default {})
+  const winners = (results && results.winners) ? results.winners : {};
+  
+  // Zero out participants totalScore
+  participants.forEach(participant => {
+    participant.totalScore = 0;
+  });
+  
+  // Iterate through all picks stored in localStorage per participant, per week
+  participants.forEach(participant => {
+    let participantScore = 0;
+    
+    // Check each week's picks for this participant
+    Object.keys(picks).forEach(week => {
+      const weekPicks = picks[week];
+      if (weekPicks) {
+        Object.keys(weekPicks).forEach(gameId => {
+          const pick = weekPicks[gameId];
+          // If pick matches winner, add confidence to score
+          if (winners[gameId] && pick.team === winners[gameId]) {
+            participantScore += pick.confidence || 0;
+          }
+        });
+      }
+    });
+    
+    participant.totalScore = participantScore;
+  });
+  
+  // Update leaderboard with new totals
+  updateLeaderboard();
 }
 
 // Initialize event listeners
@@ -169,6 +210,8 @@ function savePick(gameId, team, confidence) {
   
   savePicks();
   validateConfidenceValues();
+  // Recompute scores after saving pick
+  computeScoresFromResults();
 }
 
 // Validate confidence values are unique and within range
@@ -244,7 +287,7 @@ function renderWeeklyPicks() {
   picksContainer.innerHTML = '';
   
   if (weekGames.length === 0) {
-    picksContainer.innerHTML = '<p>No games scheduled for this week.</p>';
+    picksContainer.innerHTML = 'No games scheduled for this week.';
     return;
   }
   
@@ -282,18 +325,19 @@ function renderWeeklyPicks() {
       <div class="pick-controls" style="display: flex; align-items: center; gap: 20px;">
         <div class="team-selection">
           <label style="margin-right: 15px;">
-            <input name="game_${game.id}" type="radio" value="${game.away}" ${currentPick?.team === game.away ? 'checked' : ''}>
+            <input type="radio" name="game_${game.id}" value="${game.away}" ${currentPick?.team === game.away ? 'checked' : ''}>
             ${game.away}
           </label>
           <label>
-            <input name="game_${game.id}" type="radio" value="${game.home}" ${currentPick?.team === game.home ? 'checked' : ''}>
+            <input type="radio" name="game_${game.id}" value="${game.home}" ${currentPick?.team === game.home ? 'checked' : ''}>
             ${game.home}
           </label>
         </div>
         <div class="confidence-input">
           <label>Confidence: 
-            <input type="number" min="1" max="${numGamesThisWeek}" value="${currentPick?.confidence || ''}" 
+            <input type="number" min="1" max="${numGamesThisWeek}" 
                    data-game-id="${game.id}" class="confidence-input-field"
+                   value="${currentPick?.confidence || ''}"
                    style="width: 60px; margin-left: 5px;">
           </label>
         </div>
@@ -407,6 +451,8 @@ if (typeof module !== 'undefined' && module.exports) {
     savePick,
     loadSavedPicks,
     validateConfidenceValues,
-    populateUserSelectorDropDown
+    populateUserSelectorDropDown,
+    computeScoresFromResults,
+    showUserSelector
   };
 }
