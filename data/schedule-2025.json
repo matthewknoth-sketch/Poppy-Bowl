@@ -1,4 +1,6 @@
+You’re right—my bad. Week 18 should have 16 games. Here’s a corrected, complete JSON template with all weeks wrapped in a single array and Week 18 listing 16 games. Replace your data/schedule-2025.json with this.
 
+[
 {
 "week": 1,
 "deadline": "2025-09-04T20:20:00-04:00",
@@ -20,7 +22,7 @@
 { "id": "W1G15", "home": "Buffalo Bills", "away": "Baltimore Ravens", "date": "2025-09-07T20:20:00-04:00", "winner": null },
 { "id": "W1G16", "home": "Da Bears", "away": "Minnesota Vikings", "date": "2025-09-08T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 2,
 "deadline": "2025-09-11T20:15:00-04:00",
@@ -40,7 +42,7 @@
 { "id": "W2G13", "home": "Tampa Bay Buccaneers", "away": "Carolina Panthers", "date": "2025-09-14T20:20:00-04:00", "winner": null },
 { "id": "W2G14", "home": "Arizona Cardinals", "away": "Las Vegas Raiders", "date": "2025-09-15T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 3,
 "deadline": "2025-09-18T20:15:00-04:00",
@@ -60,7 +62,7 @@
 { "id": "W3G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-09-21T20:20:00-04:00", "winner": null },
 { "id": "W3G14", "home": "Da Bears", "away": "Cheeseheads", "date": "2025-09-22T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 4,
 "deadline": "2025-09-25T20:15:00-04:00",
@@ -81,7 +83,7 @@
 { "id": "W4G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-09-28T20:20:00-04:00", "winner": null },
 { "id": "W4G15", "home": "New York Giants", "away": "Washington Commanders", "date": "2025-09-29T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 5,
 "deadline": "2025-10-02T20:15:00-04:00",
@@ -101,7 +103,7 @@
 { "id": "W5G13", "home": "Los Angeles Chargers", "away": "Las Vegas Raiders", "date": "2025-10-05T20:20:00-04:00", "winner": null },
 { "id": "W5G14", "home": "Dallas Cowboys", "away": "Washington Commanders", "date": "2025-10-06T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 6,
 "deadline": "2025-10-09T20:15:00-04:00",
@@ -121,7 +123,8 @@
 { "id": "W6G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-10-12T20:20:00-04:00", "winner": null },
 { "id": "W6G14", "home": "Kansas City Chiefs", "away": "Las Vegas Raiders", "date": "2025-10-13T20:15:00-04:00", "winner": null }
 ]
-}
+},
+{
 "week": 7,
 "deadline": "2025-10-16T20:15:00-04:00",
 "games": [
@@ -140,7 +143,7 @@
 { "id": "W7G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-10-19T20:20:00-04:00", "winner": null },
 { "id": "W7G14", "home": "Denver Broncos", "away": "Kansas City Chiefs", "date": "2025-10-20T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 8,
 "deadline": "2025-10-23T20:15:00-04:00",
@@ -160,7 +163,7 @@
 { "id": "W8G13", "home": "Los Angeles Chargers", "away": "Las Vegas Raiders", "date": "2025-10-26T20:20:00-04:00", "winner": null },
 { "id": "W8G14", "home": "Fly Eagle Fly", "away": "Dallas Cowboys", "date": "2025-10-27T20:15:00-04:00", "winner": null }
 ]
-}
+},
 {
 "week": 9,
 "deadline": "2025-10-30T20:15:00-04:00",
@@ -180,7 +183,7 @@
 { "id": "W9G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-02T16:25:00-05:00", "winner": null },
 { "id": "W9G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-02T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 10,
 "deadline": "2025-11-06T20:15:00-05:00",
@@ -200,7 +203,7 @@
 { "id": "W10G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-11-09T20:20:00-05:00", "winner": null },
 { "id": "W10G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-10T20:15:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 11,
 "deadline": "2025-11-13T20:15:00-05:00",
@@ -220,7 +223,7 @@
 { "id": "W11G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-16T16:25:00-05:00", "winner": null },
 { "id": "W11G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-16T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 12,
 "deadline": "2025-11-20T20:15:00-05:00",
@@ -241,7 +244,7 @@
 { "id": "W12G14", "home": "Los Angeles Chargers", "away": "Las Vegas Raiders", "date": "2025-11-24T20:20:00-05:00", "winner": null },
 { "id": "W12G15", "home": "Da Bears", "away": "Minnesota Vikings", "date": "2025-11-25T20:15:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 13,
 "deadline": "2025-11-27T20:15:00-05:00",
@@ -261,7 +264,7 @@
 { "id": "W13G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-11-30T16:25:00-05:00", "winner": null },
 { "id": "W13G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-11-30T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 14,
 "deadline": "2025-12-04T20:15:00-05:00",
@@ -281,7 +284,7 @@
 { "id": "W14G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-07T16:25:00-05:00", "winner": null },
 { "id": "W14G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-07T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 15,
 "deadline": "2025-12-11T20:15:00-05:00",
@@ -301,7 +304,7 @@
 { "id": "W15G13", "home": "Los Angeles Chargers", "away": "Denver Broncos", "date": "2025-12-14T20:20:00-05:00", "winner": null },
 { "id": "W15G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-15T20:15:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 16,
 "deadline": "2025-12-18T20:15:00-05:00",
@@ -321,7 +324,7 @@
 { "id": "W16G13", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-21T16:25:00-05:00", "winner": null },
 { "id": "W16G14", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-21T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 17,
 "deadline": "2025-12-25T20:15:00-05:00",
@@ -340,7 +343,7 @@
 { "id": "W17G12", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "date": "2025-12-28T16:25:00-05:00", "winner": null },
 { "id": "W17G13", "home": "Dallas Cowboys", "away": "Fly Eagle Fly", "date": "2025-12-28T20:20:00-05:00", "winner": null }
 ]
-}
+},
 {
 "week": 18,
 "deadline": "2026-01-05T13:00:00-05:00",
@@ -363,3 +366,4 @@
 { "id": "W18G16", "home": "Las Vegas Raiders", "away": "Los Angeles Chargers", "date": "2026-01-05T16:25:00-05:00", "winner": null }
 ]
 }
+]
