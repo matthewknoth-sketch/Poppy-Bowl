@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"/>
   <title>Poppy Bowl - Confidence Pool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
@@ -89,7 +89,8 @@
     </table>
     <div id="scoresTimestamp" class="small" style="margin-top:10px;"></div>
   </div>
-
+  <!-- Load SaveWinners before AdminBar to ensure it's available -->
+  <script src="./src/lib/SaveWinners.js"></script>
   <!-- Load AdminBar before main.js -->
   <script src="./src/components/AdminBar.js"></script>
   <script>
