@@ -7,14 +7,42 @@ let gameSchedule = [];
 let picks = {}; // Store picks by week and game ID
 
 // Load data and initialize app
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
   console.log('Poppy Bowl application loaded');
-  loadData();
+  await loadData();
+  // Call populateUserSelectorDropDown again after loadData resolves
+  // to ensure population even if selector was opened early
+  populateUserSelectorDropDown();
   initializeEventListeners();
   loadSavedPicks();
   // Initialize leaderboard tab as default
   switchTab('leaderboard');
 });
+
+// Populate user selector dropdown with participants
+function populateUserSelectorDropDown() {
+  const userSelector = document.getElementById('userSelector');
+  if (!userSelector || participants.length === 0) return;
+  
+  // Keep selector visible if it was already visible
+  const wasVisible = userSelector.style.display !== 'none' && userSelector.style.display !== '';
+  
+  // Clear existing options except the default
+  userSelector.innerHTML = '<option value="">Select Participant</option>';
+  
+  // Add participants as options
+  participants.forEach(participant => {
+    const option = document.createElement('option');
+    option.value = participant.name;
+    option.textContent = participant.name;
+    userSelector.appendChild(option);
+  });
+  
+  // Keep selector displayed if it was visible before
+  if (wasVisible) {
+    userSelector.style.display = '';
+  }
+}
 
 // Load participants, results, and schedule JSON
 async function loadData() {
@@ -33,6 +61,9 @@ async function loadData() {
           participant.totalScore = 0;
         }
       });
+      
+      // Call populateUserSelectorDropDown after participants are parsed
+      populateUserSelectorDropDown();
     } else {
       console.error('Failed to load participants data');
     }
@@ -251,20 +282,17 @@ function renderWeeklyPicks() {
       <div class="pick-controls" style="display: flex; align-items: center; gap: 20px;">
         <div class="team-selection">
           <label style="margin-right: 15px;">
-            <input type="radio" name="game_${game.id}" value="${game.away}" 
-                   ${currentPick?.team === game.away ? 'checked' : ''}>
+            <input name="game_${game.id}" type="radio" value="${game.away}" ${currentPick?.team === game.away ? 'checked' : ''}>
             ${game.away}
           </label>
           <label>
-            <input type="radio" name="game_${game.id}" value="${game.home}" 
-                   ${currentPick?.team === game.home ? 'checked' : ''}>
+            <input name="game_${game.id}" type="radio" value="${game.home}" ${currentPick?.team === game.home ? 'checked' : ''}>
             ${game.home}
           </label>
         </div>
         <div class="confidence-input">
           <label>Confidence: 
-            <input type="number" min="1" max="${numGamesThisWeek}" 
-                   value="${currentPick?.confidence || ''}" 
+            <input type="number" min="1" max="${numGamesThisWeek}" value="${currentPick?.confidence || ''}" 
                    data-game-id="${game.id}" class="confidence-input-field"
                    style="width: 60px; margin-left: 5px;">
           </label>
@@ -378,6 +406,7 @@ if (typeof module !== 'undefined' && module.exports) {
     updateLeaderboard,
     savePick,
     loadSavedPicks,
-    validateConfidenceValues
+    validateConfidenceValues,
+    populateUserSelectorDropDown
   };
 }
