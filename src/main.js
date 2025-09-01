@@ -4,12 +4,14 @@ let participants = [];
 let results = [];
 let currentWeek = 1;
 let gameSchedule = [];
+let picks = {}; // Store picks by week and game ID
 
 // Load data and initialize app
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Poppy Bowl application loaded');
   loadData();
   initializeEventListeners();
+  loadSavedPicks();
   // Initialize leaderboard tab as default
   switchTab('leaderboard');
 });
@@ -100,6 +102,80 @@ function initializeEventListeners() {
   });
 }
 
+// Load saved picks from localStorage
+function loadSavedPicks() {
+  try {
+    const savedPicks = localStorage.getItem('poppyBowlPicks');
+    if (savedPicks) {
+      picks = JSON.parse(savedPicks);
+    }
+  } catch (error) {
+    console.error('Error loading saved picks:', error);
+    picks = {};
+  }
+}
+
+// Save picks to localStorage
+function savePicks() {
+  try {
+    localStorage.setItem('poppyBowlPicks', JSON.stringify(picks));
+    console.log('Picks saved successfully');
+  } catch (error) {
+    console.error('Error saving picks:', error);
+  }
+}
+
+// Save individual pick when radio or confidence changes
+function savePick(gameId, team, confidence) {
+  if (!picks[currentWeek]) {
+    picks[currentWeek] = {};
+  }
+  
+  picks[currentWeek][gameId] = {
+    team: team,
+    confidence: parseInt(confidence) || 0
+  };
+  
+  savePicks();
+  validateConfidenceValues();
+}
+
+// Validate confidence values are unique and within range
+function validateConfidenceValues() {
+  const weekGames = gameSchedule.filter(game => game.week === currentWeek);
+  const numGamesThisWeek = weekGames.length;
+  const currentPicks = picks[currentWeek] || {};
+  
+  const confidenceValues = Object.values(currentPicks)
+    .map(pick => pick.confidence)
+    .filter(conf => conf > 0);
+  
+  const duplicates = confidenceValues.filter((value, index) => 
+    confidenceValues.indexOf(value) !== index
+  );
+  
+  const outOfRange = confidenceValues.filter(value => 
+    value < 1 || value > numGamesThisWeek
+  );
+  
+  const warningEl = document.getElementById('validationWarning');
+  if (!warningEl) return;
+  
+  if (duplicates.length > 0 || outOfRange.length > 0) {
+    let message = '';
+    if (duplicates.length > 0) {
+      message += `Duplicate confidence values: ${[...new Set(duplicates)].join(', ')}. `;
+    }
+    if (outOfRange.length > 0) {
+      message += `Confidence values must be between 1 and ${numGamesThisWeek}. `;
+    }
+    warningEl.textContent = message;
+    warningEl.style.display = 'block';
+  } else {
+    warningEl.style.display = 'none';
+  }
+}
+
 // Update leaderboard display
 function updateLeaderboard() {
   renderLeaderboard();
@@ -126,28 +202,129 @@ function renderLeaderboard() {
   });
 }
 
-// Render weekly picks with correct field names
+// Render weekly picks with radio buttons and confidence inputs
 function renderWeeklyPicks() {
   const picksContainer = document.getElementById('weeklyPicks');
   if (!picksContainer) return;
   
   const weekGames = gameSchedule.filter(game => game.week === currentWeek);
+  const numGamesThisWeek = weekGames.length;
   
   picksContainer.innerHTML = '';
   
   if (weekGames.length === 0) {
-    picksContainer.innerHTML = 'No games scheduled for this week.';
+    picksContainer.innerHTML = '<p>No games scheduled for this week.</p>';
     return;
   }
+  
+  // Add validation warning element
+  const warningDiv = document.createElement('div');
+  warningDiv.id = 'validationWarning';
+  warningDiv.className = 'validation-warning';
+  warningDiv.style.display = 'none';
+  warningDiv.style.color = 'red';
+  warningDiv.style.marginBottom = '20px';
+  warningDiv.style.padding = '10px';
+  warningDiv.style.border = '1px solid red';
+  warningDiv.style.borderRadius = '4px';
+  warningDiv.style.backgroundColor = '#ffe6e6';
+  picksContainer.appendChild(warningDiv);
   
   weekGames.forEach(game => {
     const gameDiv = document.createElement('div');
     gameDiv.className = 'game-card';
+    gameDiv.style.border = '1px solid #ddd';
+    gameDiv.style.padding = '15px';
+    gameDiv.style.margin = '10px 0';
+    gameDiv.style.borderRadius = '8px';
+    gameDiv.style.backgroundColor = '#f9f9f9';
+    
+    const currentPick = picks[currentWeek]?.[game.id];
+    
     gameDiv.innerHTML = `
-      <div class="matchup">${game.away} @ ${game.home}</div>
-      <div class="game-date">Date: ${game.date}</div>
+      <div class="matchup" style="font-weight: bold; margin-bottom: 10px;">
+        ${game.away} @ ${game.home}
+      </div>
+      <div class="game-date" style="color: #666; margin-bottom: 15px;">
+        Date: ${game.date}
+      </div>
+      <div class="pick-controls" style="display: flex; align-items: center; gap: 20px;">
+        <div class="team-selection">
+          <label style="margin-right: 15px;">
+            <input type="radio" name="game_${game.id}" value="${game.away}" 
+                   ${currentPick?.team === game.away ? 'checked' : ''}>
+            ${game.away}
+          </label>
+          <label>
+            <input type="radio" name="game_${game.id}" value="${game.home}" 
+                   ${currentPick?.team === game.home ? 'checked' : ''}>
+            ${game.home}
+          </label>
+        </div>
+        <div class="confidence-input">
+          <label>Confidence: 
+            <input type="number" min="1" max="${numGamesThisWeek}" 
+                   value="${currentPick?.confidence || ''}" 
+                   data-game-id="${game.id}" class="confidence-input-field"
+                   style="width: 60px; margin-left: 5px;">
+          </label>
+        </div>
+      </div>
     `;
+    
     picksContainer.appendChild(gameDiv);
+  });
+  
+  // Add Save Picks button
+  const saveButton = document.createElement('button');
+  saveButton.textContent = 'Save Picks';
+  saveButton.id = 'savePicksBtn';
+  saveButton.style.marginTop = '20px';
+  saveButton.style.padding = '10px 20px';
+  saveButton.style.backgroundColor = '#007cba';
+  saveButton.style.color = 'white';
+  saveButton.style.border = 'none';
+  saveButton.style.borderRadius = '4px';
+  saveButton.style.cursor = 'pointer';
+  saveButton.addEventListener('click', () => {
+    savePicks();
+    alert('Picks saved successfully!');
+  });
+  picksContainer.appendChild(saveButton);
+  
+  // Add event listeners for radio buttons and confidence inputs
+  addPickEventListeners();
+  
+  // Validate after rendering
+  validateConfidenceValues();
+}
+
+// Add event listeners for pick inputs
+function addPickEventListeners() {
+  // Radio button change listeners
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const gameId = e.target.name.replace('game_', '');
+      const team = e.target.value;
+      const confidenceInput = document.querySelector(`input[data-game-id="${gameId}"]`);
+      const confidence = confidenceInput ? confidenceInput.value : 0;
+      
+      savePick(gameId, team, confidence);
+    });
+  });
+  
+  // Confidence input change listeners
+  document.querySelectorAll('.confidence-input-field').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const gameId = e.target.dataset.gameId;
+      const confidence = e.target.value;
+      const checkedRadio = document.querySelector(`input[name="game_${gameId}"]:checked`);
+      const team = checkedRadio ? checkedRadio.value : '';
+      
+      if (team) {
+        savePick(gameId, team, confidence);
+      }
+    });
   });
 }
 
@@ -198,6 +375,9 @@ if (typeof module !== 'undefined' && module.exports) {
     loadData,
     renderLeaderboard,
     renderWeeklyPicks,
-    updateLeaderboard
+    updateLeaderboard,
+    savePick,
+    loadSavedPicks,
+    validateConfidenceValues
   };
 }
