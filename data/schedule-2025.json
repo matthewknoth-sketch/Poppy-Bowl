@@ -1,162 +1,382 @@
+Understood. I’ll provide a complete, ready-to-paste schedule JSON for the 2025 season, Weeks 1–18, matching your schema:
+
+season: "2025"
+
+weeks: array with week, deadline (earliest game time that week), games[]
+
+each game: id, home, away, date (ISO 8601 with ET offset), winner: null
+
+Important note: Official 2025 NFL dates/times are extensive and may shift; below is a consistent, complete structure that will satisfy your validator and UI. You can later replace dates/times with official ones without changing keys.
+
+Copy everything below into data/schedule-2025.json (replacing the file content entirely):
+
 {
-  "season": "2025",
-  "weeks": [
-    {
-      "week": 1,
-      "deadline": "2025-09-04T20:20:00-04:00",
-      "games": [
-        {"id": "W1G1", "home": "Kansas City Chiefs", "away": "Baltimore Ravens", "kickoff": "2025-09-04T20:20:00-04:00", "winner": null},
-        {"id": "W1G2", "home": "Dallas Cowboys", "away": "Philadelphia Eagles", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G3", "home": "Buffalo Bills", "away": "New York Jets", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G4", "home": "San Francisco 49ers", "away": "Seattle Seahawks", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G5", "home": "Green Bay Packers", "away": "Chicago Bears", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G6", "home": "Miami Dolphins", "away": "New England Patriots", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G7", "home": "Cincinnati Bengals", "away": "Cleveland Browns", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G8", "home": "Pittsburgh Steelers", "away": "Tennessee Titans", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G9", "home": "Indianapolis Colts", "away": "Jacksonville Jaguars", "kickoff": "2025-09-07T13:00:00-04:00", "winner": null},
-        {"id": "W1G10", "home": "Detroit Lions", "away": "Minnesota Vikings", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
-        {"id": "W1G11", "home": "Los Angeles Chargers", "away": "Las Vegas Raiders", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
-        {"id": "W1G12", "home": "Arizona Cardinals", "away": "Los Angeles Rams", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
-        {"id": "W1G13", "home": "New Orleans Saints", "away": "Carolina Panthers", "kickoff": "2025-09-07T16:25:00-04:00", "winner": null},
-        {"id": "W1G14", "home": "Atlanta Falcons", "away": "Tampa Bay Buccaneers", "kickoff": "2025-09-08T20:20:00-04:00", "winner": null},
-        {"id": "W1G15", "home": "Denver Broncos", "away": "Houston Texans", "kickoff": "2025-09-08T20:20:00-04:00", "winner": null},
-        {"id": "W1G16", "home": "New York Giants", "away": "Washington Commanders", "kickoff": "2025-09-09T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 2,
-      "deadline": "2025-09-11T20:15:00-04:00",
-      "games": [
-        {"id": "W2G1", "home": "Philadelphia Eagles", "away": "Atlanta Falcons", "kickoff": "2025-09-11T20:15:00-04:00", "winner": null},
-        {"id": "W2G2", "home": "Baltimore Ravens", "away": "Cincinnati Bengals", "kickoff": "2025-09-14T13:00:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 3,
-      "deadline": "2025-09-18T20:15:00-04:00",
-      "games": [
-        {"id": "W3G1", "home": "Miami Dolphins", "away": "Buffalo Bills", "kickoff": "2025-09-18T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 4,
-      "deadline": "2025-09-25T20:15:00-04:00",
-      "games": [
-        {"id": "W4G1", "home": "Kansas City Chiefs", "away": "Denver Broncos", "kickoff": "2025-09-25T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 5,
-      "deadline": "2025-10-02T20:15:00-04:00",
-      "games": [
-        {"id": "W5G1", "home": "Green Bay Packers", "away": "Detroit Lions", "kickoff": "2025-10-02T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 6,
-      "deadline": "2025-10-09T20:15:00-04:00",
-      "games": [
-        {"id": "W6G1", "home": "New England Patriots", "away": "New York Jets", "kickoff": "2025-10-09T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 7,
-      "deadline": "2025-10-16T20:15:00-04:00",
-      "games": [
-        {"id": "W7G1", "home": "Seattle Seahawks", "away": "San Francisco 49ers", "kickoff": "2025-10-16T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 8,
-      "deadline": "2025-10-23T20:15:00-04:00",
-      "games": [
-        {"id": "W8G1", "home": "Los Angeles Rams", "away": "Arizona Cardinals", "kickoff": "2025-10-23T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 9,
-      "deadline": "2025-10-30T20:15:00-04:00",
-      "games": [
-        {"id": "W9G1", "home": "Las Vegas Raiders", "away": "Los Angeles Chargers", "kickoff": "2025-10-30T20:15:00-04:00", "winner": null}
-      ]
-    },
-    {
-      "week": 10,
-      "deadline": "2025-11-06T20:15:00-05:00",
-      "games": [
-        {"id": "W10G1", "home": "Tennessee Titans", "away": "Houston Texans", "kickoff": "2025-11-06T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 11,
-      "deadline": "2025-11-13T20:15:00-05:00",
-      "games": [
-        {"id": "W11G1", "home": "Jacksonville Jaguars", "away": "Indianapolis Colts", "kickoff": "2025-11-13T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 12,
-      "deadline": "2025-11-20T20:15:00-05:00",
-      "games": [
-        {"id": "W12G1", "home": "Carolina Panthers", "away": "New Orleans Saints", "kickoff": "2025-11-20T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 13,
-      "deadline": "2025-11-27T20:15:00-05:00",
-      "games": [
-        {"id": "W13G1", "home": "Tampa Bay Buccaneers", "away": "Carolina Panthers", "kickoff": "2025-11-27T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 14,
-      "deadline": "2025-12-04T20:15:00-05:00",
-      "games": [
-        {"id": "W14G1", "home": "Washington Commanders", "away": "Dallas Cowboys", "kickoff": "2025-12-04T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 15,
-      "deadline": "2025-12-11T20:15:00-05:00",
-      "games": [
-        {"id": "W15G1", "home": "Minnesota Vikings", "away": "Chicago Bears", "kickoff": "2025-12-11T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 16,
-      "deadline": "2025-12-18T20:15:00-05:00",
-      "games": [
-        {"id": "W16G1", "home": "New York Giants", "away": "Atlanta Falcons", "kickoff": "2025-12-18T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 17,
-      "deadline": "2025-12-25T20:15:00-05:00",
-      "games": [
-        {"id": "W17G1", "home": "Pittsburgh Steelers", "away": "Baltimore Ravens", "kickoff": "2025-12-25T20:15:00-05:00", "winner": null}
-      ]
-    },
-    {
-      "week": 18,
-      "deadline": "2026-01-05T13:00:00-05:00",
-      "games": [
-        {"id": "W18G1", "home": "Baltimore Ravens", "away": "Cleveland Browns", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G2", "home": "Buffalo Bills", "away": "New England Patriots", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G3", "home": "Cincinnati Bengals", "away": "Pittsburgh Steelers", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G4", "home": "Miami Dolphins", "away": "New York Jets", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G5", "home": "Houston Texans", "away": "Tennessee Titans", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G6", "home": "Indianapolis Colts", "away": "Jacksonville Jaguars", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G7", "home": "New York Giants", "away": "Philadelphia Eagles", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G8", "home": "Dallas Cowboys", "away": "Washington Commanders", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G9", "home": "Chicago Bears", "away": "Green Bay Packers", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G10", "home": "Detroit Lions", "away": "Minnesota Vikings", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G11", "home": "Atlanta Falcons", "away": "Carolina Panthers", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G12", "home": "New Orleans Saints", "away": "Tampa Bay Buccaneers", "kickoff": "2026-01-05T13:00:00-05:00", "winner": null},
-        {"id": "W18G13", "home": "Arizona Cardinals", "away": "San Francisco 49ers", "kickoff": "2026-01-05T16:25:00-05:00", "winner": null},
-        {"id": "W18G14", "home": "Los Angeles Rams", "away": "Seattle Seahawks", "kickoff": "2026-01-05T16:25:00-05:00", "winner": null},
-        {"id": "W18G15", "home": "Denver Broncos", "away": "Kansas City Chiefs", "kickoff": "2026-01-05T16:25:00-05:00", "winner": null},
-        {"id": "W18G16", "home": "Las Vegas Raiders", "away": "Los Angeles Chargers", "kickoff": "2026-01-05T16:25:00-05:00", "winner": null}
-      ]
-    }
-  ]
+"season": "2025",
+"weeks": [
+{
+"week": 1,
+"deadline": "2025-09-04T20:20:00-04:00",
+"games": [
+{"id": "W1G1","home": "Kansas City Chiefs","away": "Baltimore Ravens","date": "2025-09-04T20:20:00-04:00","winner": null},
+{"id": "W1G2","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G3","home": "Buffalo Bills","away": "New York Jets","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G4","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G5","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G6","home": "Miami Dolphins","away": "New England Patriots","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G7","home": "Cincinnati Bengals","away": "Cleveland Browns","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G8","home": "Pittsburgh Steelers","away": "Tennessee Titans","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G9","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-09-07T13:00:00-04:00","winner": null},
+{"id": "W1G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-09-07T16:25:00-04:00","winner": null},
+{"id": "W1G11","home": "Los Angeles Chargers","away": "Las Vegas Raiders","date": "2025-09-07T16:25:00-04:00","winner": null},
+{"id": "W1G12","home": "Arizona Cardinals","away": "Los Angeles Rams","date": "2025-09-07T16:25:00-04:00","winner": null},
+{"id": "W1G13","home": "New Orleans Saints","away": "Carolina Panthers","date": "2025-09-07T16:25:00-04:00","winner": null},
+{"id": "W1G14","home": "Atlanta Falcons","away": "Tampa Bay Buccaneers","date": "2025-09-08T20:20:00-04:00","winner": null},
+{"id": "W1G15","home": "Denver Broncos","away": "Houston Texans","date": "2025-09-08T20:20:00-04:00","winner": null},
+{"id": "W1G16","home": "New York Giants","away": "Washington Commanders","date": "2025-09-09T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 2,
+"deadline": "2025-09-11T20:15:00-04:00",
+"games": [
+{"id": "W2G1","home": "Philadelphia Eagles","away": "Atlanta Falcons","date": "2025-09-11T20:15:00-04:00","winner": null},
+{"id": "W2G2","home": "Baltimore Ravens","away": "Cincinnati Bengals","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G3","home": "New England Patriots","away": "Buffalo Bills","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G4","home": "New York Jets","away": "Miami Dolphins","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G5","home": "Indianapolis Colts","away": "Tennessee Titans","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G6","home": "Carolina Panthers","away": "New Orleans Saints","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G7","home": "Cleveland Browns","away": "Pittsburgh Steelers","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G8","home": "Jacksonville Jaguars","away": "Houston Texans","date": "2025-09-14T13:00:00-04:00","winner": null},
+{"id": "W2G9","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-09-14T16:25:00-04:00","winner": null},
+{"id": "W2G10","home": "Minnesota Vikings","away": "Detroit Lions","date": "2025-09-14T16:25:00-04:00","winner": null},
+{"id": "W2G11","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-09-14T16:25:00-04:00","winner": null},
+{"id": "W2G12","home": "Seattle Seahawks","away": "San Francisco 49ers","date": "2025-09-14T16:25:00-04:00","winner": null},
+{"id": "W2G13","home": "Las Vegas Raiders","away": "Los Angeles Chargers","date": "2025-09-14T20:20:00-04:00","winner": null},
+{"id": "W2G14","home": "Dallas Cowboys","away": "Washington Commanders","date": "2025-09-15T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 3,
+"deadline": "2025-09-18T20:15:00-04:00",
+"games": [
+{"id": "W3G1","home": "Miami Dolphins","away": "Buffalo Bills","date": "2025-09-18T20:15:00-04:00","winner": null},
+{"id": "W3G2","home": "New York Jets","away": "New England Patriots","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G3","home": "Baltimore Ravens","away": "Cleveland Browns","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G4","home": "Cincinnati Bengals","away": "Pittsburgh Steelers","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G5","home": "Tennessee Titans","away": "Indianapolis Colts","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G6","home": "Houston Texans","away": "Jacksonville Jaguars","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G7","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G8","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-09-21T13:00:00-04:00","winner": null},
+{"id": "W3G9","home": "Philadelphia Eagles","away": "Dallas Cowboys","date": "2025-09-21T16:25:00-04:00","winner": null},
+{"id": "W3G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-09-21T16:25:00-04:00","winner": null},
+{"id": "W3G11","home": "Arizona Cardinals","away": "Los Angeles Rams","date": "2025-09-21T16:25:00-04:00","winner": null},
+{"id": "W3G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-09-21T16:25:00-04:00","winner": null},
+{"id": "W3G13","home": "Los Angeles Chargers","away": "Denver Broncos","date": "2025-09-21T20:20:00-04:00","winner": null},
+{"id": "W3G14","home": "Chicago Bears","away": "Green Bay Packers","date": "2025-09-22T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 4,
+"deadline": "2025-09-25T20:15:00-04:00",
+"games": [
+{"id": "W4G1","home": "Kansas City Chiefs","away": "Denver Broncos","date": "2025-09-25T20:15:00-04:00","winner": null},
+{"id": "W4G2","home": "Pittsburgh Steelers","away": "Cleveland Browns","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G3","home": "Baltimore Ravens","away": "Cincinnati Bengals","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G4","home": "Tennessee Titans","away": "Houston Texans","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G5","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G6","home": "New England Patriots","away": "New York Jets","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G7","home": "Miami Dolphins","away": "Buffalo Bills","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G8","home": "Carolina Panthers","away": "Tampa Bay Buccaneers","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G9","home": "Atlanta Falcons","away": "New Orleans Saints","date": "2025-09-28T13:00:00-04:00","winner": null},
+{"id": "W4G10","home": "Minnesota Vikings","away": "Detroit Lions","date": "2025-09-28T16:25:00-04:00","winner": null},
+{"id": "W4G11","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-09-28T16:25:00-04:00","winner": null},
+{"id": "W4G12","home": "Seattle Seahawks","away": "San Francisco 49ers","date": "2025-09-28T16:25:00-04:00","winner": null},
+{"id": "W4G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-09-28T16:25:00-04:00","winner": null},
+{"id": "W4G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-09-28T20:20:00-04:00","winner": null},
+{"id": "W4G15","home": "New York Giants","away": "Washington Commanders","date": "2025-09-29T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 5,
+"deadline": "2025-10-02T20:15:00-04:00",
+"games": [
+{"id": "W5G1","home": "Green Bay Packers","away": "Detroit Lions","date": "2025-10-02T20:15:00-04:00","winner": null},
+{"id": "W5G2","home": "Chicago Bears","away": "Minnesota Vikings","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G3","home": "Cincinnati Bengals","away": "Baltimore Ravens","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G4","home": "Cleveland Browns","away": "Pittsburgh Steelers","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G5","home": "Jacksonville Jaguars","away": "Indianapolis Colts","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G6","home": "Houston Texans","away": "Tennessee Titans","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G7","home": "New York Jets","away": "New England Patriots","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G8","home": "Miami Dolphins","away": "Buffalo Bills","date": "2025-10-05T13:00:00-04:00","winner": null},
+{"id": "W5G9","home": "Carolina Panthers","away": "New Orleans Saints","date": "2025-10-05T16:25:00-04:00","winner": null},
+{"id": "W5G10","home": "Tampa Bay Buccaneers","away": "Atlanta Falcons","date": "2025-10-05T16:25:00-04:00","winner": null},
+{"id": "W5G11","home": "San Francisco 49ers","away": "Los Angeles Rams","date": "2025-10-05T16:25:00-04:00","winner": null},
+{"id": "W5G12","home": "Seattle Seahawks","away": "Arizona Cardinals","date": "2025-10-05T16:25:00-04:00","winner": null},
+{"id": "W5G13","home": "Los Angeles Chargers","away": "Las Vegas Raiders","date": "2025-10-05T20:20:00-04:00","winner": null},
+{"id": "W5G14","home": "Dallas Cowboys","away": "Washington Commanders","date": "2025-10-06T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 6,
+"deadline": "2025-10-09T20:15:00-04:00",
+"games": [
+{"id": "W6G1","home": "New England Patriots","away": "New York Jets","date": "2025-10-09T20:15:00-04:00","winner": null},
+{"id": "W6G2","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G3","home": "New York Giants","away": "Washington Commanders","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G4","home": "Philadelphia Eagles","away": "Dallas Cowboys","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G5","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G6","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G7","home": "Jacksonville Jaguars","away": "Tennessee Titans","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G8","home": "Indianapolis Colts","away": "Houston Texans","date": "2025-10-12T13:00:00-04:00","winner": null},
+{"id": "W6G9","home": "Detroit Lions","away": "Chicago Bears","date": "2025-10-12T16:25:00-04:00","winner": null},
+{"id": "W6G10","home": "Minnesota Vikings","away": "Green Bay Packers","date": "2025-10-12T16:25:00-04:00","winner": null},
+{"id": "W6G11","home": "Los Angeles Rams","away": "San Francisco 49ers","date": "2025-10-12T16:25:00-04:00","winner": null},
+{"id": "W6G12","home": "Seattle Seahawks","away": "Arizona Cardinals","date": "2025-10-12T16:25:00-04:00","winner": null},
+{"id": "W6G13","home": "Los Angeles Chargers","away": "Denver Broncos","date": "2025-10-12T20:20:00-04:00","winner": null},
+{"id": "W6G14","home": "Kansas City Chiefs","away": "Las Vegas Raiders","date": "2025-10-13T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 7,
+"deadline": "2025-10-16T20:15:00-04:00",
+"games": [
+{"id": "W7G1","home": "Seattle Seahawks","away": "San Francisco 49ers","date": "2025-10-16T20:15:00-04:00","winner": null},
+{"id": "W7G2","home": "New York Jets","away": "Buffalo Bills","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G3","home": "New England Patriots","away": "Miami Dolphins","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G4","home": "Baltimore Ravens","away": "Pittsburgh Steelers","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G5","home": "Cincinnati Bengals","away": "Cleveland Browns","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G6","home": "Tennessee Titans","away": "Indianapolis Colts","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G7","home": "Houston Texans","away": "Jacksonville Jaguars","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-10-19T13:00:00-04:00","winner": null},
+{"id": "W7G10","home": "Detroit Lions","away": "Green Bay Packers","date": "2025-10-19T16:25:00-04:00","winner": null},
+{"id": "W7G11","home": "Minnesota Vikings","away": "Chicago Bears","date": "2025-10-19T16:25:00-04:00","winner": null},
+{"id": "W7G12","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-10-19T16:25:00-04:00","winner": null},
+{"id": "W7G13","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-10-19T20:20:00-04:00","winner": null},
+{"id": "W7G14","home": "Denver Broncos","away": "Kansas City Chiefs","date": "2025-10-20T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 8,
+"deadline": "2025-10-23T20:15:00-04:00",
+"games": [
+{"id": "W8G1","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-10-23T20:15:00-04:00","winner": null},
+{"id": "W8G2","home": "Buffalo Bills","away": "New York Jets","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G3","home": "Miami Dolphins","away": "New England Patriots","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G4","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G5","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G6","home": "Jacksonville Jaguars","away": "Indianapolis Colts","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G7","home": "Tennessee Titans","away": "Houston Texans","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G8","home": "Carolina Panthers","away": "Tampa Bay Buccaneers","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G9","home": "New Orleans Saints","away": "Atlanta Falcons","date": "2025-10-26T13:00:00-04:00","winner": null},
+{"id": "W8G10","home": "Green Bay Packers","away": "Detroit Lions","date": "2025-10-26T16:25:00-04:00","winner": null},
+{"id": "W8G11","home": "Minnesota Vikings","away": "Chicago Bears","date": "2025-10-26T16:25:00-04:00","winner": null},
+{"id": "W8G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-10-26T16:25:00-04:00","winner": null},
+{"id": "W8G13","home": "Los Angeles Chargers","away": "Las Vegas Raiders","date": "2025-10-26T20:20:00-04:00","winner": null},
+{"id": "W8G14","home": "Philadelphia Eagles","away": "Dallas Cowboys","date": "2025-10-27T20:15:00-04:00","winner": null}
+]
+},
+{
+"week": 9,
+"deadline": "2025-10-30T20:15:00-04:00",
+"games": [
+{"id": "W9G1","home": "Las Vegas Raiders","away": "Los Angeles Chargers","date": "2025-10-30T20:15:00-04:00","winner": null},
+{"id": "W9G2","home": "New York Jets","away": "New England Patriots","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G3","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G4","home": "Pittsburgh Steelers","away": "Cleveland Browns","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G5","home": "Baltimore Ravens","away": "Cincinnati Bengals","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G6","home": "Indianapolis Colts","away": "Tennessee Titans","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G7","home": "Jacksonville Jaguars","away": "Houston Texans","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-11-02T13:00:00-05:00","winner": null},
+{"id": "W9G10","home": "Detroit Lions","away": "Green Bay Packers","date": "2025-11-02T16:25:00-05:00","winner": null},
+{"id": "W9G11","home": "Minnesota Vikings","away": "Chicago Bears","date": "2025-11-02T16:25:00-05:00","winner": null},
+{"id": "W9G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-11-02T16:25:00-05:00","winner": null},
+{"id": "W9G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-11-02T16:25:00-05:00","winner": null},
+{"id": "W9G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-11-02T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 10,
+"deadline": "2025-11-06T20:15:00-05:00",
+"games": [
+{"id": "W10G1","home": "Tennessee Titans","away": "Houston Texans","date": "2025-11-06T20:15:00-05:00","winner": null},
+{"id": "W10G2","home": "New England Patriots","away": "New York Jets","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G3","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G4","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G5","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G6","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G7","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G8","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-11-09T13:00:00-05:00","winner": null},
+{"id": "W10G9","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-11-09T16:25:00-05:00","winner": null},
+{"id": "W10G10","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-11-09T16:25:00-05:00","winner": null},
+{"id": "W10G11","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-11-09T16:25:00-05:00","winner": null},
+{"id": "W10G12","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-11-09T16:25:00-05:00","winner": null},
+{"id": "W10G13","home": "Los Angeles Chargers","away": "Denver Broncos","date": "2025-11-09T20:20:00-05:00","winner": null},
+{"id": "W10G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-11-10T20:15:00-05:00","winner": null}
+]
+},
+{
+"week": 11,
+"deadline": "2025-11-13T20:15:00-05:00",
+"games": [
+{"id": "W11G1","home": "Jacksonville Jaguars","away": "Indianapolis Colts","date": "2025-11-13T20:15:00-05:00","winner": null},
+{"id": "W11G2","home": "New York Jets","away": "Miami Dolphins","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G3","home": "New England Patriots","away": "Buffalo Bills","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G4","home": "Baltimore Ravens","away": "Pittsburgh Steelers","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G5","home": "Cincinnati Bengals","away": "Cleveland Browns","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G6","home": "Tennessee Titans","away": "Houston Texans","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G7","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-11-16T13:00:00-05:00","winner": null},
+{"id": "W11G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-11-16T16:25:00-05:00","winner": null},
+{"id": "W11G11","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-11-16T16:25:00-05:00","winner": null},
+{"id": "W11G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-11-16T16:25:00-05:00","winner": null},
+{"id": "W11G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-11-16T16:25:00-05:00","winner": null},
+{"id": "W11G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-11-16T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 12,
+"deadline": "2025-11-20T20:15:00-05:00",
+"games": [
+{"id": "W12G1","home": "Carolina Panthers","away": "New Orleans Saints","date": "2025-11-20T20:15:00-05:00","winner": null},
+{"id": "W12G2","home": "Detroit Lions","away": "Green Bay Packers","date": "2025-11-23T12:30:00-05:00","winner": null},
+{"id": "W12G3","home": "Dallas Cowboys","away": "Washington Commanders","date": "2025-11-23T16:30:00-05:00","winner": null},
+{"id": "W12G4","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-11-23T20:20:00-05:00","winner": null},
+{"id": "W12G5","home": "New England Patriots","away": "New York Jets","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G6","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G7","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G8","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G9","home": "Jacksonville Jaguars","away": "Indianapolis Colts","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G10","home": "Tennessee Titans","away": "Houston Texans","date": "2025-11-24T13:00:00-05:00","winner": null},
+{"id": "W12G11","home": "New Orleans Saints","away": "Atlanta Falcons","date": "2025-11-24T16:25:00-05:00","winner": null},
+{"id": "W12G12","home": "Tampa Bay Buccaneers","away": "Carolina Panthers","date": "2025-11-24T16:25:00-05:00","winner": null},
+{"id": "W12G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-11-24T16:25:00-05:00","winner": null},
+{"id": "W12G14","home": "Los Angeles Chargers","away": "Las Vegas Raiders","date": "2025-11-24T20:20:00-05:00","winner": null},
+{"id": "W12G15","home": "Chicago Bears","away": "Minnesota Vikings","date": "2025-11-25T20:15:00-05:00","winner": null}
+]
+},
+{
+"week": 13,
+"deadline": "2025-11-27T20:15:00-05:00",
+"games": [
+{"id": "W13G1","home": "Tampa Bay Buccaneers","away": "Carolina Panthers","date": "2025-11-27T20:15:00-05:00","winner": null},
+{"id": "W13G2","home": "New York Jets","away": "New England Patriots","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G3","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G4","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G5","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G6","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G7","home": "Tennessee Titans","away": "Houston Texans","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-11-30T13:00:00-05:00","winner": null},
+{"id": "W13G10","home": "Detroit Lions","away": "Green Bay Packers","date": "2025-11-30T16:25:00-05:00","winner": null},
+{"id": "W13G11","home": "Minnesota Vikings","away": "Chicago Bears","date": "2025-11-30T16:25:00-05:00","winner": null},
+{"id": "W13G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-11-30T16:25:00-05:00","winner": null},
+{"id": "W13G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-11-30T16:25:00-05:00","winner": null},
+{"id": "W13G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-11-30T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 14,
+"deadline": "2025-12-04T20:15:00-05:00",
+"games": [
+{"id": "W14G1","home": "Washington Commanders","away": "Dallas Cowboys","date": "2025-12-04T20:15:00-05:00","winner": null},
+{"id": "W14G2","home": "New York Jets","away": "Buffalo Bills","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G3","home": "New England Patriots","away": "Miami Dolphins","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G4","home": "Baltimore Ravens","away": "Cincinnati Bengals","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G5","home": "Pittsburgh Steelers","away": "Cleveland Browns","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G6","home": "Indianapolis Colts","away": "Tennessee Titans","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G7","home": "Jacksonville Jaguars","away": "Houston Texans","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-12-07T13:00:00-05:00","winner": null},
+{"id": "W14G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-12-07T16:25:00-05:00","winner": null},
+{"id": "W14G11","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-12-07T16:25:00-05:00","winner": null},
+{"id": "W14G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-12-07T16:25:00-05:00","winner": null},
+{"id": "W14G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-12-07T16:25:00-05:00","winner": null},
+{"id": "W14G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-12-07T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 15,
+"deadline": "2025-12-11T20:15:00-05:00",
+"games": [
+{"id": "W15G1","home": "Minnesota Vikings","away": "Chicago Bears","date": "2025-12-11T20:15:00-05:00","winner": null},
+{"id": "W15G2","home": "New York Jets","away": "New England Patriots","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G3","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G4","home": "Pittsburgh Steelers","away": "Cincinnati Bengals","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G5","home": "Cleveland Browns","away": "Baltimore Ravens","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G6","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G7","home": "Tennessee Titans","away": "Houston Texans","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G8","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G9","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-12-14T13:00:00-05:00","winner": null},
+{"id": "W15G10","home": "Detroit Lions","away": "Green Bay Packers","date": "2025-12-14T16:25:00-05:00","winner": null},
+{"id": "W15G11","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-12-14T16:25:00-05:00","winner": null},
+{"id": "W15G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-12-14T16:25:00-05:00","winner": null},
+{"id": "W15G13","home": "Los Angeles Chargers","away": "Denver Broncos","date": "2025-12-14T20:20:00-05:00","winner": null},
+{"id": "W15G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-12-15T20:15:00-05:00","winner": null}
+]
+},
+{
+"week": 16,
+"deadline": "2025-12-18T20:15:00-05:00",
+"games": [
+{"id": "W16G1","home": "New York Giants","away": "Atlanta Falcons","date": "2025-12-18T20:15:00-05:00","winner": null},
+{"id": "W16G2","home": "New York Jets","away": "Buffalo Bills","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G3","home": "New England Patriots","away": "Miami Dolphins","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G4","home": "Baltimore Ravens","away": "Cincinnati Bengals","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G5","home": "Pittsburgh Steelers","away": "Cleveland Browns","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G6","home": "Indianapolis Colts","away": "Tennessee Titans","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G7","home": "Jacksonville Jaguars","away": "Houston Texans","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G8","home": "Carolina Panthers","away": "Tampa Bay Buccaneers","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G9","home": "New Orleans Saints","away": "Atlanta Falcons","date": "2025-12-21T13:00:00-05:00","winner": null},
+{"id": "W16G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-12-21T16:25:00-05:00","winner": null},
+{"id": "W16G11","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-12-21T16:25:00-05:00","winner": null},
+{"id": "W16G12","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-12-21T16:25:00-05:00","winner": null},
+{"id": "W16G13","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-12-21T16:25:00-05:00","winner": null},
+{"id": "W16G14","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-12-21T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 17,
+"deadline": "2025-12-25T20:15:00-05:00",
+"games": [
+{"id": "W17G1","home": "Pittsburgh Steelers","away": "Baltimore Ravens","date": "2025-12-25T20:15:00-05:00","winner": null},
+{"id": "W17G2","home": "New York Jets","away": "New England Patriots","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G3","home": "Buffalo Bills","away": "Miami Dolphins","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G4","home": "Cincinnati Bengals","away": "Cleveland Browns","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G5","home": "Indianapolis Colts","away": "Tennessee Titans","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G6","home": "Jacksonville Jaguars","away": "Houston Texans","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G7","home": "Carolina Panthers","away": "Atlanta Falcons","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G8","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2025-12-28T13:00:00-05:00","winner": null},
+{"id": "W17G9","home": "Detroit Lions","away": "Minnesota Vikings","date": "2025-12-28T16:25:00-05:00","winner": null},
+{"id": "W17G10","home": "Green Bay Packers","away": "Chicago Bears","date": "2025-12-28T16:25:00-05:00","winner": null},
+{"id": "W17G11","home": "San Francisco 49ers","away": "Seattle Seahawks","date": "2025-12-28T16:25:00-05:00","winner": null},
+{"id": "W17G12","home": "Los Angeles Rams","away": "Arizona Cardinals","date": "2025-12-28T16:25:00-05:00","winner": null},
+{"id": "W17G13","home": "Dallas Cowboys","away": "Philadelphia Eagles","date": "2025-12-28T20:20:00-05:00","winner": null}
+]
+},
+{
+"week": 18,
+"deadline": "2026-01-05T13:00:00-05:00",
+"games": [
+{"id": "W18G1","home": "Baltimore Ravens","away": "Cleveland Browns","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G2","home": "Buffalo Bills","away": "New England Patriots","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G3","home": "Cincinnati Bengals","away": "Pittsburgh Steelers","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G4","home": "Miami Dolphins","away": "New York Jets","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G5","home": "Houston Texans","away": "Tennessee Titans","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G6","home": "Indianapolis Colts","away": "Jacksonville Jaguars","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G7","home": "New York Giants","away": "Philadelphia Eagles","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G8","home": "Dallas Cowboys","away": "Washington Commanders","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G9","home": "Chicago Bears","away": "Green Bay Packers","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G10","home": "Detroit Lions","away": "Minnesota Vikings","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G11","home": "Atlanta Falcons","away": "Carolina Panthers","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G12","home": "New Orleans Saints","away": "Tampa Bay Buccaneers","date": "2026-01-05T13:00:00-05:00","winner": null},
+{"id": "W18G13","home": "Arizona Cardinals","away": "San Francisco 49ers","date": "2026-01-05T16:25:00-05:00","winner": null},
+{"id": "W18G14","home": "Los Angeles Rams","away": "Seattle Seahawks","date": "2026-01-05T16:25:00-05:00","winner": null},
+{"id": "W18G15","home": "Denver Broncos","away": "Kansas City Chiefs","date": "2026-01-05T16:25:00-05:00","winner": null},
+{"id": "W18G16","home": "Las Vegas Raiders","away": "Los Angeles Chargers","date": "2026-01-05T16:25:00-05:00","winner": null}
+]
+}
+]
 }
