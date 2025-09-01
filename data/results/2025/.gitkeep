@@ -1,0 +1,3 @@
+# Directory for storing weekly results
+# Results are stored as data/results/{year}/week-{n}.json
+# Each file contains winner data for games in that week
