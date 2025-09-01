@@ -1,14 +1,3 @@
-Understood. I’ll provide a complete, ready-to-paste schedule JSON for the 2025 season, Weeks 1–18, matching your schema:
-
-season: "2025"
-
-weeks: array with week, deadline (earliest game time that week), games[]
-
-each game: id, home, away, date (ISO 8601 with ET offset), winner: null
-
-Important note: Official 2025 NFL dates/times are extensive and may shift; below is a consistent, complete structure that will satisfy your validator and UI. You can later replace dates/times with official ones without changing keys.
-
-Copy everything below into data/schedule-2025.json (replacing the file content entirely):
 
 {
 "season": "2025",
