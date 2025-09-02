@@ -1,18 +1,16 @@
 // scoring.js - Enhanced scoring system that reads winners JSON and computes points
-
 /**
  * Enhanced scoring system for the Poppy Bowl application
  * Reads official results from data/results/{year}/week-{n}.json files
  * Computes points based on user picks vs actual winners
  */
-
 /**
  * Calculates score for a specific week using official results
  * @param {string} userName - The name of the user to calculate scores for
  * @param {number} week - The week number
  * @param {number} year - The year (defaults to 2025)
  * @param {Object} schedule - The schedule data
- * @returns {Promise<Object>} Object containing various score metrics
+ * @returns {Promise<object>} Object containing various score metrics
  */
 async function scoreWeek(userName, week, year = 2025, schedule = null) {
   try {
@@ -117,12 +115,11 @@ async function scoreWeek(userName, week, year = 2025, schedule = null) {
     };
   }
 }
-
 /**
  * Loads official winners for a specific week
  * @param {number} year - The year
  * @param {number} week - The week number
- * @returns {Promise<Object>} Winners data object
+ * @returns {Promise<object>} Winners data object
  */
 async function loadWeekWinners(year, week) {
   try {
@@ -140,12 +137,11 @@ async function loadWeekWinners(year, week) {
     return {};
   }
 }
-
 /**
  * Loads schedule data for a specific week
  * @param {number} year - The year
  * @param {number} week - The week number
- * @returns {Promise<Object>} Schedule data for the week
+ * @returns {Promise<object>} Schedule data for the week
  */
 async function loadScheduleData(year, week) {
   try {
@@ -165,14 +161,13 @@ async function loadScheduleData(year, week) {
     throw error;
   }
 }
-
 /**
  * Calculates cumulative score across multiple weeks
  * @param {string} userName - The user name
  * @param {number} throughWeek - Calculate through this week (inclusive)
  * @param {number} year - The year
  * @param {Object} fullSchedule - Complete schedule data
- * @returns {Promise<Object>} Cumulative score data
+ * @returns {Promise<object>} Cumulative score data
  */
 async function calculateCumulativeScore(userName, throughWeek, year = 2025, fullSchedule = null) {
   try {
@@ -222,7 +217,6 @@ async function calculateCumulativeScore(userName, throughWeek, year = 2025, full
     };
   }
 }
-
 /**
  * Legacy function - enhanced version of the original calculateWeekScore
  * @param {string} userName - The user name
@@ -233,7 +227,6 @@ async function calculateWeekScore(userName, week) {
   const result = await scoreWeek(userName, week);
   return result.actualScore;
 }
-
 /**
  * Loads user picks from localStorage (utility function)
  * @param {string} userName - The user name
@@ -242,7 +235,14 @@ async function calculateWeekScore(userName, week) {
  */
 function loadUserPicks(userName, week) {
   try {
-    const key = `poppy-bowl-picks-${userName}-week-${week}`;
+    // Ensure userName is trimmed to avoid whitespace issues
+    const cleanUserName = userName?.toString().trim();
+    if (!cleanUserName) {
+      console.warn('Invalid userName provided to loadUserPicks');
+      return {};
+    }
+    
+    const key = `poppy-bowl-picks-${cleanUserName}-week-${week}`;
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : {};
   } catch {
@@ -251,11 +251,52 @@ function loadUserPicks(userName, week) {
 }
 
 /**
+ * Saves user picks to localStorage
+ * @param {string} userName - The user name
+ * @param {number} week - The week number
+ * @param {Object} picksData - The picks data to save
+ * @returns {Promise<boolean>} Success status
+ */
+async function saveUserPicks(userName, week, picksData) {
+  try {
+    // Ensure userName is trimmed to avoid whitespace issues
+    const cleanUserName = userName?.toString().trim();
+    if (!cleanUserName) {
+      console.error('Invalid userName provided to saveUserPicks');
+      return false;
+    }
+    
+    // Add timestamp for tracking
+    const dataToSave = {
+      ...picksData,
+      savedAt: new Date().toISOString(),
+      userName: cleanUserName,
+      week: week
+    };
+    
+    const key = `poppy-bowl-picks-${cleanUserName}-week-${week}`;
+    localStorage.setItem(key, JSON.stringify(dataToSave));
+    
+    console.log(`Successfully saved picks for ${cleanUserName}, Week ${week}`);
+    
+    // Trigger re-render if renderPicks function exists
+    if (typeof renderPicks === 'function') {
+      await renderPicks();
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error saving user picks:', error);
+    return false;
+  }
+}
+
+/**
  * Gets leaderboard data for all users
  * @param {Array} participants - List of participant names
  * @param {number} throughWeek - Calculate through this week
  * @param {number} year - The year
- * @returns {Promise<Array>} Sorted leaderboard data
+ * @returns {Promise<array>} Sorted leaderboard data
  */
 async function getLeaderboard(participants, throughWeek, year = 2025) {
   try {
@@ -278,7 +319,6 @@ async function getLeaderboard(participants, throughWeek, year = 2025) {
     return [];
   }
 }
-
 // Export functions
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -288,6 +328,7 @@ if (typeof module !== 'undefined' && module.exports) {
     calculateCumulativeScore,
     calculateWeekScore,
     loadUserPicks,
+    saveUserPicks,
     getLeaderboard
   };
 } else {
@@ -296,5 +337,7 @@ if (typeof module !== 'undefined' && module.exports) {
   window.loadWeekWinners = loadWeekWinners;
   window.calculateCumulativeScore = calculateCumulativeScore;
   window.calculateWeekScore = calculateWeekScore;
+  window.loadUserPicks = loadUserPicks;
+  window.saveUserPicks = saveUserPicks;
   window.getLeaderboard = getLeaderboard;
 }
