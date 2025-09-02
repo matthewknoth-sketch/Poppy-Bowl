@@ -368,29 +368,6 @@ function savePicks() {
     alert('Each confidence value must be unique. Please fix duplicate values.');
     return;
   }
-  
- // Save picks for current user and week
-function savePicks() {
-  if (!currentUser) {
-    alert('Please select a user first.');
-    return;
-  }
-  const weekData = schedule[currentWeek - 1];
-  if (!weekData) return;
-  const picks = {};
-  const games = weekData.games || [];
-  games.forEach(game => {
-    const teamRadios = document.querySelectorAll(`input[name="game-${game.id}"]`);
-    const confidenceInput = document.getElementById(`confidence-${game.id}`);
-    const selectedTeam = Array.from(teamRadios).find(radio => radio.checked)?.value;
-    const confidence = parseInt(confidenceInput?.value) || 0;
-    if (selectedTeam && confidence > 0) {
-      picks[game.id] = {
-        team: selectedTeam,
-        confidence: confidence
-      };
-    }
-  });
 
   // Save to localStorage first
   saveUserPicks(currentUser, currentWeek, picks);
