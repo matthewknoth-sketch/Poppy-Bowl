@@ -47,8 +47,16 @@
     <div class="controls week-controls">
       <button id="prevWeek">Previous Week</button>
       <span>Current: <strong id="currentWeekDisplay">Week 1</strong></span>
+      <input type="hidden" id="currentWeekNum" value="1">
       <button id="nextWeek">Next Week</button>
       <button class="sync-btn" id="syncFromGithub">Sync from GitHub</button>
+    </div>
+    <div class="controls pick-controls">
+      <button id="savePicksBtn">Save Picks</button>
+      <button id="clearPicksBtn">Clear Picks</button>
+      <button id="exportBtn">Export Data</button>
+      <button id="importBtn">Import Data</button>
+      <input type="file" id="importFile" accept=".json" style="display: none;">
     </div>
     <div id="weeklyPicks"></div>
   </div>
@@ -86,6 +94,6 @@
     });
   </script>
   <script src="./src/main.js" type="module"></script>
-  <script src="./app.js?v=250" defer></script>
+  <script defer src="./app.js?v=250"></script>
 </body>
 </html>
