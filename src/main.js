@@ -387,28 +387,44 @@ function savePicks() {
     return;
   }
   
-  // Save to localStorage
-  saveUserPicks(currentUser, currentWeek, picks);
-  async function loadUserPicks(userName, week) {
-  try {
-    // Try GitHub first
-    if (window.picksStorage && userName) {
-      const remote = await window.picksStorage.load(userName, 2025, week);
-      if (remote && remote.picks) {
-        // Cache to localStorage for offline access
-        const key = `poppy-bowl-picks-${userName}-week-${week}`;
-        localStorage.setItem(key, JSON.stringify(remote.picks));
-        return remote.picks;
-      }
-    }
-    // Fallback to local
-    const key = `poppy-bowl-picks-${userName}-week-${week}`;
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : {};
-  } catch {
-    return {};
+ // Save picks for current user and week
+function savePicks() {
+  if (!currentUser) {
+    alert('Please select a user first.');
+    return;
   }
-}
+  const weekData = schedule[currentWeek - 1];
+  if (!weekData) return;
+  const picks = {};
+  const games = weekData.games || [];
+  games.forEach(game => {
+    const teamRadios = document.querySelectorAll(`input[name="game-${game.id}"]`);
+    const confidenceInput = document.getElementById(`confidence-${game.id}`);
+    const selectedTeam = Array.from(teamRadios).find(radio => radio.checked)?.value;
+    const confidence = parseInt(confidenceInput?.value) || 0;
+    if (selectedTeam && confidence > 0) {
+      picks[game.id] = {
+        team: selectedTeam,
+        confidence: confidence
+      };
+    }
+  });
+
+  // Save to localStorage first
+  saveUserPicks(currentUser, currentWeek, picks);
+
+  // Then save to GitHub
+  if (window.picksStorage) {
+    window.picksStorage.save(currentUser, 2025, currentWeek, {
+      picks,
+      savedAt: new Date().toISOString()
+    }).then(() => {
+      console.log('Saved picks to GitHub for', currentUser);
+    }).catch(e => {
+      console.warn('GitHub save failed (using local):', e);
+    });
+  }
+
   alert('Picks saved successfully!');
 }
 
