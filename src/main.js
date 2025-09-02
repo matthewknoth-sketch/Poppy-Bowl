@@ -274,9 +274,26 @@ function renderLeaderboard() {
 }
 
 // Render picks for current week
-function renderPicks() {
+async function renderPicks() {
   const container = document.getElementById('weeklyPicks');
   if (!container || !schedule[currentWeek - 1]) return;
+
+  // Clear the container first
+  container.innerHTML = '';
+
+  const weekData = schedule[currentWeek - 1];
+  const games = weekData.games || [];
+
+  if (games.length === 0) {
+    container.innerHTML = 'No games available for this week.';
+    return;
+  }
+
+  // Await remote/local picks here
+  const picks = await loadUserPicks(currentUser, currentWeek);
+
+  // ...continue your existing rendering logic, using "picks"
+}
   
   // Clear the container to avoid stale inputs
   container.innerHTML = '';
@@ -372,6 +389,26 @@ function savePicks() {
   
   // Save to localStorage
   saveUserPicks(currentUser, currentWeek, picks);
+  async function loadUserPicks(userName, week) {
+  try {
+    // Try GitHub first
+    if (window.picksStorage && userName) {
+      const remote = await window.picksStorage.load(userName, 2025, week);
+      if (remote && remote.picks) {
+        // Cache to localStorage for offline access
+        const key = `poppy-bowl-picks-${userName}-week-${week}`;
+        localStorage.setItem(key, JSON.stringify(remote.picks));
+        return remote.picks;
+      }
+    }
+    // Fallback to local
+    const key = `poppy-bowl-picks-${userName}-week-${week}`;
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : {};
+  } catch {
+    return {};
+  }
+}
   alert('Picks saved successfully!');
 }
 
@@ -477,8 +514,19 @@ function calculateWeekScore(userName, week) {
 }
 
 // Load user picks from localStorage
-function loadUserPicks(userName, week) {
+async function loadUserPicks(userName, week) {
   try {
+    // Try GitHub first
+    if (window.picksStorage && userName) {
+      const remote = await window.picksStorage.load(userName, 2025, week);
+      if (remote && remote.picks) {
+        // Cache to localStorage for offline access
+        const key = `poppy-bowl-picks-${userName}-week-${week}`;
+        localStorage.setItem(key, JSON.stringify(remote.picks));
+        return remote.picks;
+      }
+    }
+    // Fallback to local
     const key = `poppy-bowl-picks-${userName}-week-${week}`;
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : {};
