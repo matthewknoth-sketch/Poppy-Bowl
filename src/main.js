@@ -297,20 +297,6 @@ async function renderPicks() {
   // ...continue your existing rendering logic, using "picks"
 }
   
-  // Clear the container to avoid stale inputs
-  container.innerHTML = '';
-  
-  const weekData = schedule[currentWeek - 1];
-  const games = weekData.games || [];
-  
-  if (games.length === 0) {
-    container.innerHTML = 'No games available for this week.';
-    return;
-  }
-  
-  // Load existing picks for current user and current week only
-  const picks = loadUserPicks(currentUser, currentWeek);
-  
   container.innerHTML = `
     <div class="warn" id="duplicateWarning" style="display:none;">Warning: You have duplicate confidence values. Each value must be unique.</div>
     ${games.map(game => `
