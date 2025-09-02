@@ -322,7 +322,6 @@ async function renderPicks() {
       <button onclick="clearPicks()" style="margin-left:8px; padding:8px 16px; border:1px solid #ccc; background:#f4f4f4; border-radius:4px; cursor:pointer;">Clear All</button>
     </div>
   `;
-}
   
   // Add event listeners for validation
   games.forEach(game => {
