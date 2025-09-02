@@ -129,19 +129,19 @@ function handleUserSelection() {
 function updateCurrentUserBanner() {
   const banner = document.getElementById('currentUserBanner');
   if (banner && currentUser) {
-    banner.innerHTML = `Current User: <strong>${currentUser}</strong> <button onclick="switchUser()">Switch User</button>`;
+    banner.innerHTML = `Current User: ${currentUser} <button onclick="showUserSelector()">Switch User</button>`;
     banner.style.display = 'block';
   }
 }
 
-// Switch user function
-window.switchUser = function() {
+// Switch user function - exported as showUserSelector
+function showUserSelector() {
   currentUser = null;
   document.getElementById('userSelector').style.display = 'block';
   document.getElementById('currentUserBanner').style.display = 'none';
   document.getElementById('userDropdown').value = '';
   document.getElementById('userCustom').value = '';
-};
+}
 
 // Initialize user selection state
 function initializeUserSelection() {
@@ -205,7 +205,7 @@ async function renderPicks(games = [], existingPicks = {}) {
   const container = document.getElementById('weeklyPicks');
   if (!container) return;
   
-  let html = '<div id="duplicateWarning" class="warn">Warning: Duplicate confidence values detected!</div>';
+  let html = '<div class="warn" id="duplicateWarning">Warning: Duplicate confidence values detected!</div>';
   
   games.forEach(game => {
     const pick = existingPicks[game.id] || {};
@@ -215,15 +215,14 @@ async function renderPicks(games = [], existingPicks = {}) {
     
     html += `
       <div class="game-card">
-        <div><strong>${game.away} @ ${game.home}</strong></div>
+        ${game.away} @ ${game.home}
         <div style="margin: 8px 0;">
-          <label><input type="radio" name="game-${game.id}" value="${game.away}" ${awayChecked}> ${game.away}</label>
-          <label style="margin-left: 16px;"><input type="radio" name="game-${game.id}" value="${game.home}" ${homeChecked}> ${game.home}</label>
+          <label><input name="game-${game.id}" type="radio" value="${game.away}" ${awayChecked}/> ${game.away}</label>
+          <label style="margin-left: 16px;"><input name="game-${game.id}" type="radio" value="${game.home}" ${homeChecked}/> ${game.home}</label>
         </div>
         <div>
           <label>Confidence (1-16): 
-            <input type="number" id="confidence-${game.id}" min="1" max="16" value="${confidence}" 
-                   style="width: 60px; margin-left: 8px;">
+            <input id="confidence-${game.id}" max="16" min="1" type="number" value="${confidence}" style="width: 60px; margin-left: 8px;"/>
           </label>
         </div>
       </div>
@@ -233,7 +232,7 @@ async function renderPicks(games = [], existingPicks = {}) {
   html += `
     <div style="margin-top: 16px;">
       <button class="save-btn" onclick="savePicks()">Save Picks</button>
-      <button class="save-btn" onclick="clearAllPicks()" style="background: #888; margin-left: 8px;">Clear All</button>
+      <button class="save-btn" onclick="clearPicks()" style="background: #888; margin-left: 8px;">Clear All</button>
     </div>
   `;
   
@@ -251,8 +250,8 @@ async function renderPicks(games = [], existingPicks = {}) {
   validateConfidenceValues();
 }
 
-// Save picks function
-window.savePicks = async function() {
+// Save picks function - exported to window for onclick access
+window.savePicks = async function savePicks() {
   if (!currentUser) {
     alert('No user selected!');
     return;
@@ -310,8 +309,8 @@ window.savePicks = async function() {
   }
 };
 
-// Clear all picks
-window.clearAllPicks = function() {
+// Clear all picks function - exported to window for onclick access
+window.clearPicks = function clearPicks() {
   if (!confirm('Are you sure you want to clear all picks for this week?')) {
     return;
   }
@@ -365,6 +364,7 @@ function validateConfidenceValues() {
 }
 
 // Export functions for global access
+window.showUserSelector = showUserSelector;
 window.currentUser = () => currentUser;
 window.currentWeek = () => currentWeek;
 window.renderPicks = renderPicks;
