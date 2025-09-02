@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Show user selector initially
     showUserSelector();
+    document.getElementById('syncFromGithub')?.addEventListener('click', window.syncPicks);
+
     
   } catch (error) {
     console.error('Failed to initialize app:', error);
