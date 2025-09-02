@@ -279,24 +279,18 @@ function renderLeaderboard() {
 async function renderPicks() {
   const container = document.getElementById('weeklyPicks');
   if (!container || !schedule[currentWeek - 1]) return;
-
   // Clear the container first
   container.innerHTML = '';
-
   const weekData = schedule[currentWeek - 1];
   const games = weekData.games || [];
-
   if (games.length === 0) {
     container.innerHTML = 'No games available for this week.';
     return;
   }
-
   // Await remote/local picks here
   const picks = await loadUserPicks(currentUser, currentWeek);
 
-  // ...continue your existing rendering logic, using "picks"
-}
-  
+  // --- UI rendering must be INSIDE here! ---
   container.innerHTML = `
     <div class="warn" id="duplicateWarning" style="display:none;">Warning: You have duplicate confidence values. Each value must be unique.</div>
     ${games.map(game => `
@@ -328,6 +322,7 @@ async function renderPicks() {
       <button onclick="clearPicks()" style="margin-left:8px; padding:8px 16px; border:1px solid #ccc; background:#f4f4f4; border-radius:4px; cursor:pointer;">Clear All</button>
     </div>
   `;
+}
   
   // Add event listeners for validation
   games.forEach(game => {
