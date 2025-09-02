@@ -1,5 +1,4 @@
 // app.js - localStorage save/load logic for picks
-
 // Initialize localStorage keys
 const STORAGE_KEYS = {
   picks: 'poppy-bowl-picks',
@@ -164,16 +163,159 @@ if (typeof window !== 'undefined') {
   console.log('Poppy Bowl localStorage module loaded');
 }
 
-// Initialize on page load
+// Initialize on page load with UI event wiring
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Poppy Bowl app.js initialized');
   
-  // Auto-load picks if participant elements exist
-  const currentWeek = 1; // Default to week 1
-  const picks = loadPicks(currentWeek);
+  // Wire up user selection
+  const userSelectBtn = document.getElementById('userSelectBtn');
+  const userDropdown = document.getElementById('userDropdown');
+  const userCustom = document.getElementById('userCustom');
+  const userSelector = document.getElementById('userSelector');
+  const currentUserBanner = document.getElementById('currentUserBanner');
   
-  if (picks) {
-    console.log(`Loaded picks for week ${currentWeek}:`, picks);
-    // You can add code here to populate UI elements with saved picks
+  // Populate user dropdown with existing participants
+  function populateUserDropdown() {
+    const participants = getParticipants();
+    userDropdown.innerHTML = '<option value="">Select participant...</option>';
+    participants.forEach(participant => {
+      const option = document.createElement('option');
+      option.value = participant;
+      option.textContent = participant;
+      userDropdown.appendChild(option);
+    });
   }
+  
+  // Set user and hide selector
+  function selectUser(username) {
+    if (!username || username.trim() === '') return;
+    
+    setCurrentUser(username.trim());
+    addParticipant(username.trim());
+    
+    if (userSelector) userSelector.style.display = 'none';
+    if (currentUserBanner) {
+      currentUserBanner.textContent = `Picks for: ${username.trim()}`;
+      currentUserBanner.style.display = 'block';
+    }
+    
+    // Load and populate picks for current week
+    loadPicksForCurrentWeek();
+  }
+  
+  // User selection button handler
+  if (userSelectBtn) {
+    userSelectBtn.addEventListener('click', function() {
+      const selectedUser = userDropdown.value || userCustom.value;
+      if (selectedUser) {
+        selectUser(selectedUser);
+      }
+    });
+  }
+  
+  // Auto-select if user already set
+  const currentUser = getCurrentUser();
+  if (currentUser && currentUser !== 'default-user') {
+    selectUser(currentUser);
+  } else {
+    populateUserDropdown();
+  }
+  
+  // Wire up tab switching
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tabName = this.getAttribute('data-tab');
+      
+      // Update active tab button
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show/hide tab content
+      tabContents.forEach(content => {
+        content.style.display = content.id === tabName ? 'block' : 'none';
+      });
+    });
+  });
+  
+  // Wire up picks UI elements for saving
+  function wirePicksUI() {
+    // Add event listeners to all radio buttons and confidence inputs
+    document.addEventListener('change', function(e) {
+      if (e.target.type === 'radio' || (e.target.type === 'number' && e.target.classList.contains('confidence'))) {
+        saveCurrentPicks();
+      }
+    });
+  }
+  
+  // Save picks from current UI state
+  function saveCurrentPicks() {
+    const currentWeek = getCurrentWeek();
+    const picks = {};
+    
+    // Collect all game picks from radio buttons and confidence inputs
+    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+      const gameId = radio.name; // Assuming radio name is the game ID
+      const selectedTeam = radio.value;
+      const confidenceInput = document.querySelector(`input[data-game-id="${gameId}"].confidence`);
+      const confidence = confidenceInput ? parseInt(confidenceInput.value) : null;
+      
+      if (selectedTeam && confidence) {
+        picks[gameId] = {
+          selectedTeam: selectedTeam,
+          confidence: confidence,
+          gameId: gameId
+        };
+      }
+    });
+    
+    if (Object.keys(picks).length > 0) {
+      savePicks(currentWeek, picks);
+    }
+  }
+  
+  // Load picks for current week and populate UI
+  function loadPicksForCurrentWeek() {
+    const currentWeek = getCurrentWeek();
+    const picks = loadPicks(currentWeek);
+    
+    if (picks) {
+      console.log(`Loading picks for week ${currentWeek}:`, picks);
+      
+      // Populate radio buttons and confidence inputs
+      Object.entries(picks).forEach(([gameId, pick]) => {
+        // Set radio button
+        const radio = document.querySelector(`input[name="${gameId}"][value="${pick.selectedTeam}"]`);
+        if (radio) radio.checked = true;
+        
+        // Set confidence input
+        const confidenceInput = document.querySelector(`input[data-game-id="${gameId}"].confidence`);
+        if (confidenceInput) confidenceInput.value = pick.confidence;
+      });
+    }
+  }
+  
+  // Get current week number (default to 1)
+  function getCurrentWeek() {
+    const weekDisplay = document.getElementById('currentWeekDisplay');
+    if (weekDisplay) {
+      const match = weekDisplay.textContent.match(/Week (\d+)/);
+      return match ? parseInt(match[1]) : 1;
+    }
+    return 1;
+  }
+  
+  // Initialize picks UI wiring
+  wirePicksUI();
+  
+  console.log('UI event wiring complete');
 });
+
+// Make functions globally available for inline event handlers
+window.savePicks = savePicks;
+window.loadPicks = loadPicks;
+window.clearPicks = clearPicks;
+window.saveGamePick = saveGamePick;
+window.loadGamePick = loadGamePick;
