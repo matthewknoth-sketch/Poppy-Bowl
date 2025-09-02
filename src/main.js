@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Show user selector initially
     showUserSelector();
     document.getElementById('syncFromGithub')?.addEventListener('click', window.syncPicks);
-
     
   } catch (error) {
     console.error('Failed to initialize app:', error);
@@ -279,17 +278,21 @@ function renderLeaderboard() {
 async function renderPicks() {
   const container = document.getElementById('weeklyPicks');
   if (!container || !schedule[currentWeek - 1]) return;
+  
   // Clear the container first
   container.innerHTML = '';
+  
   const weekData = schedule[currentWeek - 1];
   const games = weekData.games || [];
+  
   if (games.length === 0) {
-    container.innerHTML = 'No games available for this week.';
+    container.innerHTML = '<p>No games available for this week.</p>';
     return;
   }
+  
   // Await remote/local picks here
   const picks = await loadUserPicks(currentUser, currentWeek);
-
+  
   // --- UI rendering must be INSIDE here! ---
   container.innerHTML = `
     <div class="warn" id="duplicateWarning" style="display:none;">Warning: You have duplicate confidence values. Each value must be unique.</div>
@@ -309,10 +312,7 @@ async function renderPicks() {
         <div style="margin:8px 0;">
           <label>
             Confidence (1-${games.length}):
-            <input type="number" min="1" max="${games.length}" 
-                   id="confidence-${game.id}" 
-                   value="${picks[game.id]?.confidence || ''}" 
-                   style="margin-left:8px; width:60px;">
+            <input type="number" id="confidence-${game.id}" min="1" max="${games.length}" value="${picks[game.id]?.confidence || ''}" style="margin-left:8px; width:60px;"/>
           </label>
         </div>
       </div>
@@ -368,10 +368,10 @@ function savePicks() {
     alert('Each confidence value must be unique. Please fix duplicate values.');
     return;
   }
-
+  
   // Save to localStorage first
   saveUserPicks(currentUser, currentWeek, picks);
-
+  
   // Then save to GitHub
   if (window.picksStorage) {
     window.picksStorage.save(currentUser, 2025, currentWeek, {
@@ -383,7 +383,7 @@ function savePicks() {
       console.warn('GitHub save failed (using local):', e);
     });
   }
-
+  
   alert('Picks saved successfully!');
 }
 
@@ -501,6 +501,7 @@ async function loadUserPicks(userName, week) {
         return remote.picks;
       }
     }
+    
     // Fallback to local
     const key = `poppy-bowl-picks-${userName}-week-${week}`;
     const data = localStorage.getItem(key);
