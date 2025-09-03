@@ -187,16 +187,16 @@ function switchTab(tabName) {
 // Load and render picks for current user and week
 async function loadAndRenderPicks() {
   if (!currentUser || !schedule || !schedule[currentWeek - 1]) {
-    console.error('Cannot render picks: missing user, schedule, or week data');
+    console.error('Cannot render picks: missing user, schedule, or week data', {currentUser, currentWeek, schedule});
     return;
   }
-  
   const weekData = schedule[currentWeek - 1];
   const games = weekData.games || [];
-  
-  // Load existing picks
-  const existingPicks = window.loadUserPicks ? window.loadUserPicks(currentUser, currentWeek) : {};
-  
+  // Await here so it gets the right user's picks each time
+  let existingPicks = {};
+  if (window.loadUserPicks) {
+    existingPicks = await window.loadUserPicks(currentUser, currentWeek);
+  }
   await renderPicks(games, existingPicks);
 }
 
@@ -370,3 +370,4 @@ window.currentWeek = () => currentWeek;
 window.renderPicks = renderPicks;
 
 console.log('Main.js loaded successfully');
+
