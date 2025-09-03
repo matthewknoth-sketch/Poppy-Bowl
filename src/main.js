@@ -125,25 +125,18 @@ function setupEventHandlers() {
 
 // Handle user selection
 function handleUserSelection() {
+function handleUserSelection() {
   const dropdown = document.getElementById('userDropdown');
   const customInput = document.getElementById('userCustom');
-  
   let selectedUser = dropdown?.value?.trim() || customInput?.value?.trim();
-  
   if (!selectedUser) {
     alert('Please select or enter a participant name.');
     return;
   }
-  
-  // Ensure currentUser is set exactly to dropdown value without whitespace
   currentUser = selectedUser;
-  console.log('User selected:', currentUser);
-  
-  // Hide user selector and show main interface
   document.getElementById('userSelector').style.display = 'none';
   updateCurrentUserBanner();
-  
-  // Load picks for current user and week
+  currentWeek = parseInt(document.getElementById('currentWeekNum')?.value || "1", 10);
   loadAndRenderPicks();
 }
 
@@ -392,5 +385,6 @@ window.currentWeek = () => currentWeek;
 window.renderPicks = renderPicks;
 
 console.log('Main.js loaded successfully');
+
 
 
