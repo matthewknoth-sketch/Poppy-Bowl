@@ -80,27 +80,15 @@
     <div class="small" id="scoresTimestamp" style="margin-top:10px;"></div>
   </div>
   <!-- Load SaveWinners before AdminBar to ensure it's available -->
-  <script src="./src/lib/SaveWinners.js"></script>
-  <script src="./src/lib/PicksShim.js"></script>
-  <!-- Load AdminBar before main.js -->
-  <script src="./src/components/AdminBar.js"></script>
-  <!-- Load PicksStorage before main.js -->
-  <script src="./src/lib/PicksStorage.js"></script>
-  <script>
-    // Initialize AdminBar on DOM content loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.AdminBar) {
-        new AdminBar();
-      }
-    });
-  </script>
-  <script src="./src/main.js" type="module"></script>
-  <!-- <script src="./app.js?v=250"></script> -->
-  <script src="./src/lib/PicksStorage.js">
-  </script> <script src="./src/lib/PicksShim.js"><script src="./src/lib/PicksStorage.js"></script> <script src="./src/lib/PicksShim.js"></script> <script type="module" src="./src/main.js"></script>
-  
+<script src="./src/lib/SaveWinners.js"></script>
+<script src="./src/components/AdminBar.js"></script>
+<script src="./src/lib/PicksStorage.js"></script>
+<script src="./src/lib/PicksShim.js"></script>
+<script type="module" src="./src/main.js"></script>
+<!-- <script src="./app.js?v=250"></script> -->
 </body>
 </html>
+
 
 
 
