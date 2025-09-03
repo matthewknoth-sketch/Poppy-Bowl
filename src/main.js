@@ -26,6 +26,28 @@ async function initializeApp() {
   
   // Setup event handlers
   setupEventHandlers();
+  // This will re-run the loader when you change the week
+const weekInput = document.getElementById('currentWeekNum');
+if (weekInput) {
+  weekInput.addEventListener('change', () => {
+    currentWeek = parseInt(weekInput.value, 10);
+    loadAndRenderPicks();
+  });
+}
+const prev = document.getElementById('prevWeek');
+const next = document.getElementById('nextWeek');
+if (prev) prev.addEventListener('click', () => {
+  setTimeout(() => {
+    currentWeek = parseInt(document.getElementById('currentWeekNum').value, 10);
+    loadAndRenderPicks();
+  }, 0);
+});
+if (next) next.addEventListener('click', () => {
+  setTimeout(() => {
+    currentWeek = parseInt(document.getElementById('currentWeekNum').value, 10);
+    loadAndRenderPicks();
+  }, 0);
+});
   
   // Initialize UI state
   initializeUserSelection();
@@ -370,4 +392,5 @@ window.currentWeek = () => currentWeek;
 window.renderPicks = renderPicks;
 
 console.log('Main.js loaded successfully');
+
 
