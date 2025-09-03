@@ -125,7 +125,6 @@ function setupEventHandlers() {
 
 // Handle user selection
 function handleUserSelection() {
-function handleUserSelection() {
   const dropdown = document.getElementById('userDropdown');
   const customInput = document.getElementById('userCustom');
   let selectedUser = dropdown?.value?.trim() || customInput?.value?.trim();
@@ -385,6 +384,7 @@ window.currentWeek = () => currentWeek;
 window.renderPicks = renderPicks;
 
 console.log('Main.js loaded successfully');
+
 
 
 
